@@ -173,7 +173,7 @@ class _MainLayoutState extends State<MainLayout> with TickerProviderStateMixin {
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'split screen test',
+        title: 'Welcome to Para\'llel Memory',
         home: Scaffold(
           body: Container(
               child: SplitWidget(
@@ -184,9 +184,7 @@ class _MainLayoutState extends State<MainLayout> with TickerProviderStateMixin {
                   ),
                   childSecond: SplitVerticalWidget(
                     childTop: InkWell(
-                      child: InkWell(
-                        child: Image.asset('images/s1.png', fit: BoxFit.fill),
-                      ),
+                      child: Image.asset('images/s1.png', fit: BoxFit.fill),
                       onTap: _goBlog,
                       // width: 640,
                       // height: 320,
