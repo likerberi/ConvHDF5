@@ -1,0 +1,980 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/widgets/orientation_builder.dart', 'packages/flutter_web.examples.github_dataviz/PositionedDraggableIcon.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart'], (function load__packages__flutter_web_examples_github_dataviz__SplitWidget_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__widgets__orientation_builder$46dart, packages__flutter_web$46examples$46github_dataviz__PositionedDraggableIcon$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const ui = dart_sdk.ui;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const orientation_builder = packages__flutter__src__widgets__orientation_builder$46dart.src__widgets__orientation_builder;
+  const PositionedDraggableIcon = packages__flutter_web$46examples$46github_dataviz__PositionedDraggableIcon$46dart.PositionedDraggableIcon;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  var SplitWidget = Object.create(dart.library);
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    StatefulWidgetL: () => (T.StatefulWidgetL = dart.constFn(dart.legacy(framework.StatefulWidget)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    OrientationL: () => (T.OrientationL = dart.constFn(dart.legacy(media_query.Orientation)))(),
+    BuildContextLAndOrientationLToStatefulWidgetL: () => (T.BuildContextLAndOrientationLToStatefulWidgetL = dart.constFn(dart.fnType(T.StatefulWidgetL(), [T.BuildContextL(), T.OrientationL()])))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    doubleL: () => (T.doubleL = dart.constFn(dart.legacy(core.double)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    dynamicAnddynamicToNull: () => (T.dynamicAnddynamicToNull = dart.constFn(dart.fnType(core.Null, [dart.dynamic, dart.dynamic])))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childTop",
+        [_Location_column]: 17,
+        [_Location_line]: 24,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childBottom",
+        [_Location_column]: 17,
+        [_Location_line]: 25,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 23,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childLeft",
+        [_Location_column]: 17,
+        [_Location_line]: 28,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childRight",
+        [_Location_column]: 17,
+        [_Location_line]: 29,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7], T._LocationL());
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[5] || CT.C5,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 27,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 26,
+        [_Location_line]: 21,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.constList([C[10] || CT.C10], T._LocationL());
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[9] || CT.C9,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 21,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 62,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 9,
+        [_Location_line]: 63,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 9,
+        [_Location_line]: 64,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 9,
+        [_Location_line]: 65,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 9,
+        [_Location_line]: 66,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 61,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 69,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 9,
+        [_Location_line]: 70,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 9,
+        [_Location_line]: 71,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 9,
+        [_Location_line]: 72,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 9,
+        [_Location_line]: 73,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.constList([C[20] || CT.C20, C[21] || CT.C21, C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24], T._LocationL());
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[19] || CT.C19,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 68,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 9,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 9,
+        [_Location_line]: 78,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childDraggable",
+        [_Location_column]: 9,
+        [_Location_line]: 79,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childFeedback",
+        [_Location_column]: 9,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "axis",
+        [_Location_column]: 9,
+        [_Location_line]: 81,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChangePosition",
+        [_Location_column]: 9,
+        [_Location_line]: 82,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.constList([C[27] || CT.C27, C[28] || CT.C28, C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31, C[32] || CT.C32], T._LocationL());
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[26] || CT.C26,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 76,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 18,
+        [_Location_line]: 60,
+        [_Location_file]: null
+      });
+    },
+    get C34() {
+      return C[34] = dart.constList([C[35] || CT.C35], T._LocationL());
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[34] || CT.C34,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 60,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 19,
+        [_Location_line]: 95,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 13,
+        [_Location_line]: 96,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.constList([C[38] || CT.C38, C[39] || CT.C39], T._LocationL());
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[37] || CT.C37,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 94,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 94,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.constList([C[42] || CT.C42], T._LocationL());
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[41] || CT.C41,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 93,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 9,
+        [_Location_line]: 92,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 93,
+        [_Location_file]: null
+      });
+    },
+    get C44() {
+      return C[44] = dart.constList([C[45] || CT.C45, C[46] || CT.C46], T._LocationL());
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[44] || CT.C44,
+        [_Location_name]: null,
+        [_Location_column]: 44,
+        [_Location_line]: 91,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 129,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 9,
+        [_Location_line]: 130,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 9,
+        [_Location_line]: 131,
+        [_Location_file]: null
+      });
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 9,
+        [_Location_line]: 132,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 9,
+        [_Location_line]: 133,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.constList([C[49] || CT.C49, C[50] || CT.C50, C[51] || CT.C51, C[52] || CT.C52, C[53] || CT.C53], T._LocationL());
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[48] || CT.C48,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 128,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 136,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 9,
+        [_Location_line]: 137,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 9,
+        [_Location_line]: 138,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 9,
+        [_Location_line]: 139,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 9,
+        [_Location_line]: 141,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.constList([C[56] || CT.C56, C[57] || CT.C57, C[58] || CT.C58, C[59] || CT.C59, C[60] || CT.C60], T._LocationL());
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[55] || CT.C55,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 135,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 9,
+        [_Location_line]: 144,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 9,
+        [_Location_line]: 145,
+        [_Location_file]: null
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childDraggable",
+        [_Location_column]: 9,
+        [_Location_line]: 146,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childFeedback",
+        [_Location_column]: 9,
+        [_Location_line]: 147,
+        [_Location_file]: null
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "axis",
+        [_Location_column]: 9,
+        [_Location_line]: 148,
+        [_Location_file]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChangePosition",
+        [_Location_column]: 9,
+        [_Location_line]: 149,
+        [_Location_file]: null
+      });
+    },
+    get C62() {
+      return C[62] = dart.constList([C[63] || CT.C63, C[64] || CT.C64, C[65] || CT.C65, C[66] || CT.C66, C[67] || CT.C67, C[68] || CT.C68], T._LocationL());
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[62] || CT.C62,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 143,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 18,
+        [_Location_line]: 127,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.constList([C[71] || CT.C71], T._LocationL());
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[70] || CT.C70,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 127,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 19,
+        [_Location_line]: 162,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 13,
+        [_Location_line]: 163,
+        [_Location_file]: null
+      });
+    },
+    get C73() {
+      return C[73] = dart.constList([C[74] || CT.C74, C[75] || CT.C75], T._LocationL());
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[73] || CT.C73,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 161,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 161,
+        [_Location_file]: null
+      });
+    },
+    get C77() {
+      return C[77] = dart.constList([C[78] || CT.C78], T._LocationL());
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[77] || CT.C77,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 160,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 9,
+        [_Location_line]: 159,
+        [_Location_file]: null
+      });
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 160,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.constList([C[81] || CT.C81, C[82] || CT.C82], T._LocationL());
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[80] || CT.C80,
+        [_Location_name]: null,
+        [_Location_column]: 44,
+        [_Location_line]: 158,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/SplitWidget.dart"
+      });
+    }
+  }, false);
+  var C = Array(83).fill(void 0);
+  var I = ["package:flutter_web.examples.github_dataviz/SplitWidget.dart"];
+  var childFirst$ = dart.privateName(SplitWidget, "SplitWidget.childFirst");
+  var childSecond$ = dart.privateName(SplitWidget, "SplitWidget.childSecond");
+  SplitWidget.SplitWidget = class SplitWidget$ extends framework.StatefulWidget {
+    get childFirst() {
+      return this[childFirst$];
+    }
+    set childFirst(value) {
+      super.childFirst = value;
+    }
+    get childSecond() {
+      return this[childSecond$];
+    }
+    set childSecond(value) {
+      super.childSecond = value;
+    }
+    createState() {
+      return new SplitWidget._SplitWidget.new();
+    }
+  };
+  (SplitWidget.SplitWidget.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let childFirst = opts && 'childFirst' in opts ? opts.childFirst : null;
+    let childSecond = opts && 'childSecond' in opts ? opts.childSecond : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[childFirst$] = childFirst;
+    this[childSecond$] = childSecond;
+    SplitWidget.SplitWidget.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = SplitWidget.SplitWidget.prototype;
+  dart.addTypeTests(SplitWidget.SplitWidget);
+  dart.addTypeCaches(SplitWidget.SplitWidget);
+  dart.setMethodSignature(SplitWidget.SplitWidget, () => ({
+    __proto__: dart.getMethods(SplitWidget.SplitWidget.__proto__),
+    createState: dart.fnType(dart.legacy(SplitWidget._SplitWidget), [])
+  }));
+  dart.setLibraryUri(SplitWidget.SplitWidget, I[0]);
+  dart.setFieldSignature(SplitWidget.SplitWidget, () => ({
+    __proto__: dart.getFields(SplitWidget.SplitWidget.__proto__),
+    childFirst: dart.finalFieldType(dart.legacy(framework.Widget)),
+    childSecond: dart.finalFieldType(dart.legacy(framework.Widget))
+  }));
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  SplitWidget._SplitWidget = class _SplitWidget extends framework.State$(dart.legacy(SplitWidget.SplitWidget)) {
+    build(context) {
+      return new orientation_builder.OrientationBuilder.new({builder: dart.fn((context, orientation) => orientation == media_query.Orientation.portrait ? new SplitWidget.SplitVerticalWidget.new({childTop: this.widget.childFirst, childBottom: this.widget.childSecond, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}) : new SplitWidget.SplitHorizontalWidget.new({childLeft: this.widget.childFirst, childRight: this.widget.childSecond, $creationLocationd_0dea112b090073317d4: C[4] || CT.C4}), T.BuildContextLAndOrientationLToStatefulWidgetL()), $creationLocationd_0dea112b090073317d4: C[8] || CT.C8});
+    }
+  };
+  (SplitWidget._SplitWidget.new = function() {
+    SplitWidget._SplitWidget.__proto__.new.call(this);
+    ;
+  }).prototype = SplitWidget._SplitWidget.prototype;
+  dart.addTypeTests(SplitWidget._SplitWidget);
+  dart.addTypeCaches(SplitWidget._SplitWidget);
+  dart.setMethodSignature(SplitWidget._SplitWidget, () => ({
+    __proto__: dart.getMethods(SplitWidget._SplitWidget.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(SplitWidget._SplitWidget, I[0]);
+  var childTop$ = dart.privateName(SplitWidget, "SplitVerticalWidget.childTop");
+  var childBottom$ = dart.privateName(SplitWidget, "SplitVerticalWidget.childBottom");
+  SplitWidget.SplitVerticalWidget = class SplitVerticalWidget extends framework.StatefulWidget {
+    get childTop() {
+      return this[childTop$];
+    }
+    set childTop(value) {
+      super.childTop = value;
+    }
+    get childBottom() {
+      return this[childBottom$];
+    }
+    set childBottom(value) {
+      super.childBottom = value;
+    }
+    createState() {
+      return new SplitWidget._SplitVerticalWidget.new();
+    }
+  };
+  (SplitWidget.SplitVerticalWidget.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let childTop = opts && 'childTop' in opts ? opts.childTop : null;
+    let childBottom = opts && 'childBottom' in opts ? opts.childBottom : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[childTop$] = childTop;
+    this[childBottom$] = childBottom;
+    SplitWidget.SplitVerticalWidget.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = SplitWidget.SplitVerticalWidget.prototype;
+  dart.addTypeTests(SplitWidget.SplitVerticalWidget);
+  dart.addTypeCaches(SplitWidget.SplitVerticalWidget);
+  dart.setMethodSignature(SplitWidget.SplitVerticalWidget, () => ({
+    __proto__: dart.getMethods(SplitWidget.SplitVerticalWidget.__proto__),
+    createState: dart.fnType(dart.legacy(SplitWidget._SplitVerticalWidget), [])
+  }));
+  dart.setLibraryUri(SplitWidget.SplitVerticalWidget, I[0]);
+  dart.setFieldSignature(SplitWidget.SplitVerticalWidget, () => ({
+    __proto__: dart.getFields(SplitWidget.SplitVerticalWidget.__proto__),
+    childTop: dart.finalFieldType(dart.legacy(framework.Widget)),
+    childBottom: dart.finalFieldType(dart.legacy(framework.Widget))
+  }));
+  var _topDraggableIcon = dart.privateName(SplitWidget, "_topDraggableIcon");
+  var _childViewDragging = dart.privateName(SplitWidget, "_childViewDragging");
+  SplitWidget._SplitVerticalWidget = class _SplitVerticalWidget extends framework.State$(dart.legacy(SplitWidget.SplitVerticalWidget)) {
+    build(context) {
+      let widthScreen = dart.notNull(media_query.MediaQuery.of(context).size.width) / 2;
+      let heightScreen = media_query.MediaQuery.of(context).size.height;
+      let padding = media_query.MediaQuery.of(context).padding;
+      let heightWithoutStatusToolbar = dart.notNull(heightScreen) - dart.notNull(padding.top) - 56;
+      if (this[_topDraggableIcon] === 0.0) {
+        this[_topDraggableIcon] = (heightWithoutStatusToolbar - dart.notNull(PositionedDraggableIcon.PositionedDraggableIcon.kTapSize)) / 2;
+      }
+      return new basic.Stack.new({children: T.JSArrayOfWidgetL().of([new basic.Positioned.new({child: this.widget.childTop, top: 0.0, left: 0.0, width: widthScreen, height: this[_topDraggableIcon], $creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), new basic.Positioned.new({child: this.widget.childBottom, top: dart.notNull(this[_topDraggableIcon]) + dart.notNull(PositionedDraggableIcon.PositionedDraggableIcon.kTapSize), left: 0.0, width: widthScreen, height: heightWithoutStatusToolbar - (dart.notNull(this[_topDraggableIcon]) + dart.notNull(PositionedDraggableIcon.PositionedDraggableIcon.kTapSize)), $creationLocationd_0dea112b090073317d4: C[18] || CT.C18}), new PositionedDraggableIcon.PositionedDraggableIcon.new({left: 0.0, top: this[_topDraggableIcon], childDraggable: T.WidgetL().as(this[_childViewDragging](colors.Colors.black12)), childFeedback: T.WidgetL().as(this[_childViewDragging](colors.Colors.black)), axis: basic_types.Axis.vertical, onChangePosition: dart.fn((top, left) => {
+              this.setState(dart.fn(() => {
+                this[_topDraggableIcon] = T.doubleL().as(top);
+              }, T.VoidToNull()));
+            }, T.dynamicAnddynamicToNull()), $creationLocationd_0dea112b090073317d4: C[25] || CT.C25})]), $creationLocationd_0dea112b090073317d4: C[33] || CT.C33});
+    }
+    [_childViewDragging](color) {
+      return new container.Container.new({color: color, child: new basic.Center.new({child: new icon.Icon.new(icons.Icons.more_horiz, {color: colors.Colors.white, $creationLocationd_0dea112b090073317d4: C[36] || CT.C36}), $creationLocationd_0dea112b090073317d4: C[40] || CT.C40}), $creationLocationd_0dea112b090073317d4: C[43] || CT.C43});
+    }
+  };
+  (SplitWidget._SplitVerticalWidget.new = function() {
+    this[_topDraggableIcon] = 0.0;
+    SplitWidget._SplitVerticalWidget.__proto__.new.call(this);
+    ;
+  }).prototype = SplitWidget._SplitVerticalWidget.prototype;
+  dart.addTypeTests(SplitWidget._SplitVerticalWidget);
+  dart.addTypeCaches(SplitWidget._SplitVerticalWidget);
+  dart.setMethodSignature(SplitWidget._SplitVerticalWidget, () => ({
+    __proto__: dart.getMethods(SplitWidget._SplitVerticalWidget.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    [_childViewDragging]: dart.fnType(dart.dynamic, [dart.legacy(ui.Color)])
+  }));
+  dart.setLibraryUri(SplitWidget._SplitVerticalWidget, I[0]);
+  dart.setFieldSignature(SplitWidget._SplitVerticalWidget, () => ({
+    __proto__: dart.getFields(SplitWidget._SplitVerticalWidget.__proto__),
+    [_topDraggableIcon]: dart.fieldType(dart.legacy(core.double))
+  }));
+  var childLeft$ = dart.privateName(SplitWidget, "SplitHorizontalWidget.childLeft");
+  var childRight$ = dart.privateName(SplitWidget, "SplitHorizontalWidget.childRight");
+  SplitWidget.SplitHorizontalWidget = class SplitHorizontalWidget extends framework.StatefulWidget {
+    get childLeft() {
+      return this[childLeft$];
+    }
+    set childLeft(value) {
+      super.childLeft = value;
+    }
+    get childRight() {
+      return this[childRight$];
+    }
+    set childRight(value) {
+      super.childRight = value;
+    }
+    createState() {
+      return new SplitWidget._SplitHorizontalWidget.new();
+    }
+  };
+  (SplitWidget.SplitHorizontalWidget.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let childLeft = opts && 'childLeft' in opts ? opts.childLeft : null;
+    let childRight = opts && 'childRight' in opts ? opts.childRight : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[childLeft$] = childLeft;
+    this[childRight$] = childRight;
+    SplitWidget.SplitHorizontalWidget.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = SplitWidget.SplitHorizontalWidget.prototype;
+  dart.addTypeTests(SplitWidget.SplitHorizontalWidget);
+  dart.addTypeCaches(SplitWidget.SplitHorizontalWidget);
+  dart.setMethodSignature(SplitWidget.SplitHorizontalWidget, () => ({
+    __proto__: dart.getMethods(SplitWidget.SplitHorizontalWidget.__proto__),
+    createState: dart.fnType(dart.legacy(SplitWidget._SplitHorizontalWidget), [])
+  }));
+  dart.setLibraryUri(SplitWidget.SplitHorizontalWidget, I[0]);
+  dart.setFieldSignature(SplitWidget.SplitHorizontalWidget, () => ({
+    __proto__: dart.getFields(SplitWidget.SplitHorizontalWidget.__proto__),
+    childLeft: dart.finalFieldType(dart.legacy(framework.Widget)),
+    childRight: dart.finalFieldType(dart.legacy(framework.Widget))
+  }));
+  var _leftDraggableIcon = dart.privateName(SplitWidget, "_leftDraggableIcon");
+  SplitWidget._SplitHorizontalWidget = class _SplitHorizontalWidget extends framework.State$(dart.legacy(SplitWidget.SplitHorizontalWidget)) {
+    build(context) {
+      let widthScreen = media_query.MediaQuery.of(context).size.width;
+      let heightScreen = media_query.MediaQuery.of(context).size.height;
+      let padding = media_query.MediaQuery.of(context).padding;
+      let heightWithoutStatusToolbar = dart.notNull(heightScreen) - dart.notNull(padding.top) - 56;
+      if (this[_leftDraggableIcon] === 0.0) {
+        this[_leftDraggableIcon] = (dart.notNull(widthScreen) - dart.notNull(PositionedDraggableIcon.PositionedDraggableIcon.kTapSize)) / 2;
+      }
+      return new basic.Stack.new({children: T.JSArrayOfWidgetL().of([new basic.Positioned.new({child: this.widget.childLeft, top: 0.0, left: 0.0, width: this[_leftDraggableIcon], height: heightWithoutStatusToolbar, $creationLocationd_0dea112b090073317d4: C[47] || CT.C47}), new basic.Positioned.new({child: this.widget.childRight, top: 0.0, left: dart.notNull(this[_leftDraggableIcon]) + dart.notNull(PositionedDraggableIcon.PositionedDraggableIcon.kTapSize), width: dart.notNull(widthScreen) - (dart.notNull(this[_leftDraggableIcon]) + dart.notNull(PositionedDraggableIcon.PositionedDraggableIcon.kTapSize)), height: heightWithoutStatusToolbar, $creationLocationd_0dea112b090073317d4: C[54] || CT.C54}), new PositionedDraggableIcon.PositionedDraggableIcon.new({top: 0.0, left: this[_leftDraggableIcon], childDraggable: T.WidgetL().as(this[_childViewDragging](colors.Colors.black12)), childFeedback: T.WidgetL().as(this[_childViewDragging](colors.Colors.black)), axis: basic_types.Axis.horizontal, onChangePosition: dart.fn((top, left) => {
+              this.setState(dart.fn(() => {
+                this[_leftDraggableIcon] = T.doubleL().as(left);
+              }, T.VoidToNull()));
+            }, T.dynamicAnddynamicToNull()), $creationLocationd_0dea112b090073317d4: C[61] || CT.C61})]), $creationLocationd_0dea112b090073317d4: C[69] || CT.C69});
+    }
+    [_childViewDragging](color) {
+      return new container.Container.new({color: color, child: new basic.Center.new({child: new icon.Icon.new(icons.Icons.more_vert, {color: colors.Colors.white, $creationLocationd_0dea112b090073317d4: C[72] || CT.C72}), $creationLocationd_0dea112b090073317d4: C[76] || CT.C76}), $creationLocationd_0dea112b090073317d4: C[79] || CT.C79});
+    }
+  };
+  (SplitWidget._SplitHorizontalWidget.new = function() {
+    this[_leftDraggableIcon] = 0.0;
+    SplitWidget._SplitHorizontalWidget.__proto__.new.call(this);
+    ;
+  }).prototype = SplitWidget._SplitHorizontalWidget.prototype;
+  dart.addTypeTests(SplitWidget._SplitHorizontalWidget);
+  dart.addTypeCaches(SplitWidget._SplitHorizontalWidget);
+  dart.setMethodSignature(SplitWidget._SplitHorizontalWidget, () => ({
+    __proto__: dart.getMethods(SplitWidget._SplitHorizontalWidget.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    [_childViewDragging]: dart.fnType(dart.dynamic, [dart.legacy(ui.Color)])
+  }));
+  dart.setLibraryUri(SplitWidget._SplitHorizontalWidget, I[0]);
+  dart.setFieldSignature(SplitWidget._SplitHorizontalWidget, () => ({
+    __proto__: dart.getFields(SplitWidget._SplitHorizontalWidget.__proto__),
+    [_leftDraggableIcon]: dart.fieldType(dart.legacy(core.double))
+  }));
+  dart.trackLibraries("packages/flutter_web.examples.github_dataviz/SplitWidget.dart", {
+    "package:flutter_web.examples.github_dataviz/SplitWidget.dart": SplitWidget
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["SplitWidget.dart"],"names":[],"mappings":"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","file":"../../../packages/flutter_web.examples.github_dataviz/SplitWidget.dart.lib.js"}');
+  // Exports:
+  return {
+    SplitWidget: SplitWidget
+  };
+}));
+
+//# sourceMappingURL=SplitWidget.dart.lib.js.map

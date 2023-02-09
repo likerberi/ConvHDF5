@@ -1,0 +1,1333 @@
+define(['dart_sdk', 'packages/flutter/src/rendering/proxy_box.dart', 'packages/flutter/src/gestures/multidrag.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/gestures/drag.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/gestures/velocity_tracker.dart', 'packages/flutter/src/services/haptic_feedback.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/gestures/recognizer.dart', 'packages/flutter/src/gestures/hit_test.dart', 'packages/flutter/src/rendering/layer.dart'], (function load__packages__flutter__src__widgets__drag_target_dart(dart_sdk, packages__flutter__src__rendering__proxy_box$46dart, packages__flutter__src__gestures__multidrag$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__gestures__drag$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__gestures__velocity_tracker$46dart, packages__flutter__src__services__haptic_feedback$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__gestures__recognizer$46dart, packages__flutter__src__gestures__hit_test$46dart, packages__flutter__src__rendering__layer$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _internal = dart_sdk._internal;
+  const _interceptors = dart_sdk._interceptors;
+  const _js_helper = dart_sdk._js_helper;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const proxy_box = packages__flutter__src__rendering__proxy_box$46dart.src__rendering__proxy_box;
+  const multidrag = packages__flutter__src__gestures__multidrag$46dart.src__gestures__multidrag;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const overlay = packages__flutter__src__widgets__widget_span$46dart.src__widgets__overlay;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const binding = packages__flutter__src__widgets__widget_span$46dart.src__widgets__binding;
+  const drag = packages__flutter__src__gestures__drag$46dart.src__gestures__drag;
+  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
+  const velocity_tracker = packages__flutter__src__gestures__velocity_tracker$46dart.src__gestures__velocity_tracker;
+  const haptic_feedback = packages__flutter__src__services__haptic_feedback$46dart.src__services__haptic_feedback;
+  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
+  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
+  const hit_test = packages__flutter__src__gestures__hit_test$46dart.src__gestures__hit_test;
+  const box$ = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  var drag_target = Object.create(dart.library);
+  var $contains = dartx.contains;
+  var $add = dartx.add;
+  var $remove = dartx.remove;
+  var $toList = dartx.toList;
+  var $length = dartx.length;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $iterator = dartx.iterator;
+  var $_get = dartx._get;
+  var $cast = dartx.cast;
+  var $firstWhere = dartx.firstWhere;
+  var $clear = dartx.clear;
+  var $map = dartx.map;
+  dart._checkModuleNullSafetyMode(false);
+  var T$ = {
+    DragAnchorL: () => (T$.DragAnchorL = dart.constFn(dart.legacy(drag_target.DragAnchor)))(),
+    DragN: () => (T$.DragN = dart.constFn(dart.nullable(drag.Drag)))(),
+    OffsetToDragN: () => (T$.OffsetToDragN = dart.constFn(dart.fnType(T$.DragN(), [ui.Offset])))(),
+    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    DragUpdateDetailsTovoid: () => (T$.DragUpdateDetailsTovoid = dart.constFn(dart.fnType(dart.void, [drag_details.DragUpdateDetails])))(),
+    VelocityAndOffsetAndboolTovoid: () => (T$.VelocityAndOffsetAndboolTovoid = dart.constFn(dart.fnType(dart.void, [velocity_tracker.Velocity, ui.Offset, core.bool])))(),
+    _LocationL: () => (T$._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    _DragAvatarOfObject: () => (T$._DragAvatarOfObject = dart.constFn(drag_target._DragAvatar$(core.Object)))(),
+    JSArrayOf_DragAvatarOfObject: () => (T$.JSArrayOf_DragAvatarOfObject = dart.constFn(_interceptors.JSArray$(T$._DragAvatarOfObject())))(),
+    _DragEndKindL: () => (T$._DragEndKindL = dart.constFn(dart.legacy(drag_target._DragEndKind)))(),
+    _DragTargetStateOfObject: () => (T$._DragTargetStateOfObject = dart.constFn(drag_target._DragTargetState$(core.Object)))(),
+    JSArrayOf_DragTargetStateOfObject: () => (T$.JSArrayOf_DragTargetStateOfObject = dart.constFn(_interceptors.JSArray$(T$._DragTargetStateOfObject())))(),
+    _DragTargetStateNOfObject: () => (T$._DragTargetStateNOfObject = dart.constFn(dart.nullable(T$._DragTargetStateOfObject())))(),
+    _DragTargetStateNOfObjectTobool: () => (T$._DragTargetStateNOfObjectTobool = dart.constFn(dart.fnType(core.bool, [T$._DragTargetStateNOfObject()])))(),
+    VoidToNull: () => (T$.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    SyncIterableOf_DragTargetStateOfObject: () => (T$.SyncIterableOf_DragTargetStateOfObject = dart.constFn(_js_helper.SyncIterable$(T$._DragTargetStateOfObject())))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: drag_target.DragAnchor.prototype,
+        [_name$]: "DragAnchor.child",
+        index: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: drag_target.DragAnchor.prototype,
+        [_name$]: "DragAnchor.pointer",
+        index: 1
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[0] || CT.C0, C[1] || CT.C1], T$.DragAnchorL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 0,
+        [OffsetBase__dx]: 0
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: proxy_box.HitTestBehavior.prototype,
+        [_name]: "HitTestBehavior.deferToChild",
+        index: 0
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name$0]: "Axis.horizontal",
+        index: 0
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name$0]: "Axis.vertical",
+        index: 1
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 500000
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "behavior",
+        [_Location_column]: 7,
+        [_Location_line]: 655,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPointerDown",
+        [_Location_column]: 7,
+        [_Location_line]: 656,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 657,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.constList([C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12], T$._LocationL());
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[9] || CT.C9,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 654,
+        [_Location_file]: "file:///D:/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/flutter/packages/flutter/lib/src/widgets/drag_target.dart"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: proxy_box.HitTestBehavior.prototype,
+        [_name]: "HitTestBehavior.translucent",
+        index: 2
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "metaData",
+        [_Location_column]: 7,
+        [_Location_line]: 845,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "behavior",
+        [_Location_column]: 7,
+        [_Location_line]: 846,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 847,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.constList([C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18], T$._LocationL());
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 844,
+        [_Location_file]: "file:///D:/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/flutter/packages/flutter/lib/src/widgets/drag_target.dart"
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: drag_target._DragEndKind.prototype,
+        [_name$]: "_DragEndKind.dropped",
+        index: 0
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: drag_target._DragEndKind.prototype,
+        [_name$]: "_DragEndKind.canceled",
+        index: 1
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[19] || CT.C19, C[20] || CT.C20], T$._DragEndKindL());
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 1010,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "ignoringSemantics",
+        [_Location_column]: 9,
+        [_Location_line]: 1011,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([C[24] || CT.C24, C[25] || CT.C25], T$._LocationL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 1009,
+        [_Location_file]: "file:///D:/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/flutter/packages/flutter/lib/src/widgets/drag_target.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 7,
+        [_Location_line]: 1007,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 7,
+        [_Location_line]: 1008,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 1009,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29, C[30] || CT.C30], T$._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 1006,
+        [_Location_file]: "file:///D:/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/flutter/packages/flutter/lib/src/widgets/drag_target.dart"
+      });
+    }
+  }, false);
+  var C = Array(31).fill(void 0);
+  var I = [
+    "file:///D:/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/flutter/packages/flutter/lib/src/widgets/drag_target.dart",
+    "package:flutter/src/widgets/drag_target.dart"
+  ];
+  var _name$ = dart.privateName(drag_target, "_name");
+  drag_target.DragAnchor = class DragAnchor extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (drag_target.DragAnchor.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[0], 128, 6, "index");
+    if (_name == null) dart.nullFailed(I[0], 128, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = drag_target.DragAnchor.prototype;
+  dart.addTypeTests(drag_target.DragAnchor);
+  dart.addTypeCaches(drag_target.DragAnchor);
+  dart.setLibraryUri(drag_target.DragAnchor, I[1]);
+  dart.setFieldSignature(drag_target.DragAnchor, () => ({
+    __proto__: dart.getFields(drag_target.DragAnchor.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(drag_target.DragAnchor, ['toString']);
+  drag_target.DragAnchor.child = C[0] || CT.C0;
+  drag_target.DragAnchor.pointer = C[1] || CT.C1;
+  drag_target.DragAnchor.values = C[2] || CT.C2;
+  var data$ = dart.privateName(drag_target, "Draggable.data");
+  var axis$ = dart.privateName(drag_target, "Draggable.axis");
+  var child$ = dart.privateName(drag_target, "Draggable.child");
+  var childWhenDragging$ = dart.privateName(drag_target, "Draggable.childWhenDragging");
+  var feedback$ = dart.privateName(drag_target, "Draggable.feedback");
+  var feedbackOffset$ = dart.privateName(drag_target, "Draggable.feedbackOffset");
+  var dragAnchor$ = dart.privateName(drag_target, "Draggable.dragAnchor");
+  var dragAnchorStrategy$ = dart.privateName(drag_target, "Draggable.dragAnchorStrategy");
+  var ignoringFeedbackSemantics$ = dart.privateName(drag_target, "Draggable.ignoringFeedbackSemantics");
+  var affinity$ = dart.privateName(drag_target, "Draggable.affinity");
+  var maxSimultaneousDrags$ = dart.privateName(drag_target, "Draggable.maxSimultaneousDrags");
+  var onDragStarted$ = dart.privateName(drag_target, "Draggable.onDragStarted");
+  var onDragUpdate$ = dart.privateName(drag_target, "Draggable.onDragUpdate");
+  var onDraggableCanceled$ = dart.privateName(drag_target, "Draggable.onDraggableCanceled");
+  var onDragCompleted$ = dart.privateName(drag_target, "Draggable.onDragCompleted");
+  var onDragEnd$ = dart.privateName(drag_target, "Draggable.onDragEnd");
+  var rootOverlay$ = dart.privateName(drag_target, "Draggable.rootOverlay");
+  var hitTestBehavior$ = dart.privateName(drag_target, "Draggable.hitTestBehavior");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  var _name = dart.privateName(proxy_box, "_name");
+  var _name$0 = dart.privateName(basic_types, "_name");
+  const _is_Draggable_default = Symbol('_is_Draggable_default');
+  drag_target.Draggable$ = dart.generic(T => {
+    var _DraggableStateOfT = () => (_DraggableStateOfT = dart.constFn(drag_target._DraggableState$(T)))();
+    class Draggable extends framework.StatefulWidget {
+      get data() {
+        return this[data$];
+      }
+      set data(value) {
+        super.data = value;
+      }
+      get axis() {
+        return this[axis$];
+      }
+      set axis(value) {
+        super.axis = value;
+      }
+      get child() {
+        return this[child$];
+      }
+      set child(value) {
+        super.child = value;
+      }
+      get childWhenDragging() {
+        return this[childWhenDragging$];
+      }
+      set childWhenDragging(value) {
+        super.childWhenDragging = value;
+      }
+      get feedback() {
+        return this[feedback$];
+      }
+      set feedback(value) {
+        super.feedback = value;
+      }
+      get feedbackOffset() {
+        return this[feedbackOffset$];
+      }
+      set feedbackOffset(value) {
+        super.feedbackOffset = value;
+      }
+      get dragAnchor() {
+        return this[dragAnchor$];
+      }
+      set dragAnchor(value) {
+        super.dragAnchor = value;
+      }
+      get dragAnchorStrategy() {
+        return this[dragAnchorStrategy$];
+      }
+      set dragAnchorStrategy(value) {
+        super.dragAnchorStrategy = value;
+      }
+      get ignoringFeedbackSemantics() {
+        return this[ignoringFeedbackSemantics$];
+      }
+      set ignoringFeedbackSemantics(value) {
+        super.ignoringFeedbackSemantics = value;
+      }
+      get affinity() {
+        return this[affinity$];
+      }
+      set affinity(value) {
+        super.affinity = value;
+      }
+      get maxSimultaneousDrags() {
+        return this[maxSimultaneousDrags$];
+      }
+      set maxSimultaneousDrags(value) {
+        super.maxSimultaneousDrags = value;
+      }
+      get onDragStarted() {
+        return this[onDragStarted$];
+      }
+      set onDragStarted(value) {
+        super.onDragStarted = value;
+      }
+      get onDragUpdate() {
+        return this[onDragUpdate$];
+      }
+      set onDragUpdate(value) {
+        super.onDragUpdate = value;
+      }
+      get onDraggableCanceled() {
+        return this[onDraggableCanceled$];
+      }
+      set onDraggableCanceled(value) {
+        super.onDraggableCanceled = value;
+      }
+      get onDragCompleted() {
+        return this[onDragCompleted$];
+      }
+      set onDragCompleted(value) {
+        super.onDragCompleted = value;
+      }
+      get onDragEnd() {
+        return this[onDragEnd$];
+      }
+      set onDragEnd(value) {
+        super.onDragEnd = value;
+      }
+      get rootOverlay() {
+        return this[rootOverlay$];
+      }
+      set rootOverlay(value) {
+        super.rootOverlay = value;
+      }
+      get hitTestBehavior() {
+        return this[hitTestBehavior$];
+      }
+      set hitTestBehavior(value) {
+        super.hitTestBehavior = value;
+      }
+      createRecognizer(onStart) {
+        let t0, t0$, t0$0;
+        if (onStart == null) dart.nullFailed(I[0], 461, 100, "onStart");
+        switch (this.affinity) {
+          case C[5] || CT.C5:
+          {
+            t0 = new multidrag.HorizontalMultiDragGestureRecognizer.new();
+            return (() => {
+              t0.onStart = onStart;
+              return t0;
+            })();
+          }
+          case C[6] || CT.C6:
+          {
+            t0$ = new multidrag.VerticalMultiDragGestureRecognizer.new();
+            return (() => {
+              t0$.onStart = onStart;
+              return t0$;
+            })();
+          }
+          case null:
+          {
+            t0$0 = new multidrag.ImmediateMultiDragGestureRecognizer.new();
+            return (() => {
+              t0$0.onStart = onStart;
+              return t0$0;
+            })();
+          }
+          default:
+          {
+            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+          }
+        }
+      }
+      createState() {
+        return new (_DraggableStateOfT()).new();
+      }
+    }
+    (Draggable.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      if (child == null) dart.nullFailed(I[0], 248, 19, "child");
+      let feedback = opts && 'feedback' in opts ? opts.feedback : null;
+      if (feedback == null) dart.nullFailed(I[0], 249, 19, "feedback");
+      let data = opts && 'data' in opts ? opts.data : null;
+      let axis = opts && 'axis' in opts ? opts.axis : null;
+      let childWhenDragging = opts && 'childWhenDragging' in opts ? opts.childWhenDragging : null;
+      let feedbackOffset = opts && 'feedbackOffset' in opts ? opts.feedbackOffset : C[3] || CT.C3;
+      if (feedbackOffset == null) dart.nullFailed(I[0], 253, 10, "feedbackOffset");
+      let dragAnchor = opts && 'dragAnchor' in opts ? opts.dragAnchor : C[0] || CT.C0;
+      if (dragAnchor == null) dart.nullFailed(I[0], 260, 10, "dragAnchor");
+      let dragAnchorStrategy = opts && 'dragAnchorStrategy' in opts ? opts.dragAnchorStrategy : null;
+      let affinity = opts && 'affinity' in opts ? opts.affinity : null;
+      let maxSimultaneousDrags = opts && 'maxSimultaneousDrags' in opts ? opts.maxSimultaneousDrags : null;
+      let onDragStarted = opts && 'onDragStarted' in opts ? opts.onDragStarted : null;
+      let onDragUpdate = opts && 'onDragUpdate' in opts ? opts.onDragUpdate : null;
+      let onDraggableCanceled = opts && 'onDraggableCanceled' in opts ? opts.onDraggableCanceled : null;
+      let onDragEnd = opts && 'onDragEnd' in opts ? opts.onDragEnd : null;
+      let onDragCompleted = opts && 'onDragCompleted' in opts ? opts.onDragCompleted : null;
+      let ignoringFeedbackSemantics = opts && 'ignoringFeedbackSemantics' in opts ? opts.ignoringFeedbackSemantics : true;
+      if (ignoringFeedbackSemantics == null) dart.nullFailed(I[0], 269, 10, "ignoringFeedbackSemantics");
+      let rootOverlay = opts && 'rootOverlay' in opts ? opts.rootOverlay : false;
+      if (rootOverlay == null) dart.nullFailed(I[0], 270, 10, "rootOverlay");
+      let hitTestBehavior = opts && 'hitTestBehavior' in opts ? opts.hitTestBehavior : C[4] || CT.C4;
+      if (hitTestBehavior == null) dart.nullFailed(I[0], 271, 10, "hitTestBehavior");
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[child$] = child;
+      this[feedback$] = feedback;
+      this[data$] = data;
+      this[axis$] = axis;
+      this[childWhenDragging$] = childWhenDragging;
+      this[feedbackOffset$] = feedbackOffset;
+      this[dragAnchor$] = dragAnchor;
+      this[dragAnchorStrategy$] = dragAnchorStrategy;
+      this[affinity$] = affinity;
+      this[maxSimultaneousDrags$] = maxSimultaneousDrags;
+      this[onDragStarted$] = onDragStarted;
+      this[onDragUpdate$] = onDragUpdate;
+      this[onDraggableCanceled$] = onDraggableCanceled;
+      this[onDragEnd$] = onDragEnd;
+      this[onDragCompleted$] = onDragCompleted;
+      this[ignoringFeedbackSemantics$] = ignoringFeedbackSemantics;
+      this[rootOverlay$] = rootOverlay;
+      this[hitTestBehavior$] = hitTestBehavior;
+      if (!(child != null)) dart.assertFailed(null, I[0], 272, 15, "child != null");
+      if (!(feedback != null)) dart.assertFailed(null, I[0], 273, 15, "feedback != null");
+      if (!(ignoringFeedbackSemantics != null)) dart.assertFailed(null, I[0], 274, 15, "ignoringFeedbackSemantics != null");
+      if (!(maxSimultaneousDrags == null || dart.notNull(maxSimultaneousDrags) >= 0)) dart.assertFailed(null, I[0], 275, 15, "maxSimultaneousDrags == null || maxSimultaneousDrags >= 0");
+      Draggable.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Draggable.prototype;
+    dart.addTypeTests(Draggable);
+    Draggable.prototype[_is_Draggable_default] = true;
+    dart.addTypeCaches(Draggable);
+    dart.setMethodSignature(Draggable, () => ({
+      __proto__: dart.getMethods(Draggable.__proto__),
+      createRecognizer: dart.fnType(multidrag.MultiDragGestureRecognizer$(multidrag.MultiDragPointerState), [dart.fnType(dart.nullable(drag.Drag), [ui.Offset])]),
+      createState: dart.fnType(drag_target._DraggableState$(T), [])
+    }));
+    dart.setLibraryUri(Draggable, I[1]);
+    dart.setFieldSignature(Draggable, () => ({
+      __proto__: dart.getFields(Draggable.__proto__),
+      data: dart.finalFieldType(dart.nullable(T)),
+      axis: dart.finalFieldType(dart.nullable(basic_types.Axis)),
+      child: dart.finalFieldType(framework.Widget),
+      childWhenDragging: dart.finalFieldType(dart.nullable(framework.Widget)),
+      feedback: dart.finalFieldType(framework.Widget),
+      feedbackOffset: dart.finalFieldType(ui.Offset),
+      dragAnchor: dart.finalFieldType(drag_target.DragAnchor),
+      dragAnchorStrategy: dart.finalFieldType(dart.nullable(dart.fnType(ui.Offset, [drag_target.Draggable$(core.Object), framework.BuildContext, ui.Offset]))),
+      ignoringFeedbackSemantics: dart.finalFieldType(core.bool),
+      affinity: dart.finalFieldType(dart.nullable(basic_types.Axis)),
+      maxSimultaneousDrags: dart.finalFieldType(dart.nullable(core.int)),
+      onDragStarted: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, []))),
+      onDragUpdate: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [drag_details.DragUpdateDetails]))),
+      onDraggableCanceled: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [velocity_tracker.Velocity, ui.Offset]))),
+      onDragCompleted: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, []))),
+      onDragEnd: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [drag_target.DraggableDetails]))),
+      rootOverlay: dart.finalFieldType(core.bool),
+      hitTestBehavior: dart.finalFieldType(proxy_box.HitTestBehavior)
+    }));
+    return Draggable;
+  });
+  drag_target.Draggable = drag_target.Draggable$();
+  dart.addTypeTests(drag_target.Draggable, _is_Draggable_default);
+  var hapticFeedbackOnStart$ = dart.privateName(drag_target, "LongPressDraggable.hapticFeedbackOnStart");
+  var delay$ = dart.privateName(drag_target, "LongPressDraggable.delay");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  const _is_LongPressDraggable_default = Symbol('_is_LongPressDraggable_default');
+  drag_target.LongPressDraggable$ = dart.generic(T => {
+    class LongPressDraggable extends drag_target.Draggable$(T) {
+      get hapticFeedbackOnStart() {
+        return this[hapticFeedbackOnStart$];
+      }
+      set hapticFeedbackOnStart(value) {
+        super.hapticFeedbackOnStart = value;
+      }
+      get delay() {
+        return this[delay$];
+      }
+      set delay(value) {
+        super.delay = value;
+      }
+      createRecognizer(onStart) {
+        let t0;
+        if (onStart == null) dart.nullFailed(I[0], 540, 84, "onStart");
+        t0 = new multidrag.DelayedMultiDragGestureRecognizer.new({delay: this.delay});
+        return (() => {
+          t0.onStart = dart.fn(position => {
+            if (position == null) dart.nullFailed(I[0], 542, 27, "position");
+            let result = onStart(position);
+            if (result != null && dart.test(this.hapticFeedbackOnStart)) haptic_feedback.HapticFeedback.selectionClick();
+            return result;
+          }, T$.OffsetToDragN());
+          return t0;
+        })();
+      }
+    }
+    (LongPressDraggable.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      if (child == null) dart.nullFailed(I[0], 489, 21, "child");
+      let feedback = opts && 'feedback' in opts ? opts.feedback : null;
+      if (feedback == null) dart.nullFailed(I[0], 490, 21, "feedback");
+      let data = opts && 'data' in opts ? opts.data : null;
+      let axis = opts && 'axis' in opts ? opts.axis : null;
+      let childWhenDragging = opts && 'childWhenDragging' in opts ? opts.childWhenDragging : null;
+      let feedbackOffset = opts && 'feedbackOffset' in opts ? opts.feedbackOffset : C[3] || CT.C3;
+      if (feedbackOffset == null) dart.nullFailed(I[0], 494, 12, "feedbackOffset");
+      let dragAnchor = opts && 'dragAnchor' in opts ? opts.dragAnchor : C[0] || CT.C0;
+      if (dragAnchor == null) dart.nullFailed(I[0], 501, 16, "dragAnchor");
+      let dragAnchorStrategy = opts && 'dragAnchorStrategy' in opts ? opts.dragAnchorStrategy : null;
+      let maxSimultaneousDrags = opts && 'maxSimultaneousDrags' in opts ? opts.maxSimultaneousDrags : null;
+      let onDragStarted = opts && 'onDragStarted' in opts ? opts.onDragStarted : null;
+      let onDragUpdate = opts && 'onDragUpdate' in opts ? opts.onDragUpdate : null;
+      let onDraggableCanceled = opts && 'onDraggableCanceled' in opts ? opts.onDraggableCanceled : null;
+      let onDragEnd = opts && 'onDragEnd' in opts ? opts.onDragEnd : null;
+      let onDragCompleted = opts && 'onDragCompleted' in opts ? opts.onDragCompleted : null;
+      let hapticFeedbackOnStart = opts && 'hapticFeedbackOnStart' in opts ? opts.hapticFeedbackOnStart : true;
+      if (hapticFeedbackOnStart == null) dart.nullFailed(I[0], 509, 10, "hapticFeedbackOnStart");
+      let ignoringFeedbackSemantics = opts && 'ignoringFeedbackSemantics' in opts ? opts.ignoringFeedbackSemantics : true;
+      if (ignoringFeedbackSemantics == null) dart.nullFailed(I[0], 510, 10, "ignoringFeedbackSemantics");
+      let delay = opts && 'delay' in opts ? opts.delay : C[7] || CT.C7;
+      if (delay == null) dart.nullFailed(I[0], 511, 10, "delay");
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[hapticFeedbackOnStart$] = hapticFeedbackOnStart;
+      this[delay$] = delay;
+      LongPressDraggable.__proto__.new.call(this, {key: key, child: child, feedback: feedback, data: data, axis: axis, childWhenDragging: childWhenDragging, feedbackOffset: feedbackOffset, dragAnchor: dragAnchor, dragAnchorStrategy: dragAnchorStrategy, maxSimultaneousDrags: maxSimultaneousDrags, onDragStarted: onDragStarted, onDragUpdate: onDragUpdate, onDraggableCanceled: onDraggableCanceled, onDragEnd: onDragEnd, onDragCompleted: onDragCompleted, ignoringFeedbackSemantics: ignoringFeedbackSemantics, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = LongPressDraggable.prototype;
+    dart.addTypeTests(LongPressDraggable);
+    LongPressDraggable.prototype[_is_LongPressDraggable_default] = true;
+    dart.addTypeCaches(LongPressDraggable);
+    dart.setMethodSignature(LongPressDraggable, () => ({
+      __proto__: dart.getMethods(LongPressDraggable.__proto__),
+      createRecognizer: dart.fnType(multidrag.DelayedMultiDragGestureRecognizer, [dart.fnType(dart.nullable(drag.Drag), [ui.Offset])])
+    }));
+    dart.setLibraryUri(LongPressDraggable, I[1]);
+    dart.setFieldSignature(LongPressDraggable, () => ({
+      __proto__: dart.getFields(LongPressDraggable.__proto__),
+      hapticFeedbackOnStart: dart.finalFieldType(core.bool),
+      delay: dart.finalFieldType(core.Duration)
+    }));
+    return LongPressDraggable;
+  });
+  drag_target.LongPressDraggable = drag_target.LongPressDraggable$();
+  dart.addTypeTests(drag_target.LongPressDraggable, _is_LongPressDraggable_default);
+  var _recognizer = dart.privateName(drag_target, "_recognizer");
+  var _activeCount = dart.privateName(drag_target, "_activeCount");
+  var _startDrag = dart.privateName(drag_target, "_startDrag");
+  var _disposeRecognizerIfInactive = dart.privateName(drag_target, "_disposeRecognizerIfInactive");
+  var _routePointer = dart.privateName(drag_target, "_routePointer");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  const _is__DraggableState_default = Symbol('_is__DraggableState_default');
+  drag_target._DraggableState$ = dart.generic(T => {
+    var _DragAvatarOfT = () => (_DragAvatarOfT = dart.constFn(drag_target._DragAvatar$(T)))();
+    class _DraggableState extends framework.State$(drag_target.Draggable$(T)) {
+      initState() {
+        super.initState();
+        this[_recognizer] = this.widget.createRecognizer(dart.bind(this, _startDrag));
+      }
+      dispose() {
+        this[_disposeRecognizerIfInactive]();
+        super.dispose();
+      }
+      [_disposeRecognizerIfInactive]() {
+        if (dart.notNull(this[_activeCount]) > 0) return;
+        dart.nullCheck(this[_recognizer]).dispose();
+        this[_recognizer] = null;
+      }
+      [_routePointer](event) {
+        if (event == null) dart.nullFailed(I[0], 583, 39, "event");
+        if (this.widget.maxSimultaneousDrags != null && dart.notNull(this[_activeCount]) >= dart.nullCheck(this.widget.maxSimultaneousDrags)) return;
+        dart.nullCheck(this[_recognizer]).addPointer(event);
+      }
+      [_startDrag](position) {
+        let t0;
+        if (position == null) dart.nullFailed(I[0], 589, 37, "position");
+        if (this.widget.maxSimultaneousDrags != null && dart.notNull(this[_activeCount]) >= dart.nullCheck(this.widget.maxSimultaneousDrags)) return null;
+        let dragStartPoint = null;
+        if (this.widget.dragAnchorStrategy == null) {
+          switch (this.widget.dragAnchor) {
+            case C[0] || CT.C0:
+            {
+              dragStartPoint = drag_target.childDragAnchorStrategy(this.widget, this.context, position);
+              break;
+            }
+            case C[1] || CT.C1:
+            {
+              dragStartPoint = drag_target.pointerDragAnchorStrategy(this.widget, this.context, position);
+              break;
+            }
+            default:
+            {
+              dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+            }
+          }
+        } else {
+          dragStartPoint = dart.nullCheck(this.widget.dragAnchorStrategy)(this.widget, this.context, position);
+        }
+        this.setState(dart.fn(() => {
+          this[_activeCount] = dart.notNull(this[_activeCount]) + 1;
+        }, T$.VoidTovoid()));
+        let avatar = new (_DragAvatarOfT()).new({overlayState: dart.nullCheck(overlay.Overlay.of(this.context, {debugRequiredFor: this.widget, rootOverlay: this.widget.rootOverlay})), data: this.widget.data, axis: this.widget.axis, initialPosition: position, dragStartPoint: dragStartPoint, feedback: this.widget.feedback, feedbackOffset: this.widget.feedbackOffset, ignoringFeedbackSemantics: this.widget.ignoringFeedbackSemantics, onDragUpdate: dart.fn(details => {
+            if (details == null) dart.nullFailed(I[0], 617, 40, "details");
+            if (dart.test(this.mounted) && this.widget.onDragUpdate != null) {
+              dart.nullCheck(this.widget.onDragUpdate)(details);
+            }
+          }, T$.DragUpdateDetailsTovoid()), onDragEnd: dart.fn((velocity, offset, wasAccepted) => {
+            if (velocity == null) dart.nullFailed(I[0], 622, 28, "velocity");
+            if (offset == null) dart.nullFailed(I[0], 622, 45, "offset");
+            if (wasAccepted == null) dart.nullFailed(I[0], 622, 58, "wasAccepted");
+            if (dart.test(this.mounted)) {
+              this.setState(dart.fn(() => {
+                this[_activeCount] = dart.notNull(this[_activeCount]) - 1;
+              }, T$.VoidTovoid()));
+            } else {
+              this[_activeCount] = dart.notNull(this[_activeCount]) - 1;
+              this[_disposeRecognizerIfInactive]();
+            }
+            if (dart.test(this.mounted) && this.widget.onDragEnd != null) {
+              dart.nullCheck(this.widget.onDragEnd)(new drag_target.DraggableDetails.new({wasAccepted: wasAccepted, velocity: velocity, offset: offset}));
+            }
+            if (dart.test(wasAccepted) && this.widget.onDragCompleted != null) dart.nullCheck(this.widget.onDragCompleted)();
+            if (!dart.test(wasAccepted) && this.widget.onDraggableCanceled != null) dart.nullCheck(this.widget.onDraggableCanceled)(velocity, offset);
+          }, T$.VelocityAndOffsetAndboolTovoid())});
+        t0 = this.widget.onDragStarted;
+        t0 == null ? null : t0();
+        return avatar;
+      }
+      build(context) {
+        if (context == null) dart.nullFailed(I[0], 649, 29, "context");
+        if (!(overlay.Overlay.of(context, {debugRequiredFor: this.widget, rootOverlay: this.widget.rootOverlay}) != null)) dart.assertFailed(null, I[0], 650, 12, "Overlay.of(context, debugRequiredFor: widget, rootOverlay: widget.rootOverlay) != null");
+        let canDrag = this.widget.maxSimultaneousDrags == null || dart.notNull(this[_activeCount]) < dart.nullCheck(this.widget.maxSimultaneousDrags);
+        let showChild = this[_activeCount] === 0 || this.widget.childWhenDragging == null;
+        return new basic.Listener.new({behavior: this.widget.hitTestBehavior, onPointerDown: canDrag ? dart.bind(this, _routePointer) : null, child: showChild ? this.widget.child : this.widget.childWhenDragging, $creationLocationd_0dea112b090073317d4: C[8] || CT.C8});
+      }
+    }
+    (_DraggableState.new = function() {
+      this[_recognizer] = null;
+      this[_activeCount] = 0;
+      _DraggableState.__proto__.new.call(this);
+      ;
+    }).prototype = _DraggableState.prototype;
+    dart.addTypeTests(_DraggableState);
+    _DraggableState.prototype[_is__DraggableState_default] = true;
+    dart.addTypeCaches(_DraggableState);
+    dart.setMethodSignature(_DraggableState, () => ({
+      __proto__: dart.getMethods(_DraggableState.__proto__),
+      [_disposeRecognizerIfInactive]: dart.fnType(dart.void, []),
+      [_routePointer]: dart.fnType(dart.void, [events.PointerDownEvent]),
+      [_startDrag]: dart.fnType(dart.nullable(drag_target._DragAvatar$(T)), [ui.Offset]),
+      build: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setLibraryUri(_DraggableState, I[1]);
+    dart.setFieldSignature(_DraggableState, () => ({
+      __proto__: dart.getFields(_DraggableState.__proto__),
+      [_recognizer]: dart.fieldType(dart.nullable(recognizer.GestureRecognizer)),
+      [_activeCount]: dart.fieldType(core.int)
+    }));
+    return _DraggableState;
+  });
+  drag_target._DraggableState = drag_target._DraggableState$();
+  dart.addTypeTests(drag_target._DraggableState, _is__DraggableState_default);
+  var wasAccepted$ = dart.privateName(drag_target, "DraggableDetails.wasAccepted");
+  var velocity$ = dart.privateName(drag_target, "DraggableDetails.velocity");
+  var offset$ = dart.privateName(drag_target, "DraggableDetails.offset");
+  drag_target.DraggableDetails = class DraggableDetails extends core.Object {
+    get wasAccepted() {
+      return this[wasAccepted$];
+    }
+    set wasAccepted(value) {
+      super.wasAccepted = value;
+    }
+    get velocity() {
+      return this[velocity$];
+    }
+    set velocity(value) {
+      super.velocity = value;
+    }
+    get offset() {
+      return this[offset$];
+    }
+    set offset(value) {
+      super.offset = value;
+    }
+  };
+  (drag_target.DraggableDetails.new = function(opts) {
+    let wasAccepted = opts && 'wasAccepted' in opts ? opts.wasAccepted : false;
+    if (wasAccepted == null) dart.nullFailed(I[0], 676, 10, "wasAccepted");
+    let velocity = opts && 'velocity' in opts ? opts.velocity : null;
+    if (velocity == null) dart.nullFailed(I[0], 677, 19, "velocity");
+    let offset = opts && 'offset' in opts ? opts.offset : null;
+    if (offset == null) dart.nullFailed(I[0], 678, 19, "offset");
+    this[wasAccepted$] = wasAccepted;
+    this[velocity$] = velocity;
+    this[offset$] = offset;
+    if (!(velocity != null)) dart.assertFailed(null, I[0], 679, 15, "velocity != null");
+    if (!(offset != null)) dart.assertFailed(null, I[0], 680, 15, "offset != null");
+    ;
+  }).prototype = drag_target.DraggableDetails.prototype;
+  dart.addTypeTests(drag_target.DraggableDetails);
+  dart.addTypeCaches(drag_target.DraggableDetails);
+  dart.setLibraryUri(drag_target.DraggableDetails, I[1]);
+  dart.setFieldSignature(drag_target.DraggableDetails, () => ({
+    __proto__: dart.getFields(drag_target.DraggableDetails.__proto__),
+    wasAccepted: dart.finalFieldType(core.bool),
+    velocity: dart.finalFieldType(velocity_tracker.Velocity),
+    offset: dart.finalFieldType(ui.Offset)
+  }));
+  var data$0 = dart.privateName(drag_target, "DragTargetDetails.data");
+  var offset$0 = dart.privateName(drag_target, "DragTargetDetails.offset");
+  const _is_DragTargetDetails_default = Symbol('_is_DragTargetDetails_default');
+  drag_target.DragTargetDetails$ = dart.generic(T => {
+    class DragTargetDetails extends core.Object {
+      get data() {
+        return this[data$0];
+      }
+      set data(value) {
+        super.data = value;
+      }
+      get offset() {
+        return this[offset$0];
+      }
+      set offset(value) {
+        super.offset = value;
+      }
+    }
+    (DragTargetDetails.new = function(opts) {
+      let data = opts && 'data' in opts ? opts.data : null;
+      let offset = opts && 'offset' in opts ? opts.offset : null;
+      if (offset == null) dart.nullFailed(I[0], 699, 56, "offset");
+      this[data$0] = data;
+      this[offset$0] = offset;
+      if (!(offset != null)) dart.assertFailed(null, I[0], 699, 74, "offset != null");
+      ;
+    }).prototype = DragTargetDetails.prototype;
+    dart.addTypeTests(DragTargetDetails);
+    DragTargetDetails.prototype[_is_DragTargetDetails_default] = true;
+    dart.addTypeCaches(DragTargetDetails);
+    dart.setLibraryUri(DragTargetDetails, I[1]);
+    dart.setFieldSignature(DragTargetDetails, () => ({
+      __proto__: dart.getFields(DragTargetDetails.__proto__),
+      data: dart.finalFieldType(T),
+      offset: dart.finalFieldType(ui.Offset)
+    }));
+    return DragTargetDetails;
+  });
+  drag_target.DragTargetDetails = drag_target.DragTargetDetails$();
+  dart.addTypeTests(drag_target.DragTargetDetails, _is_DragTargetDetails_default);
+  var builder$ = dart.privateName(drag_target, "DragTarget.builder");
+  var onWillAccept$ = dart.privateName(drag_target, "DragTarget.onWillAccept");
+  var onAccept$ = dart.privateName(drag_target, "DragTarget.onAccept");
+  var onAcceptWithDetails$ = dart.privateName(drag_target, "DragTarget.onAcceptWithDetails");
+  var onLeave$ = dart.privateName(drag_target, "DragTarget.onLeave");
+  var onMove$ = dart.privateName(drag_target, "DragTarget.onMove");
+  var hitTestBehavior$0 = dart.privateName(drag_target, "DragTarget.hitTestBehavior");
+  const _is_DragTarget_default = Symbol('_is_DragTarget_default');
+  drag_target.DragTarget$ = dart.generic(T => {
+    var _DragTargetStateOfT = () => (_DragTargetStateOfT = dart.constFn(drag_target._DragTargetState$(T)))();
+    class DragTarget extends framework.StatefulWidget {
+      get builder() {
+        return this[builder$];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      get onWillAccept() {
+        return this[onWillAccept$];
+      }
+      set onWillAccept(value) {
+        super.onWillAccept = value;
+      }
+      get onAccept() {
+        return this[onAccept$];
+      }
+      set onAccept(value) {
+        super.onAccept = value;
+      }
+      get onAcceptWithDetails() {
+        return this[onAcceptWithDetails$];
+      }
+      set onAcceptWithDetails(value) {
+        super.onAcceptWithDetails = value;
+      }
+      get onLeave() {
+        return this[onLeave$];
+      }
+      set onLeave(value) {
+        super.onLeave = value;
+      }
+      get onMove() {
+        return this[onMove$];
+      }
+      set onMove(value) {
+        super.onMove = value;
+      }
+      get hitTestBehavior() {
+        return this[hitTestBehavior$0];
+      }
+      set hitTestBehavior(value) {
+        super.hitTestBehavior = value;
+      }
+      createState() {
+        return new (_DragTargetStateOfT()).new();
+      }
+    }
+    (DragTarget.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      if (builder == null) dart.nullFailed(I[0], 727, 19, "builder");
+      let onWillAccept = opts && 'onWillAccept' in opts ? opts.onWillAccept : null;
+      let onAccept = opts && 'onAccept' in opts ? opts.onAccept : null;
+      let onAcceptWithDetails = opts && 'onAcceptWithDetails' in opts ? opts.onAcceptWithDetails : null;
+      let onLeave = opts && 'onLeave' in opts ? opts.onLeave : null;
+      let onMove = opts && 'onMove' in opts ? opts.onMove : null;
+      let hitTestBehavior = opts && 'hitTestBehavior' in opts ? opts.hitTestBehavior : C[13] || CT.C13;
+      if (hitTestBehavior == null) dart.nullFailed(I[0], 733, 10, "hitTestBehavior");
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[builder$] = builder;
+      this[onWillAccept$] = onWillAccept;
+      this[onAccept$] = onAccept;
+      this[onAcceptWithDetails$] = onAcceptWithDetails;
+      this[onLeave$] = onLeave;
+      this[onMove$] = onMove;
+      this[hitTestBehavior$0] = hitTestBehavior;
+      DragTarget.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = DragTarget.prototype;
+    dart.addTypeTests(DragTarget);
+    DragTarget.prototype[_is_DragTarget_default] = true;
+    dart.addTypeCaches(DragTarget);
+    dart.setMethodSignature(DragTarget, () => ({
+      __proto__: dart.getMethods(DragTarget.__proto__),
+      createState: dart.fnType(drag_target._DragTargetState$(T), [])
+    }));
+    dart.setLibraryUri(DragTarget, I[1]);
+    dart.setFieldSignature(DragTarget, () => ({
+      __proto__: dart.getFields(DragTarget.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, core.List$(dart.nullable(T)), core.List])),
+      onWillAccept: dart.finalFieldType(dart.nullable(dart.fnType(core.bool, [dart.nullable(T)]))),
+      onAccept: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [T]))),
+      onAcceptWithDetails: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [drag_target.DragTargetDetails$(T)]))),
+      onLeave: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [dart.nullable(T)]))),
+      onMove: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [drag_target.DragTargetDetails$(T)]))),
+      hitTestBehavior: dart.finalFieldType(proxy_box.HitTestBehavior)
+    }));
+    return DragTarget;
+  });
+  drag_target.DragTarget = drag_target.DragTarget$();
+  dart.addTypeTests(drag_target.DragTarget, _is_DragTarget_default);
+  var _candidateAvatars = dart.privateName(drag_target, "_candidateAvatars");
+  var _rejectedAvatars = dart.privateName(drag_target, "_rejectedAvatars");
+  var _lastOffset = dart.privateName(drag_target, "_lastOffset");
+  const _is__DragTargetState_default = Symbol('_is__DragTargetState_default');
+  drag_target._DragTargetState$ = dart.generic(T => {
+    var TN = () => (TN = dart.constFn(dart.nullable(T)))();
+    var TNTobool = () => (TNTobool = dart.constFn(dart.fnType(core.bool, [TN()])))();
+    var TNToNbool = () => (TNToNbool = dart.constFn(dart.nullable(TNTobool())))();
+    var TNTovoid = () => (TNTovoid = dart.constFn(dart.fnType(dart.void, [TN()])))();
+    var TNToNvoid = () => (TNToNvoid = dart.constFn(dart.nullable(TNTovoid())))();
+    var TTovoid = () => (TTovoid = dart.constFn(dart.fnType(dart.void, [T])))();
+    var TToNvoid = () => (TToNvoid = dart.constFn(dart.nullable(TTovoid())))();
+    var DragTargetDetailsOfT = () => (DragTargetDetailsOfT = dart.constFn(drag_target.DragTargetDetails$(T)))();
+    var DragTargetDetailsOfTTovoid = () => (DragTargetDetailsOfTTovoid = dart.constFn(dart.fnType(dart.void, [DragTargetDetailsOfT()])))();
+    var DragTargetDetailsOfTToNvoid = () => (DragTargetDetailsOfTToNvoid = dart.constFn(dart.nullable(DragTargetDetailsOfTTovoid())))();
+    var ListOfTN = () => (ListOfTN = dart.constFn(core.List$(TN())))();
+    var BuildContextAndListOfTNAndListToWidget = () => (BuildContextAndListOfTNAndListToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, ListOfTN(), core.List])))();
+    class _DragTargetState extends framework.State$(drag_target.DragTarget$(T)) {
+      isExpectedDataType(data, type) {
+        if (type == null) dart.nullFailed(I[0], 791, 46, "type");
+        if (true && (dart.equals(type, dart.wrapType(core.int)) && dart.wrapType(T)._equals(dart.wrapType(core.double)) || dart.equals(type, dart.wrapType(core.double)) && dart.wrapType(T)._equals(dart.wrapType(core.int)))) return false;
+        return TN().is(data);
+      }
+      didEnter(avatar) {
+        if (avatar == null) dart.nullFailed(I[0], 797, 37, "avatar");
+        if (!!dart.test(this[_candidateAvatars][$contains](avatar))) dart.assertFailed(null, I[0], 798, 12, "!_candidateAvatars.contains(avatar)");
+        if (!!dart.test(this[_rejectedAvatars][$contains](avatar))) dart.assertFailed(null, I[0], 799, 12, "!_rejectedAvatars.contains(avatar)");
+        if (TNToNbool().as(this.widget.onWillAccept) == null || dart.test(dart.nullCheck(TNToNbool().as(this.widget.onWillAccept))(TN().as(avatar.data)))) {
+          this.setState(dart.fn(() => {
+            this[_candidateAvatars][$add](avatar);
+          }, T$.VoidTovoid()));
+          return true;
+        } else {
+          this.setState(dart.fn(() => {
+            this[_rejectedAvatars][$add](avatar);
+          }, T$.VoidTovoid()));
+          return false;
+        }
+      }
+      didLeave(avatar) {
+        let t0;
+        if (avatar == null) dart.nullFailed(I[0], 813, 37, "avatar");
+        if (!(dart.test(this[_candidateAvatars][$contains](avatar)) || dart.test(this[_rejectedAvatars][$contains](avatar)))) dart.assertFailed(null, I[0], 814, 12, "_candidateAvatars.contains(avatar) || _rejectedAvatars.contains(avatar)");
+        if (!dart.test(this.mounted)) return;
+        this.setState(dart.fn(() => {
+          this[_candidateAvatars][$remove](avatar);
+          this[_rejectedAvatars][$remove](avatar);
+        }, T$.VoidTovoid()));
+        t0 = TNToNvoid().as(this.widget.onLeave);
+        t0 == null ? null : t0(TN().as(avatar.data));
+      }
+      didDrop(avatar) {
+        let t0, t0$;
+        if (avatar == null) dart.nullFailed(I[0], 824, 36, "avatar");
+        if (!dart.test(this[_candidateAvatars][$contains](avatar))) dart.assertFailed(null, I[0], 825, 12, "_candidateAvatars.contains(avatar)");
+        if (!dart.test(this.mounted)) return;
+        this.setState(dart.fn(() => {
+          this[_candidateAvatars][$remove](avatar);
+        }, T$.VoidTovoid()));
+        t0 = TToNvoid().as(this.widget.onAccept);
+        t0 == null ? null : t0(T.as(dart.nullCheck(avatar.data)));
+        t0$ = DragTargetDetailsOfTToNvoid().as(this.widget.onAcceptWithDetails);
+        t0$ == null ? null : t0$(new (DragTargetDetailsOfT()).new({data: T.as(dart.nullCheck(avatar.data)), offset: dart.nullCheck(avatar[_lastOffset])}));
+      }
+      didMove(avatar) {
+        let t0;
+        if (avatar == null) dart.nullFailed(I[0], 835, 36, "avatar");
+        if (!dart.test(this.mounted)) return;
+        t0 = DragTargetDetailsOfTToNvoid().as(this.widget.onMove);
+        t0 == null ? null : t0(new (DragTargetDetailsOfT()).new({data: T.as(dart.nullCheck(avatar.data)), offset: dart.nullCheck(avatar[_lastOffset])}));
+      }
+      build(context) {
+        let t3, t2, t1, t0;
+        if (context == null) dart.nullFailed(I[0], 842, 29, "context");
+        if (!(BuildContextAndListOfTNAndListToWidget().as(this.widget.builder) != null)) dart.assertFailed(null, I[0], 843, 12, "widget.builder != null");
+        return new basic.MetaData.new({metaData: this, behavior: this.widget.hitTestBehavior, child: (t0 = this.widget, t1 = context, t2 = drag_target._mapAvatarsToData(T, this[_candidateAvatars]), t3 = drag_target._mapAvatarsToData(core.Object, this[_rejectedAvatars]), BuildContextAndListOfTNAndListToWidget().as(t0.builder)(t1, t2, t3)), $creationLocationd_0dea112b090073317d4: C[14] || CT.C14});
+      }
+    }
+    (_DragTargetState.new = function() {
+      this[_candidateAvatars] = T$.JSArrayOf_DragAvatarOfObject().of([]);
+      this[_rejectedAvatars] = T$.JSArrayOf_DragAvatarOfObject().of([]);
+      _DragTargetState.__proto__.new.call(this);
+      ;
+    }).prototype = _DragTargetState.prototype;
+    dart.addTypeTests(_DragTargetState);
+    _DragTargetState.prototype[_is__DragTargetState_default] = true;
+    dart.addTypeCaches(_DragTargetState);
+    dart.setMethodSignature(_DragTargetState, () => ({
+      __proto__: dart.getMethods(_DragTargetState.__proto__),
+      isExpectedDataType: dart.fnType(core.bool, [dart.nullable(core.Object), core.Type]),
+      didEnter: dart.fnType(core.bool, [drag_target._DragAvatar$(core.Object)]),
+      didLeave: dart.fnType(dart.void, [drag_target._DragAvatar$(core.Object)]),
+      didDrop: dart.fnType(dart.void, [drag_target._DragAvatar$(core.Object)]),
+      didMove: dart.fnType(dart.void, [drag_target._DragAvatar$(core.Object)]),
+      build: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setLibraryUri(_DragTargetState, I[1]);
+    dart.setFieldSignature(_DragTargetState, () => ({
+      __proto__: dart.getFields(_DragTargetState.__proto__),
+      [_candidateAvatars]: dart.finalFieldType(core.List$(drag_target._DragAvatar$(core.Object))),
+      [_rejectedAvatars]: dart.finalFieldType(core.List$(drag_target._DragAvatar$(core.Object)))
+    }));
+    return _DragTargetState;
+  });
+  drag_target._DragTargetState = drag_target._DragTargetState$();
+  dart.addTypeTests(drag_target._DragTargetState, _is__DragTargetState_default);
+  drag_target._DragEndKind = class _DragEndKind extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (drag_target._DragEndKind.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[0], 852, 6, "index");
+    if (_name == null) dart.nullFailed(I[0], 852, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = drag_target._DragEndKind.prototype;
+  dart.addTypeTests(drag_target._DragEndKind);
+  dart.addTypeCaches(drag_target._DragEndKind);
+  dart.setLibraryUri(drag_target._DragEndKind, I[1]);
+  dart.setFieldSignature(drag_target._DragEndKind, () => ({
+    __proto__: dart.getFields(drag_target._DragEndKind.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(drag_target._DragEndKind, ['toString']);
+  drag_target._DragEndKind.dropped = C[19] || CT.C19;
+  drag_target._DragEndKind.canceled = C[20] || CT.C20;
+  drag_target._DragEndKind.values = C[21] || CT.C21;
+  var _activeTarget = dart.privateName(drag_target, "_activeTarget");
+  var _enteredTargets = dart.privateName(drag_target, "_enteredTargets");
+  var _entry = dart.privateName(drag_target, "_entry");
+  var _position = dart.privateName(drag_target, "_position");
+  var _build = dart.privateName(drag_target, "_build");
+  var _restrictAxis = dart.privateName(drag_target, "_restrictAxis");
+  var _restrictVelocityAxis = dart.privateName(drag_target, "_restrictVelocityAxis");
+  var _getDragTargets = dart.privateName(drag_target, "_getDragTargets");
+  var _leaveAllEntered = dart.privateName(drag_target, "_leaveAllEntered");
+  const _is__DragAvatar_default = Symbol('_is__DragAvatar_default');
+  drag_target._DragAvatar$ = dart.generic(T => {
+    class _DragAvatar extends drag.Drag {
+      update(details) {
+        if (details == null) dart.nullFailed(I[0], 898, 33, "details");
+        let oldPosition = this[_position];
+        this[_position] = this[_position]['+'](this[_restrictAxis](details.delta));
+        this.updateDrag(this[_position]);
+        if (this.onDragUpdate != null && !dart.equals(this[_position], oldPosition)) {
+          dart.nullCheck(this.onDragUpdate)(details);
+        }
+      }
+      end(details) {
+        if (details == null) dart.nullFailed(I[0], 908, 27, "details");
+        this.finishDrag(drag_target._DragEndKind.dropped, this[_restrictVelocityAxis](details.velocity));
+      }
+      cancel() {
+        this.finishDrag(drag_target._DragEndKind.canceled);
+      }
+      updateDrag(globalPosition) {
+        if (globalPosition == null) dart.nullFailed(I[0], 918, 26, "globalPosition");
+        this[_lastOffset] = globalPosition['-'](this.dragStartPoint);
+        dart.nullCheck(this[_entry]).markNeedsBuild();
+        let result = new hit_test.HitTestResult.new();
+        dart.nullCheck(binding.WidgetsBinding.instance).hitTest(result, globalPosition['+'](this.feedbackOffset));
+        let targets = this[_getDragTargets](result.path)[$toList]();
+        let listsMatch = false;
+        if (dart.notNull(targets[$length]) >= dart.notNull(this[_enteredTargets][$length]) && dart.test(this[_enteredTargets][$isNotEmpty])) {
+          listsMatch = true;
+          let iterator = targets[$iterator];
+          for (let i = 0; i < dart.notNull(this[_enteredTargets][$length]); i = i + 1) {
+            iterator.moveNext();
+            if (!dart.equals(iterator.current, this[_enteredTargets][$_get](i))) {
+              listsMatch = false;
+              break;
+            }
+          }
+        }
+        if (listsMatch) {
+          for (let target of this[_enteredTargets]) {
+            target.didMove(this);
+          }
+          return;
+        }
+        this[_leaveAllEntered]();
+        let newTarget = targets[$cast](T$._DragTargetStateNOfObject())[$firstWhere](dart.fn(target => {
+          if (target == null) return false;
+          this[_enteredTargets][$add](target);
+          return target.didEnter(this);
+        }, T$._DragTargetStateNOfObjectTobool()), {orElse: dart.fn(() => null, T$.VoidToNull())});
+        for (let target of this[_enteredTargets]) {
+          target.didMove(this);
+        }
+        this[_activeTarget] = newTarget;
+      }
+      [_getDragTargets](path) {
+        if (path == null) dart.nullFailed(I[0], 969, 77, "path");
+        return new (T$.SyncIterableOf_DragTargetStateOfObject()).new((function* _getDragTargets() {
+          for (let entry of path) {
+            let target = entry.target;
+            if (proxy_box.RenderMetaData.is(target)) {
+              let metaData = target.metaData;
+              if (T$._DragTargetStateOfObject().is(metaData) && dart.test(metaData.isExpectedDataType(this.data, dart.wrapType(T)))) yield metaData;
+            }
+          }
+        }).bind(this));
+      }
+      [_leaveAllEntered]() {
+        for (let i = 0; i < dart.notNull(this[_enteredTargets][$length]); i = i + 1)
+          this[_enteredTargets][$_get](i).didLeave(this);
+        this[_enteredTargets][$clear]();
+      }
+      finishDrag(endKind, velocity = null) {
+        let t1, t0;
+        if (endKind == null) dart.nullFailed(I[0], 988, 32, "endKind");
+        let wasAccepted = false;
+        if (endKind == drag_target._DragEndKind.dropped && this[_activeTarget] != null) {
+          dart.nullCheck(this[_activeTarget]).didDrop(this);
+          wasAccepted = true;
+          this[_enteredTargets][$remove](this[_activeTarget]);
+        }
+        this[_leaveAllEntered]();
+        this[_activeTarget] = null;
+        dart.nullCheck(this[_entry]).remove();
+        this[_entry] = null;
+        t0 = this.onDragEnd;
+        t0 == null ? null : t0((t1 = velocity, t1 == null ? velocity_tracker.Velocity.zero : t1), dart.nullCheck(this[_lastOffset]), wasAccepted);
+      }
+      [_build](context) {
+        if (context == null) dart.nullFailed(I[0], 1003, 30, "context");
+        let box = box$.RenderBox.as(dart.nullCheck(this.overlayState.context.findRenderObject()));
+        let overlayTopLeft = box.localToGlobal(ui.Offset.zero);
+        return new basic.Positioned.new({left: dart.notNull(dart.nullCheck(this[_lastOffset]).dx) - dart.notNull(overlayTopLeft.dx), top: dart.notNull(dart.nullCheck(this[_lastOffset]).dy) - dart.notNull(overlayTopLeft.dy), child: new basic.IgnorePointer.new({child: this.feedback, ignoringSemantics: this.ignoringFeedbackSemantics, $creationLocationd_0dea112b090073317d4: C[22] || CT.C22}), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26});
+      }
+      [_restrictVelocityAxis](velocity) {
+        if (velocity == null) dart.nullFailed(I[0], 1016, 43, "velocity");
+        if (this.axis == null) {
+          return velocity;
+        }
+        return new velocity_tracker.Velocity.new({pixelsPerSecond: this[_restrictAxis](velocity.pixelsPerSecond)});
+      }
+      [_restrictAxis](offset) {
+        if (offset == null) dart.nullFailed(I[0], 1025, 31, "offset");
+        if (this.axis == null) {
+          return offset;
+        }
+        if (this.axis == basic_types.Axis.horizontal) {
+          return new ui.Offset.new(offset.dx, 0.0);
+        }
+        return new ui.Offset.new(0.0, offset.dy);
+      }
+    }
+    (_DragAvatar.new = function(opts) {
+      let overlayState = opts && 'overlayState' in opts ? opts.overlayState : null;
+      if (overlayState == null) dart.nullFailed(I[0], 861, 19, "overlayState");
+      let data = opts && 'data' in opts ? opts.data : null;
+      let axis = opts && 'axis' in opts ? opts.axis : null;
+      let initialPosition = opts && 'initialPosition' in opts ? opts.initialPosition : null;
+      if (initialPosition == null) dart.nullFailed(I[0], 864, 21, "initialPosition");
+      let dragStartPoint = opts && 'dragStartPoint' in opts ? opts.dragStartPoint : C[3] || CT.C3;
+      if (dragStartPoint == null) dart.nullFailed(I[0], 865, 10, "dragStartPoint");
+      let feedback = opts && 'feedback' in opts ? opts.feedback : null;
+      let feedbackOffset = opts && 'feedbackOffset' in opts ? opts.feedbackOffset : C[3] || CT.C3;
+      if (feedbackOffset == null) dart.nullFailed(I[0], 867, 10, "feedbackOffset");
+      let onDragUpdate = opts && 'onDragUpdate' in opts ? opts.onDragUpdate : null;
+      let onDragEnd = opts && 'onDragEnd' in opts ? opts.onDragEnd : null;
+      let ignoringFeedbackSemantics = opts && 'ignoringFeedbackSemantics' in opts ? opts.ignoringFeedbackSemantics : null;
+      if (ignoringFeedbackSemantics == null) dart.nullFailed(I[0], 870, 19, "ignoringFeedbackSemantics");
+      this[_activeTarget] = null;
+      this[_enteredTargets] = T$.JSArrayOf_DragTargetStateOfObject().of([]);
+      this[_lastOffset] = null;
+      this[_entry] = null;
+      this.overlayState = overlayState;
+      this.data = data;
+      this.axis = axis;
+      this.dragStartPoint = dragStartPoint;
+      this.feedback = feedback;
+      this.feedbackOffset = feedbackOffset;
+      this.onDragUpdate = onDragUpdate;
+      this.onDragEnd = onDragEnd;
+      this.ignoringFeedbackSemantics = ignoringFeedbackSemantics;
+      if (!(overlayState != null)) dart.assertFailed(null, I[0], 871, 15, "overlayState != null");
+      if (!(ignoringFeedbackSemantics != null)) dart.assertFailed(null, I[0], 872, 15, "ignoringFeedbackSemantics != null");
+      if (!(dragStartPoint != null)) dart.assertFailed(null, I[0], 873, 15, "dragStartPoint != null");
+      if (!(feedbackOffset != null)) dart.assertFailed(null, I[0], 874, 15, "feedbackOffset != null");
+      this[_position] = initialPosition;
+      this[_entry] = new overlay.OverlayEntry.new({builder: dart.bind(this, _build)});
+      this.overlayState.insert(dart.nullCheck(this[_entry]));
+      this.updateDrag(initialPosition);
+    }).prototype = _DragAvatar.prototype;
+    dart.addTypeTests(_DragAvatar);
+    _DragAvatar.prototype[_is__DragAvatar_default] = true;
+    dart.addTypeCaches(_DragAvatar);
+    dart.setMethodSignature(_DragAvatar, () => ({
+      __proto__: dart.getMethods(_DragAvatar.__proto__),
+      updateDrag: dart.fnType(dart.void, [ui.Offset]),
+      [_getDragTargets]: dart.fnType(core.Iterable$(drag_target._DragTargetState$(core.Object)), [core.Iterable$(hit_test.HitTestEntry)]),
+      [_leaveAllEntered]: dart.fnType(dart.void, []),
+      finishDrag: dart.fnType(dart.void, [drag_target._DragEndKind], [dart.nullable(velocity_tracker.Velocity)]),
+      [_build]: dart.fnType(framework.Widget, [framework.BuildContext]),
+      [_restrictVelocityAxis]: dart.fnType(velocity_tracker.Velocity, [velocity_tracker.Velocity]),
+      [_restrictAxis]: dart.fnType(ui.Offset, [ui.Offset])
+    }));
+    dart.setLibraryUri(_DragAvatar, I[1]);
+    dart.setFieldSignature(_DragAvatar, () => ({
+      __proto__: dart.getFields(_DragAvatar.__proto__),
+      data: dart.finalFieldType(dart.nullable(T)),
+      axis: dart.finalFieldType(dart.nullable(basic_types.Axis)),
+      dragStartPoint: dart.finalFieldType(ui.Offset),
+      feedback: dart.finalFieldType(dart.nullable(framework.Widget)),
+      feedbackOffset: dart.finalFieldType(ui.Offset),
+      onDragUpdate: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [drag_details.DragUpdateDetails]))),
+      onDragEnd: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [velocity_tracker.Velocity, ui.Offset, core.bool]))),
+      overlayState: dart.finalFieldType(overlay.OverlayState),
+      ignoringFeedbackSemantics: dart.finalFieldType(core.bool),
+      [_activeTarget]: dart.fieldType(dart.nullable(drag_target._DragTargetState$(core.Object))),
+      [_enteredTargets]: dart.finalFieldType(core.List$(drag_target._DragTargetState$(core.Object))),
+      [_position]: dart.fieldType(ui.Offset),
+      [_lastOffset]: dart.fieldType(dart.nullable(ui.Offset)),
+      [_entry]: dart.fieldType(dart.nullable(overlay.OverlayEntry))
+    }));
+    return _DragAvatar;
+  });
+  drag_target._DragAvatar = drag_target._DragAvatar$();
+  dart.addTypeTests(drag_target._DragAvatar, _is__DragAvatar_default);
+  drag_target.childDragAnchorStrategy = function childDragAnchorStrategy(draggable, context, position) {
+    if (draggable == null) dart.nullFailed(I[0], 93, 50, "draggable");
+    if (context == null) dart.nullFailed(I[0], 93, 74, "context");
+    if (position == null) dart.nullFailed(I[0], 93, 90, "position");
+    let renderObject = box$.RenderBox.as(dart.nullCheck(context.findRenderObject()));
+    return renderObject.globalToLocal(position);
+  };
+  drag_target.pointerDragAnchorStrategy = function pointerDragAnchorStrategy(draggable, context, position) {
+    if (draggable == null) dart.nullFailed(I[0], 117, 52, "draggable");
+    if (context == null) dart.nullFailed(I[0], 117, 76, "context");
+    if (position == null) dart.nullFailed(I[0], 117, 92, "position");
+    return ui.Offset.zero;
+  };
+  drag_target._mapAvatarsToData = function _mapAvatarsToData(T, avatars) {
+    if (avatars == null) dart.nullFailed(I[0], 779, 72, "avatars");
+    return avatars[$map](dart.nullable(T), dart.fn(avatar => {
+      if (avatar == null) dart.nullFailed(I[0], 780, 47, "avatar");
+      return dart.nullable(T).as(avatar.data);
+    }, dart.fnType(dart.nullable(T), [T$._DragAvatarOfObject()])))[$toList]();
+  };
+  dart.trackLibraries("packages/flutter/src/widgets/drag_target.dart", {
+    "package:flutter/src/widgets/drag_target.dart": drag_target
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["drag_target.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/widgets/drag_target.dart.lib.js"}');
+  // Exports:
+  return {
+    src__widgets__drag_target: drag_target
+  };
+}));
+
+//# sourceMappingURL=drag_target.dart.lib.js.map

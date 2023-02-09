@@ -1,0 +1,512 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter_web.examples.github_dataviz/data/week_label.dart', 'packages/flutter/src/painting/placeholder_span.dart', 'packages/flutter_web.examples.github_dataviz/constants.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/rendering/proxy_box.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter_web.examples.github_dataviz/mathutils.dart', 'packages/flutter/src/rendering/custom_paint.dart'], (function load__packages__flutter_web_examples_github_dataviz__timeline_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter_web$46examples$46github_dataviz__data__week_label$46dart, packages__flutter__src__painting__placeholder_span$46dart, packages__flutter_web$46examples$46github_dataviz__constants$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__rendering__proxy_box$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter_web$46examples$46github_dataviz__mathutils$46dart, packages__flutter__src__rendering__custom_paint$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
+  const ui = dart_sdk.ui;
+  const collection = dart_sdk.collection;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const gesture_detector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__gesture_detector;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const week_label = packages__flutter_web$46examples$46github_dataviz__data__week_label$46dart.data__week_label;
+  const text_painter = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_painter;
+  const text_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_span;
+  const constants = packages__flutter_web$46examples$46github_dataviz__constants$46dart.constants;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const proxy_box = packages__flutter__src__rendering__proxy_box$46dart.src__rendering__proxy_box;
+  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const mathutils = packages__flutter_web$46examples$46github_dataviz__mathutils$46dart.mathutils;
+  const custom_paint = packages__flutter__src__rendering__custom_paint$46dart.src__rendering__custom_paint;
+  var timeline = Object.create(dart.library);
+  var $_set = dartx._set;
+  var $forEach = dartx.forEach;
+  var $modulo = dartx['%'];
+  var $toDouble = dartx.toDouble;
+  var $_get = dartx._get;
+  var $length = dartx.length;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    TextPainterL: () => (T.TextPainterL = dart.constFn(dart.legacy(text_painter.TextPainter)))(),
+    IdentityMapOfStringL$TextPainterL: () => (T.IdentityMapOfStringL$TextPainterL = dart.constFn(_js_helper.IdentityMap$(T.StringL(), T.TextPainterL())))(),
+    WeekLabelL: () => (T.WeekLabelL = dart.constFn(dart.legacy(week_label.WeekLabel)))(),
+    WeekLabelLToNull: () => (T.WeekLabelLToNull = dart.constFn(dart.fnType(core.Null, [T.WeekLabelL()])))(),
+    DragDownDetailsL: () => (T.DragDownDetailsL = dart.constFn(dart.legacy(drag_details.DragDownDetails)))(),
+    DragDownDetailsLToNull: () => (T.DragDownDetailsLToNull = dart.constFn(dart.fnType(core.Null, [T.DragDownDetailsL()])))(),
+    DragEndDetailsL: () => (T.DragEndDetailsL = dart.constFn(dart.legacy(drag_details.DragEndDetails)))(),
+    DragEndDetailsLToNull: () => (T.DragEndDetailsLToNull = dart.constFn(dart.fnType(core.Null, [T.DragEndDetailsL()])))(),
+    DragUpdateDetailsL: () => (T.DragUpdateDetailsL = dart.constFn(dart.legacy(drag_details.DragUpdateDetails)))(),
+    DragUpdateDetailsLToNull: () => (T.DragUpdateDetailsLToNull = dart.constFn(dart.fnType(core.Null, [T.DragUpdateDetailsL()])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    RenderBoxL: () => (T.RenderBoxL = dart.constFn(dart.legacy(box.RenderBox)))(),
+    CustomPainterL: () => (T.CustomPainterL = dart.constFn(dart.legacy(custom_paint.CustomPainter)))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 13,
+        [_Location_line]: 88,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 87,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/timeline.dart"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "foregroundPainter",
+        [_Location_column]: 11,
+        [_Location_line]: 81,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 87,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 80,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/timeline.dart"
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "behavior",
+        [_Location_column]: 7,
+        [_Location_line]: 62,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onHorizontalDragDown",
+        [_Location_column]: 7,
+        [_Location_line]: 63,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onHorizontalDragEnd",
+        [_Location_column]: 7,
+        [_Location_line]: 69,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onHorizontalDragUpdate",
+        [_Location_column]: 7,
+        [_Location_line]: 74,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.constList([C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13], T._LocationL());
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[8] || CT.C8,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 61,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/timeline.dart"
+      });
+    }
+  }, false);
+  var C = Array(14).fill(void 0);
+  var I = ["package:flutter_web.examples.github_dataviz/timeline.dart"];
+  var numWeeks$ = dart.privateName(timeline, "Timeline.numWeeks");
+  var animationValue$ = dart.privateName(timeline, "Timeline.animationValue");
+  var weekLabels$ = dart.privateName(timeline, "Timeline.weekLabels");
+  var mouseDownCallback$ = dart.privateName(timeline, "Timeline.mouseDownCallback");
+  var mouseMoveCallback$ = dart.privateName(timeline, "Timeline.mouseMoveCallback");
+  var mouseUpCallback$ = dart.privateName(timeline, "Timeline.mouseUpCallback");
+  timeline.Timeline = class Timeline extends framework.StatefulWidget {
+    get numWeeks() {
+      return this[numWeeks$];
+    }
+    set numWeeks(value) {
+      this[numWeeks$] = value;
+    }
+    get animationValue() {
+      return this[animationValue$];
+    }
+    set animationValue(value) {
+      this[animationValue$] = value;
+    }
+    get weekLabels() {
+      return this[weekLabels$];
+    }
+    set weekLabels(value) {
+      this[weekLabels$] = value;
+    }
+    get mouseDownCallback() {
+      return this[mouseDownCallback$];
+    }
+    set mouseDownCallback(value) {
+      super.mouseDownCallback = value;
+    }
+    get mouseMoveCallback() {
+      return this[mouseMoveCallback$];
+    }
+    set mouseMoveCallback(value) {
+      super.mouseMoveCallback = value;
+    }
+    get mouseUpCallback() {
+      return this[mouseUpCallback$];
+    }
+    set mouseUpCallback(value) {
+      super.mouseUpCallback = value;
+    }
+    createState() {
+      return new timeline.TimelineState.new();
+    }
+  };
+  (timeline.Timeline.new = function(opts) {
+    let numWeeks = opts && 'numWeeks' in opts ? opts.numWeeks : null;
+    let animationValue = opts && 'animationValue' in opts ? opts.animationValue : null;
+    let weekLabels = opts && 'weekLabels' in opts ? opts.weekLabels : null;
+    let mouseDownCallback = opts && 'mouseDownCallback' in opts ? opts.mouseDownCallback : null;
+    let mouseMoveCallback = opts && 'mouseMoveCallback' in opts ? opts.mouseMoveCallback : null;
+    let mouseUpCallback = opts && 'mouseUpCallback' in opts ? opts.mouseUpCallback : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[numWeeks$] = numWeeks;
+    this[animationValue$] = animationValue;
+    this[weekLabels$] = weekLabels;
+    this[mouseDownCallback$] = mouseDownCallback;
+    this[mouseMoveCallback$] = mouseMoveCallback;
+    this[mouseUpCallback$] = mouseUpCallback;
+    timeline.Timeline.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = timeline.Timeline.prototype;
+  dart.addTypeTests(timeline.Timeline);
+  dart.addTypeCaches(timeline.Timeline);
+  dart.setMethodSignature(timeline.Timeline, () => ({
+    __proto__: dart.getMethods(timeline.Timeline.__proto__),
+    createState: dart.fnType(dart.legacy(framework.State$(dart.legacy(framework.StatefulWidget))), [])
+  }));
+  dart.setLibraryUri(timeline.Timeline, I[0]);
+  dart.setFieldSignature(timeline.Timeline, () => ({
+    __proto__: dart.getFields(timeline.Timeline.__proto__),
+    numWeeks: dart.fieldType(dart.legacy(core.int)),
+    animationValue: dart.fieldType(dart.legacy(core.double)),
+    weekLabels: dart.fieldType(dart.legacy(core.List$(dart.legacy(week_label.WeekLabel)))),
+    mouseDownCallback: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, [dart.legacy(core.double)]))),
+    mouseMoveCallback: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, [dart.legacy(core.double)]))),
+    mouseUpCallback: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, [])))
+  }));
+  var labelPainters = dart.privateName(timeline, "TimelineState.labelPainters");
+  var _makeTextPainter = dart.privateName(timeline, "_makeTextPainter");
+  var _getClampedXFractionLocalCoords = dart.privateName(timeline, "_getClampedXFractionLocalCoords");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  timeline.TimelineState = class TimelineState extends framework.State$(dart.legacy(timeline.Timeline)) {
+    get labelPainters() {
+      return this[labelPainters];
+    }
+    set labelPainters(value) {
+      this[labelPainters] = value;
+    }
+    initState() {
+      for (let year = 2018; year < 2022; year = year + 1) {
+        let yearLabel = dart.str(year);
+        this.labelPainters[$_set](yearLabel, this[_makeTextPainter](constants.Constants.timelineLineColor, yearLabel));
+      }
+      this.widget.weekLabels[$forEach](dart.fn(weekLabel => {
+        this.labelPainters[$_set](weekLabel.label, this[_makeTextPainter](constants.Constants.milestoneTimelineColor, weekLabel.label));
+        this.labelPainters[$_set](dart.notNull(weekLabel.label) + "_red", this[_makeTextPainter](colors.Colors.redAccent, weekLabel.label));
+      }, T.WeekLabelLToNull()));
+    }
+    build(context) {
+      return new gesture_detector.GestureDetector.new({behavior: proxy_box.HitTestBehavior.translucent, onHorizontalDragDown: dart.fn(details => {
+          let t1, t0;
+          if (this.widget.mouseDownCallback != null) {
+            t0 = this.widget;
+            t1 = this[_getClampedXFractionLocalCoords](context, details.globalPosition);
+            t0.mouseDownCallback(t1);
+          }
+        }, T.DragDownDetailsLToNull()), onHorizontalDragEnd: dart.fn(details => {
+          if (this.widget.mouseUpCallback != null) {
+            this.widget.mouseUpCallback();
+          }
+        }, T.DragEndDetailsLToNull()), onHorizontalDragUpdate: dart.fn(details => {
+          let t1, t0;
+          if (this.widget.mouseMoveCallback != null) {
+            t0 = this.widget;
+            t1 = this[_getClampedXFractionLocalCoords](context, details.globalPosition);
+            t0.mouseMoveCallback(t1);
+          }
+        }, T.DragUpdateDetailsLToNull()), child: new basic.CustomPaint.new({foregroundPainter: new timeline.TimelinePainter.new({labelPainters: this.labelPainters, numWeeks: this.widget.numWeeks, weekLabels: this.widget.weekLabels, animationValue: this.widget.animationValue}), child: new container.Container.new({height: 200.0, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), $creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), $creationLocationd_0dea112b090073317d4: C[7] || CT.C7});
+    }
+    [_makeTextPainter](color, label) {
+      let span = new text_span.TextSpan.new({style: new text_style.TextStyle.new({color: color, fontSize: 12.0}), text: label});
+      let tp = new text_painter.TextPainter.new({text: span, textAlign: ui.TextAlign.left, textDirection: ui.TextDirection.ltr});
+      tp.layout();
+      return tp;
+    }
+    [_getClampedXFractionLocalCoords](context, globalOffset) {
+      let box = T.RenderBoxL().as(context.findRenderObject());
+      let localOffset = box.globalToLocal(globalOffset);
+      return mathutils.MathUtils.clamp(dart.notNull(localOffset.dx) / dart.notNull(context.size.width), 0.0, 1.0);
+    }
+  };
+  (timeline.TimelineState.new = function() {
+    this[labelPainters] = new (T.IdentityMapOfStringL$TextPainterL()).new();
+    timeline.TimelineState.__proto__.new.call(this);
+    ;
+  }).prototype = timeline.TimelineState.prototype;
+  dart.addTypeTests(timeline.TimelineState);
+  dart.addTypeCaches(timeline.TimelineState);
+  dart.setMethodSignature(timeline.TimelineState, () => ({
+    __proto__: dart.getMethods(timeline.TimelineState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    [_makeTextPainter]: dart.fnType(dart.legacy(text_painter.TextPainter), [dart.legacy(ui.Color), dart.legacy(core.String)]),
+    [_getClampedXFractionLocalCoords]: dart.fnType(dart.legacy(core.double), [dart.legacy(framework.BuildContext), dart.legacy(ui.Offset)])
+  }));
+  dart.setLibraryUri(timeline.TimelineState, I[0]);
+  dart.setFieldSignature(timeline.TimelineState, () => ({
+    __proto__: dart.getFields(timeline.TimelineState.__proto__),
+    labelPainters: dart.fieldType(dart.legacy(collection.HashMap$(dart.legacy(core.String), dart.legacy(text_painter.TextPainter))))
+  }));
+  var labelPainters$ = dart.privateName(timeline, "TimelinePainter.labelPainters");
+  var mainLinePaint = dart.privateName(timeline, "TimelinePainter.mainLinePaint");
+  var milestoneLinePaint = dart.privateName(timeline, "TimelinePainter.milestoneLinePaint");
+  var lineColor = dart.privateName(timeline, "TimelinePainter.lineColor");
+  var numWeeks$0 = dart.privateName(timeline, "TimelinePainter.numWeeks");
+  var animationValue$0 = dart.privateName(timeline, "TimelinePainter.animationValue");
+  var weekYearOffset = dart.privateName(timeline, "TimelinePainter.weekYearOffset");
+  var weekLabels$0 = dart.privateName(timeline, "TimelinePainter.weekLabels");
+  var yearNumber = dart.privateName(timeline, "TimelinePainter.yearNumber");
+  timeline.TimelinePainter = class TimelinePainter extends custom_paint.CustomPainter {
+    get labelPainters() {
+      return this[labelPainters$];
+    }
+    set labelPainters(value) {
+      this[labelPainters$] = value;
+    }
+    get mainLinePaint() {
+      return this[mainLinePaint];
+    }
+    set mainLinePaint(value) {
+      this[mainLinePaint] = value;
+    }
+    get milestoneLinePaint() {
+      return this[milestoneLinePaint];
+    }
+    set milestoneLinePaint(value) {
+      this[milestoneLinePaint] = value;
+    }
+    get lineColor() {
+      return this[lineColor];
+    }
+    set lineColor(value) {
+      this[lineColor] = value;
+    }
+    get numWeeks() {
+      return this[numWeeks$0];
+    }
+    set numWeeks(value) {
+      this[numWeeks$0] = value;
+    }
+    get animationValue() {
+      return this[animationValue$0];
+    }
+    set animationValue(value) {
+      this[animationValue$0] = value;
+    }
+    get weekYearOffset() {
+      return this[weekYearOffset];
+    }
+    set weekYearOffset(value) {
+      this[weekYearOffset] = value;
+    }
+    get weekLabels() {
+      return this[weekLabels$0];
+    }
+    set weekLabels(value) {
+      this[weekLabels$0] = value;
+    }
+    get yearNumber() {
+      return this[yearNumber];
+    }
+    set yearNumber(value) {
+      this[yearNumber] = value;
+    }
+    paint(canvas, size) {
+      let labelHeight = 20.0;
+      let labelHeightDoubled = labelHeight * 2;
+      let mainLineY = dart.notNull(size.height) / 2;
+      canvas.drawLine(new ui.Offset.new(0.0, mainLineY), new ui.Offset.new(size.width, mainLineY), this.mainLinePaint);
+      let currTimeX = dart.notNull(size.width) * dart.notNull(this.animationValue);
+      canvas.drawLine(new ui.Offset.new(currTimeX, labelHeightDoubled), new ui.Offset.new(currTimeX, dart.notNull(size.height) - labelHeightDoubled), this.milestoneLinePaint);
+      {
+        for (let week = 0; week < dart.notNull(this.numWeeks); week = week + 1) {
+          let lineHeight = dart.notNull(size.height) / 32;
+          let isYear = false;
+          if ((week - 9)[$modulo](52) === 0) {
+            isYear = true;
+            lineHeight = dart.notNull(size.height) / 2;
+          } else if ((week - 1)[$modulo](4) === 0) {
+            lineHeight = dart.notNull(size.height) / 8;
+          }
+          let currX = week / this.numWeeks[$toDouble]() * dart.notNull(size.width);
+          if (lineHeight > 0) {
+            let margin = (dart.notNull(size.height) - lineHeight) / 2;
+            let currTimeXDiff = (currTimeX - currX) / dart.notNull(size.width);
+            if (currTimeXDiff > 0) {
+              let mappedValue = mathutils.MathUtils.clampedMap(currTimeXDiff, 0.0, 0.025, 0.0, 1.0);
+              let lerpedColor = ui.Color.lerp(constants.Constants.milestoneTimelineColor, constants.Constants.timelineLineColor, mappedValue);
+              this.mainLinePaint.color = lerpedColor;
+            } else {
+              this.mainLinePaint.color = constants.Constants.timelineLineColor;
+            }
+            canvas.drawLine(new ui.Offset.new(currX, margin), new ui.Offset.new(currX, dart.notNull(size.height) - margin), this.mainLinePaint);
+          }
+          if (isYear) {
+            let yearLabel = dart.str(this.yearNumber);
+            this.labelPainters[$_get](yearLabel).paint(canvas, new ui.Offset.new(currX, dart.notNull(size.height) - labelHeight));
+            this.yearNumber = dart.notNull(this.yearNumber) + 1;
+          }
+        }
+      }
+      {
+        for (let i = 0; i < dart.notNull(this.weekLabels[$length]); i = i + 1) {
+          let weekLabel = this.weekLabels[$_get](i);
+          let currX = dart.notNull(weekLabel.weekNum) / this.numWeeks[$toDouble]() * dart.notNull(size.width);
+          let timelineXDiff = (currTimeX - currX) / dart.notNull(size.width);
+          let maxTimelineDiff = 0.08;
+          let textPainter = this.labelPainters[$_get](weekLabel.label);
+          if (timelineXDiff > 0 && timelineXDiff < maxTimelineDiff && dart.notNull(this.animationValue) < 1) {
+            let mappedValue = mathutils.MathUtils.clampedMap(timelineXDiff, 0.0, maxTimelineDiff, 0.0, 1.0);
+            let lerpedColor = ui.Color.lerp(colors.Colors.redAccent, constants.Constants.milestoneTimelineColor, mappedValue);
+            this.milestoneLinePaint.strokeWidth = mathutils.MathUtils.clampedMap(timelineXDiff, 0.0, maxTimelineDiff, 6.0, 1.0);
+            this.milestoneLinePaint.color = lerpedColor;
+          } else {
+            this.milestoneLinePaint.strokeWidth = 1.0;
+            this.milestoneLinePaint.color = constants.Constants.milestoneTimelineColor;
+          }
+          let lineHeight = dart.notNull(size.height) / 2;
+          let margin = (dart.notNull(size.height) - lineHeight) / 2;
+          canvas.drawLine(new ui.Offset.new(currX, margin), new ui.Offset.new(currX, dart.notNull(size.height) - margin), this.milestoneLinePaint);
+          textPainter.paint(canvas, new ui.Offset.new(currX, dart.notNull(size.height) - labelHeightDoubled));
+        }
+      }
+    }
+    shouldRepaint(oldDelegate) {
+      T.CustomPainterL().as(oldDelegate);
+      return true;
+    }
+  };
+  (timeline.TimelinePainter.new = function(opts) {
+    let labelPainters = opts && 'labelPainters' in opts ? opts.labelPainters : null;
+    let numWeeks = opts && 'numWeeks' in opts ? opts.numWeeks : null;
+    let weekLabels = opts && 'weekLabels' in opts ? opts.weekLabels : null;
+    let animationValue = opts && 'animationValue' in opts ? opts.animationValue : null;
+    this[mainLinePaint] = null;
+    this[milestoneLinePaint] = null;
+    this[lineColor] = colors.Colors.white;
+    this[weekYearOffset] = 9;
+    this[yearNumber] = 2018;
+    this[labelPainters$] = labelPainters;
+    this[numWeeks$0] = numWeeks;
+    this[weekLabels$0] = weekLabels;
+    this[animationValue$0] = animationValue;
+    timeline.TimelinePainter.__proto__.new.call(this);
+    this.mainLinePaint = ui.Paint.new();
+    this.mainLinePaint.style = ui.PaintingStyle.stroke;
+    this.mainLinePaint.color = constants.Constants.timelineLineColor;
+    this.milestoneLinePaint = ui.Paint.new();
+    this.milestoneLinePaint.style = ui.PaintingStyle.stroke;
+    this.milestoneLinePaint.color = constants.Constants.milestoneTimelineColor;
+  }).prototype = timeline.TimelinePainter.prototype;
+  dart.addTypeTests(timeline.TimelinePainter);
+  dart.addTypeCaches(timeline.TimelinePainter);
+  dart.setMethodSignature(timeline.TimelinePainter, () => ({
+    __proto__: dart.getMethods(timeline.TimelinePainter.__proto__),
+    paint: dart.fnType(dart.void, [dart.legacy(ui.Canvas), dart.legacy(ui.Size)]),
+    shouldRepaint: dart.fnType(dart.legacy(core.bool), [dart.legacy(core.Object)])
+  }));
+  dart.setLibraryUri(timeline.TimelinePainter, I[0]);
+  dart.setFieldSignature(timeline.TimelinePainter, () => ({
+    __proto__: dart.getFields(timeline.TimelinePainter.__proto__),
+    labelPainters: dart.fieldType(dart.legacy(collection.HashMap$(dart.legacy(core.String), dart.legacy(text_painter.TextPainter)))),
+    mainLinePaint: dart.fieldType(dart.legacy(ui.Paint)),
+    milestoneLinePaint: dart.fieldType(dart.legacy(ui.Paint)),
+    lineColor: dart.fieldType(dart.legacy(ui.Color)),
+    numWeeks: dart.fieldType(dart.legacy(core.int)),
+    animationValue: dart.fieldType(dart.legacy(core.double)),
+    weekYearOffset: dart.fieldType(dart.legacy(core.int)),
+    weekLabels: dart.fieldType(dart.legacy(core.List$(dart.legacy(week_label.WeekLabel)))),
+    yearNumber: dart.fieldType(dart.legacy(core.int))
+  }));
+  dart.trackLibraries("packages/flutter_web.examples.github_dataviz/timeline.dart", {
+    "package:flutter_web.examples.github_dataviz/timeline.dart": timeline
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["timeline.dart"],"names":[],"mappings":"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","file":"../../../packages/flutter_web.examples.github_dataviz/timeline.dart.lib.js"}');
+  // Exports:
+  return {
+    timeline: timeline
+  };
+}));
+
+//# sourceMappingURL=timeline.dart.lib.js.map

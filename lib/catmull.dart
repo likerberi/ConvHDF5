@@ -8,11 +8,135 @@ class ControlPointAndValue {
     value = 0;
     point = 2;
   }
+  idget calculator() {
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      userInput,
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      answer,
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ]),
+          ),
+        ),
+        Expanded(
+          flex: 5,
+          child: Container(
+            padding: EdgeInsets.all(30),
+            child: GridView.builder(
+                itemCount: buttons.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4),
+                itemBuilder: (BuildContext context, int index) {
+                  // Clear Button
+                  if (index == 0) {
+                    return Buttons(
+                      buttonTap: () {
+                        setState(() {
+                          userInput = '';
+                          answer = '0';
+                        });
+                      },
+                      buttonText: buttons[index],
+                      color: Colors.blue[50],
+                      textColor: Colors.black,
+                    );
+                  }
 
+                  // +/- button
+                  else if (index == 1) {
+                    return Buttons(
+                      buttonText: buttons[index],
+                      color: Colors.blue[50],
+                      textColor: Colors.black,
+                    );
+                  }
+                  // % Button
+                  else if (index == 2) {
+                    return Buttons(
+                      buttonTap: () {
+                        setState(() {
+                          userInput += buttons[index];
+                        });
+                      },
+                      buttonText: buttons[index],
+                      color: Colors.blue[50],
+                      textColor: Colors.black,
+                    );
+                  }
+                  // Delete Button
+                  else if (index == 3) {
+                    return Buttons(
+                      buttonTap: () {
+                        setState(() {
+                          userInput =
+                              userInput.substring(0, userInput.length - 1);
+                        });
+                      },
+                      buttonText: buttons[index],
+                      color: Colors.blue[50],
+                      textColor: Colors.black,
+                    );
+                  }
+                  // Equal_to Button
+                  else if (index == 18) {
+                    return Buttons(
+                      buttonTap: () {
+                        setState(() {
+                          equalPressed();
+                        });
+                      },
+                      buttonText: buttons[index],
+                      color: Colors.orange[700],
+                      textColor: Colors.white,
+                    );
+                  }
+
+                  //  other buttons
+                  else {
+                    return Buttons(
+                      buttonTap: () {
+                        setState(() {
+                          userInput += buttons[index];
+                        });
+                      },
+                      buttonText: buttons[index],
+                      color: isOperator(buttons[index])
+                          ? Colors.blueAccent
+                          : Colors.white,
+                      textColor: isOperator(buttons[index])
+                          ? Colors.white
+                          : Colors.black,
+                    );
+                  }
+                }), // GridView.builder
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 class CatmullInterpolator implements Interpolator {
-
   List<Point2D> controlPoints;
 
   CatmullInterpolator(this.controlPoints);
@@ -21,15 +145,17 @@ class CatmullInterpolator implements Interpolator {
   double get(double v) {
     for (int i = 2; i < controlPoints.length - 1; i++) {
       if (controlPoints[i].x >= v) {
-        double t = (v - controlPoints[i - 1].x) / (controlPoints[i].x - controlPoints[i - 1].x);
+        double t = (v - controlPoints[i - 1].x) /
+            (controlPoints[i].x - controlPoints[i - 1].x);
         double p0 = controlPoints[i - 2].y;
         double p1 = controlPoints[i - 1].y;
         double p2 = controlPoints[i].y;
         double p3 = controlPoints[i + 1].y;
-        return 0.5 * ((2 * p1) +
-            (p2 - p0) * t +
-            (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t +
-            (3 * p1 - p0 - 3 * p2 + p3) * t * t * t);
+        return 0.5 *
+            ((2 * p1) +
+                (p2 - p0) * t +
+                (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t +
+                (3 * p1 - p0 - 3 * p2 + p3) * t * t * t);
       }
     }
     // Will be unreachable if the control points were set up right
@@ -40,15 +166,17 @@ class CatmullInterpolator implements Interpolator {
     double v = cpv.value;
     for (int i = cpv.point; i < controlPoints.length - 1; i++) {
       if (controlPoints[i].x >= v) {
-        double t = (v - controlPoints[i - 1].x) / (controlPoints[i].x - controlPoints[i - 1].x);
+        double t = (v - controlPoints[i - 1].x) /
+            (controlPoints[i].x - controlPoints[i - 1].x);
         double p0 = controlPoints[i - 2].y;
         double p1 = controlPoints[i - 1].y;
         double p2 = controlPoints[i].y;
         double p3 = controlPoints[i + 1].y;
-        cpv.value = 0.5 * ((2 * p1) +
-            (p2 - p0) * t +
-            (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t +
-            (3 * p1 - p0 - 3 * p2 + p3) * t * t * t);
+        cpv.value = 0.5 *
+            ((2 * p1) +
+                (p2 - p0) * t +
+                (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t +
+                (3 * p1 - p0 - 3 * p2 + p3) * t * t * t);
         cpv.point = i;
         return cpv;
       }
@@ -57,22 +185,21 @@ class CatmullInterpolator implements Interpolator {
     return cpv;
   }
 
-   static void test() {
-      List<Point2D> controlPoints = new List<Point2D>();
-      controlPoints.add(new Point2D(-1, 1));
-      controlPoints.add(new Point2D(0, 1));
-      controlPoints.add(new Point2D(1, -1));
-      controlPoints.add(new Point2D(3, 4));
-      controlPoints.add(new Point2D(10, -2));
-      controlPoints.add(new Point2D(11, -2));
-      CatmullInterpolator catmull = new CatmullInterpolator(controlPoints);
-      print(catmull.get(0));
-      print(catmull.get(1));
-      print(catmull.get(2));
-      print(catmull.get(5));
-      print(catmull.get(7));
-      print(catmull.get(8));
-      print(catmull.get(10));
-   }
-
+  static void test() {
+    List<Point2D> controlPoints = new List<Point2D>();
+    controlPoints.add(new Point2D(-1, 1));
+    controlPoints.add(new Point2D(0, 1));
+    controlPoints.add(new Point2D(1, -1));
+    controlPoints.add(new Point2D(3, 4));
+    controlPoints.add(new Point2D(10, -2));
+    controlPoints.add(new Point2D(11, -2));
+    CatmullInterpolator catmull = new CatmullInterpolator(controlPoints);
+    print(catmull.get(0));
+    print(catmull.get(1));
+    print(catmull.get(2));
+    print(catmull.get(5));
+    print(catmull.get(7));
+    print(catmull.get(8));
+    print(catmull.get(10));
+  }
 }

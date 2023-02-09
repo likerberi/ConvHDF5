@@ -1,0 +1,677 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter_web.examples.github_dataviz/data/data_series.dart', 'packages/flutter_web.examples.github_dataviz/data/week_label.dart', 'packages/flutter_web.examples.github_dataviz/mathutils.dart', 'packages/flutter_web.examples.github_dataviz/catmull.dart', 'packages/flutter/src/painting/placeholder_span.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter_web.examples.github_dataviz/constants.dart', 'packages/flutter/src/rendering/custom_paint.dart', 'packages/flutter/src/material/colors.dart'], (function load__packages__flutter_web_examples_github_dataviz__layered_chart_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter_web$46examples$46github_dataviz__data__data_series$46dart, packages__flutter_web$46examples$46github_dataviz__data__week_label$46dart, packages__flutter_web$46examples$46github_dataviz__mathutils$46dart, packages__flutter_web$46examples$46github_dataviz__catmull$46dart, packages__flutter__src__painting__placeholder_span$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter_web$46examples$46github_dataviz__constants$46dart, packages__flutter__src__rendering__custom_paint$46dart, packages__flutter__src__material__colors$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const math = dart_sdk.math;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const data_series = packages__flutter_web$46examples$46github_dataviz__data__data_series$46dart.data__data_series;
+  const week_label = packages__flutter_web$46examples$46github_dataviz__data__week_label$46dart.data__week_label;
+  const mathutils = packages__flutter_web$46examples$46github_dataviz__mathutils$46dart.mathutils;
+  const catmull = packages__flutter_web$46examples$46github_dataviz__catmull$46dart.catmull;
+  const text_painter = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_painter;
+  const text_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_span;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const constants = packages__flutter_web$46examples$46github_dataviz__constants$46dart.constants;
+  const custom_paint = packages__flutter__src__rendering__custom_paint$46dart.src__rendering__custom_paint;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  var layered_chart = Object.create(dart.library);
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $_set = dartx._set;
+  var $toDouble = dartx.toDouble;
+  var $add = dartx.add;
+  var $truncate = dartx.truncate;
+  var $toUpperCase = dartx.toUpperCase;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    doubleL: () => (T.doubleL = dart.constFn(dart.legacy(core.double)))(),
+    PathL: () => (T.PathL = dart.constFn(dart.legacy(ui.Path)))(),
+    ListOfPathL: () => (T.ListOfPathL = dart.constFn(core.List$(T.PathL())))(),
+    ListOfdoubleL: () => (T.ListOfdoubleL = dart.constFn(core.List$(T.doubleL())))(),
+    Point2DL: () => (T.Point2DL = dart.constFn(dart.legacy(mathutils.Point2D)))(),
+    JSArrayOfPoint2DL: () => (T.JSArrayOfPoint2DL = dart.constFn(_interceptors.JSArray$(T.Point2DL())))(),
+    TextPainterL: () => (T.TextPainterL = dart.constFn(dart.legacy(text_painter.TextPainter)))(),
+    JSArrayOfTextPainterL: () => (T.JSArrayOfTextPainterL = dart.constFn(_interceptors.JSArray$(T.TextPainterL())))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    CustomPainterL: () => (T.CustomPainterL = dart.constFn(dart.legacy(custom_paint.CustomPainter)))(),
+    ColorL: () => (T.ColorL = dart.constFn(dart.legacy(ui.Color)))(),
+    JSArrayOfColorL: () => (T.JSArrayOfColorL = dart.constFn(_interceptors.JSArray$(T.ColorL())))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C1() {
+      return C[1] = dart.constList([], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 161,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/layered_chart.dart"
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "foregroundPainter",
+        [_Location_column]: 13,
+        [_Location_line]: 156,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 161,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.constList([C[4] || CT.C4, C[5] || CT.C5], T._LocationL());
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[3] || CT.C3,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 155,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/layered_chart.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 9,
+        [_Location_line]: 154,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 155,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9], T._LocationL());
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[7] || CT.C7,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 153,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/layered_chart.dart"
+      });
+    }
+  }, false);
+  var C = Array(10).fill(void 0);
+  var I = ["package:flutter_web.examples.github_dataviz/layered_chart.dart"];
+  var dataToPlot$ = dart.privateName(layered_chart, "LayeredChart.dataToPlot");
+  var milestones$ = dart.privateName(layered_chart, "LayeredChart.milestones");
+  var animationValue$ = dart.privateName(layered_chart, "LayeredChart.animationValue");
+  layered_chart.LayeredChart = class LayeredChart extends framework.StatefulWidget {
+    get dataToPlot() {
+      return this[dataToPlot$];
+    }
+    set dataToPlot(value) {
+      this[dataToPlot$] = value;
+    }
+    get milestones() {
+      return this[milestones$];
+    }
+    set milestones(value) {
+      this[milestones$] = value;
+    }
+    get animationValue() {
+      return this[animationValue$];
+    }
+    set animationValue(value) {
+      this[animationValue$] = value;
+    }
+    createState() {
+      return new layered_chart.LayeredChartState.new();
+    }
+  };
+  (layered_chart.LayeredChart.new = function(dataToPlot, milestones, animationValue, opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[animationValue$] = null;
+    this[dataToPlot$] = dataToPlot;
+    this[milestones$] = milestones;
+    layered_chart.LayeredChart.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    this.animationValue = T.doubleL().as(animationValue);
+  }).prototype = layered_chart.LayeredChart.prototype;
+  dart.addTypeTests(layered_chart.LayeredChart);
+  dart.addTypeCaches(layered_chart.LayeredChart);
+  dart.setMethodSignature(layered_chart.LayeredChart, () => ({
+    __proto__: dart.getMethods(layered_chart.LayeredChart.__proto__),
+    createState: dart.fnType(dart.legacy(framework.State$(dart.legacy(framework.StatefulWidget))), [])
+  }));
+  dart.setLibraryUri(layered_chart.LayeredChart, I[0]);
+  dart.setFieldSignature(layered_chart.LayeredChart, () => ({
+    __proto__: dart.getFields(layered_chart.LayeredChart.__proto__),
+    dataToPlot: dart.fieldType(dart.legacy(core.List$(dart.legacy(data_series.DataSeries)))),
+    milestones: dart.fieldType(dart.legacy(core.List$(dart.legacy(week_label.WeekLabel)))),
+    animationValue: dart.fieldType(dart.legacy(core.double))
+  }));
+  var paths = dart.privateName(layered_chart, "DrawCache.paths");
+  var capPaths = dart.privateName(layered_chart, "DrawCache.capPaths");
+  var maxValues = dart.privateName(layered_chart, "DrawCache.maxValues");
+  var theta = dart.privateName(layered_chart, "DrawCache.theta");
+  var graphHeight = dart.privateName(layered_chart, "DrawCache.graphHeight");
+  var labelPainter = dart.privateName(layered_chart, "DrawCache.labelPainter");
+  var milestonePainter = dart.privateName(layered_chart, "DrawCache.milestonePainter");
+  var lastSize = dart.privateName(layered_chart, "DrawCache.lastSize");
+  layered_chart.DrawCache = class DrawCache extends core.Object {
+    get paths() {
+      return this[paths];
+    }
+    set paths(value) {
+      this[paths] = value;
+    }
+    get capPaths() {
+      return this[capPaths];
+    }
+    set capPaths(value) {
+      this[capPaths] = value;
+    }
+    get maxValues() {
+      return this[maxValues];
+    }
+    set maxValues(value) {
+      this[maxValues] = value;
+    }
+    get theta() {
+      return this[theta];
+    }
+    set theta(value) {
+      this[theta] = value;
+    }
+    get graphHeight() {
+      return this[graphHeight];
+    }
+    set graphHeight(value) {
+      this[graphHeight] = value;
+    }
+    get labelPainter() {
+      return this[labelPainter];
+    }
+    set labelPainter(value) {
+      this[labelPainter] = value;
+    }
+    get milestonePainter() {
+      return this[milestonePainter];
+    }
+    set milestonePainter(value) {
+      this[milestonePainter] = value;
+    }
+    get lastSize() {
+      return this[lastSize];
+    }
+    set lastSize(value) {
+      this[lastSize] = value;
+    }
+    buildCache(size, dataToPlot, milestones, numPoints, graphGap, margin, capTheta, capSize) {
+      let screenRatio = dart.notNull(size.width) / dart.notNull(size.height);
+      let degrees = mathutils.MathUtils.clampedMap(screenRatio, 0.5, 2.5, 50.0, 5.0);
+      this.theta = 3.141592653589793 * dart.notNull(degrees) / 180;
+      this.graphHeight = mathutils.MathUtils.clampedMap(screenRatio, 0.5, 2.5, 50.0, 150.0);
+      let m = dataToPlot[$length];
+      this.paths = T.ListOfPathL().new(m);
+      this.capPaths = T.ListOfPathL().new(m);
+      this.maxValues = T.ListOfdoubleL().new(m);
+      for (let i = 0; i < dart.notNull(m); i = i + 1) {
+        let n = dataToPlot[$_get](i).series[$length];
+        this.maxValues[$_set](i, 0.0);
+        for (let j = 0; j < dart.notNull(n); j = j + 1) {
+          let v = dataToPlot[$_get](i).series[$_get](j)[$toDouble]();
+          if (v > dart.notNull(this.maxValues[$_get](i))) {
+            this.maxValues[$_set](i, v);
+          }
+        }
+      }
+      let totalGap = dart.notNull(m) * dart.notNull(graphGap);
+      let xIndent = totalGap / math.tan(capTheta);
+      let startX = dart.notNull(margin) + xIndent;
+      let endX = dart.notNull(size.width) - dart.notNull(margin);
+      let startY = size.height;
+      let endY = dart.notNull(startY) - (endX - startX) * math.tan(this.theta);
+      let xWidth = (endX - startX) / dart.notNull(numPoints);
+      let capRangeX = dart.notNull(capSize) * math.cos(capTheta);
+      let tanCapTheta = math.tan(capTheta);
+      let curvePoints = T.ListOfdoubleL().new(numPoints);
+      for (let i = 0; i < dart.notNull(m); i = i + 1) {
+        let series = dataToPlot[$_get](i).series;
+        let n = series[$length];
+        let controlPoints = T.JSArrayOfPoint2DL().of([]);
+        controlPoints[$add](new mathutils.Point2D.new(-1.0, 0.0));
+        let last = 0.0;
+        for (let j = 0; j < dart.notNull(n); j = j + 1) {
+          let v = series[$_get](j)[$toDouble]();
+          controlPoints[$add](new mathutils.Point2D.new(j[$toDouble](), v));
+          last = v;
+        }
+        controlPoints[$add](new mathutils.Point2D.new(n[$toDouble](), last));
+        let curve = new catmull.CatmullInterpolator.new(controlPoints);
+        let cpv = new catmull.ControlPointAndValue.new();
+        for (let j = 0; j < dart.notNull(numPoints); j = j + 1) {
+          cpv.value = mathutils.MathUtils.map(j[$toDouble](), 0.0, (dart.notNull(numPoints) - 1)[$toDouble](), 0.0, (dart.notNull(n) - 1)[$toDouble]());
+          curve.progressiveGet(cpv);
+          curvePoints[$_set](j, mathutils.MathUtils.map(math.max(T.doubleL(), 0.0, cpv.value), 0.0, this.maxValues[$_get](i)[$toDouble](), 0.0, this.graphHeight));
+        }
+        this.paths[$_set](i, ui.Path.new());
+        this.capPaths[$_set](i, ui.Path.new());
+        this.paths[$_get](i).moveTo(startX, startY);
+        this.capPaths[$_get](i).moveTo(startX, startY);
+        for (let j = 0; j < dart.notNull(numPoints); j = j + 1) {
+          let v = curvePoints[$_get](j);
+          let k = j + 1;
+          let xDist = xWidth;
+          let capV = v;
+          while (k < dart.notNull(numPoints) && xDist <= capRangeX) {
+            let cy = dart.notNull(curvePoints[$_get](k)) + xDist * tanCapTheta;
+            capV = math.max(T.doubleL(), capV, cy);
+            k = k + 1;
+            xDist = xDist + xWidth;
+          }
+          let x = mathutils.MathUtils.map(j[$toDouble](), 0.0, (dart.notNull(numPoints) - 1)[$toDouble](), startX, endX);
+          let baseY = mathutils.MathUtils.map(j[$toDouble](), 0.0, (dart.notNull(numPoints) - 1)[$toDouble](), startY, endY);
+          let y = dart.notNull(baseY) - dart.notNull(v);
+          let cY = dart.notNull(baseY) - dart.notNull(capV);
+          this.paths[$_get](i).lineTo(x, y);
+          if (j === 0) {
+            let k = (capRangeX / xWidth)[$truncate]();
+            let mx = mathutils.MathUtils.map(-k[$toDouble](), 0.0, (dart.notNull(numPoints) - 1)[$toDouble](), startX, endX);
+            let my = dart.notNull(mathutils.MathUtils.map(-k[$toDouble](), 0.0, (dart.notNull(numPoints) - 1)[$toDouble](), startY, endY)) - dart.notNull(capV);
+            this.capPaths[$_get](i).lineTo(mx, my);
+          }
+          this.capPaths[$_get](i).lineTo(x, cY);
+        }
+        this.paths[$_get](i).lineTo(endX, endY);
+        this.paths[$_get](i).lineTo(endX, endY + 1);
+        this.paths[$_get](i).lineTo(startX, dart.notNull(startY) + 1);
+        this.paths[$_get](i).close();
+        this.capPaths[$_get](i).lineTo(endX, endY);
+        this.capPaths[$_get](i).lineTo(endX, endY + 1);
+        this.capPaths[$_get](i).lineTo(startX, dart.notNull(startY) + 1);
+        this.capPaths[$_get](i).close();
+      }
+      this.labelPainter = T.JSArrayOfTextPainterL().of([]);
+      for (let i = 0; i < dart.notNull(dataToPlot[$length]); i = i + 1) {
+        let span = new text_span.TextSpan.new({style: new text_style.TextStyle.new({color: new ui.Color.fromARGB(255, 255, 255, 255), fontSize: 12.0}), text: dataToPlot[$_get](i).label[$toUpperCase]()});
+        let tp = new text_painter.TextPainter.new({text: span, textAlign: ui.TextAlign.left, textDirection: ui.TextDirection.ltr});
+        tp.layout();
+        this.labelPainter[$add](tp);
+      }
+      this.milestonePainter = T.JSArrayOfTextPainterL().of([]);
+      for (let i = 0; i < dart.notNull(milestones[$length]); i = i + 1) {
+        let span = new text_span.TextSpan.new({style: new text_style.TextStyle.new({color: new ui.Color.fromARGB(255, 255, 255, 255), fontSize: 10.0}), text: milestones[$_get](i).label[$toUpperCase]()});
+        let tp = new text_painter.TextPainter.new({text: span, textAlign: ui.TextAlign.left, textDirection: ui.TextDirection.ltr});
+        tp.layout();
+        this.milestonePainter[$add](tp);
+      }
+      this.lastSize = new ui.Size.new(size.width, size.height);
+    }
+  };
+  (layered_chart.DrawCache.new = function() {
+    this[paths] = null;
+    this[capPaths] = null;
+    this[maxValues] = null;
+    this[theta] = null;
+    this[graphHeight] = null;
+    this[labelPainter] = null;
+    this[milestonePainter] = null;
+    this[lastSize] = null;
+    ;
+  }).prototype = layered_chart.DrawCache.prototype;
+  dart.addTypeTests(layered_chart.DrawCache);
+  dart.addTypeCaches(layered_chart.DrawCache);
+  dart.setMethodSignature(layered_chart.DrawCache, () => ({
+    __proto__: dart.getMethods(layered_chart.DrawCache.__proto__),
+    buildCache: dart.fnType(dart.void, [dart.legacy(ui.Size), dart.legacy(core.List$(dart.legacy(data_series.DataSeries))), dart.legacy(core.List$(dart.legacy(week_label.WeekLabel))), dart.legacy(core.int), dart.legacy(core.double), dart.legacy(core.double), dart.legacy(core.double), dart.legacy(core.double)])
+  }));
+  dart.setLibraryUri(layered_chart.DrawCache, I[0]);
+  dart.setFieldSignature(layered_chart.DrawCache, () => ({
+    __proto__: dart.getFields(layered_chart.DrawCache.__proto__),
+    paths: dart.fieldType(dart.legacy(core.List$(dart.legacy(ui.Path)))),
+    capPaths: dart.fieldType(dart.legacy(core.List$(dart.legacy(ui.Path)))),
+    maxValues: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.double)))),
+    theta: dart.fieldType(dart.legacy(core.double)),
+    graphHeight: dart.fieldType(dart.legacy(core.double)),
+    labelPainter: dart.fieldType(dart.legacy(core.List$(dart.legacy(text_painter.TextPainter)))),
+    milestonePainter: dart.fieldType(dart.legacy(core.List$(dart.legacy(text_painter.TextPainter)))),
+    lastSize: dart.fieldType(dart.legacy(ui.Size))
+  }));
+  var drawCache = dart.privateName(layered_chart, "LayeredChartState.drawCache");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  layered_chart.LayeredChartState = class LayeredChartState extends framework.State$(dart.legacy(layered_chart.LayeredChart)) {
+    get drawCache() {
+      return this[drawCache];
+    }
+    set drawCache(value) {
+      this[drawCache] = value;
+    }
+    build(context) {
+      return new container.Container.new({color: constants.Constants.backgroundColor, child: new basic.CustomPaint.new({foregroundPainter: new layered_chart.ChartPainter.new({drawCache: this.drawCache, dataToPlot: this.widget.dataToPlot, milestones: this.widget.milestones, animationValue: this.widget.animationValue}), child: new container.Container.new({$creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), $creationLocationd_0dea112b090073317d4: C[2] || CT.C2}), $creationLocationd_0dea112b090073317d4: C[6] || CT.C6});
+    }
+  };
+  (layered_chart.LayeredChartState.new = function() {
+    this[drawCache] = new layered_chart.DrawCache.new();
+    layered_chart.LayeredChartState.__proto__.new.call(this);
+    ;
+  }).prototype = layered_chart.LayeredChartState.prototype;
+  dart.addTypeTests(layered_chart.LayeredChartState);
+  dart.addTypeCaches(layered_chart.LayeredChartState);
+  dart.setMethodSignature(layered_chart.LayeredChartState, () => ({
+    __proto__: dart.getMethods(layered_chart.LayeredChartState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(layered_chart.LayeredChartState, I[0]);
+  dart.setFieldSignature(layered_chart.LayeredChartState, () => ({
+    __proto__: dart.getFields(layered_chart.LayeredChartState.__proto__),
+    drawCache: dart.fieldType(dart.legacy(layered_chart.DrawCache))
+  }));
+  var dataToPlot$0 = dart.privateName(layered_chart, "ChartPainter.dataToPlot");
+  var milestones$0 = dart.privateName(layered_chart, "ChartPainter.milestones");
+  var margin$ = dart.privateName(layered_chart, "ChartPainter.margin");
+  var graphGap$ = dart.privateName(layered_chart, "ChartPainter.graphGap");
+  var capTheta = dart.privateName(layered_chart, "ChartPainter.capTheta");
+  var capSize$ = dart.privateName(layered_chart, "ChartPainter.capSize");
+  var numPoints$ = dart.privateName(layered_chart, "ChartPainter.numPoints");
+  var animationValue$0 = dart.privateName(layered_chart, "ChartPainter.animationValue");
+  var pathPaint = dart.privateName(layered_chart, "ChartPainter.pathPaint");
+  var capPaint = dart.privateName(layered_chart, "ChartPainter.capPaint");
+  var textPaint = dart.privateName(layered_chart, "ChartPainter.textPaint");
+  var milestonePaint = dart.privateName(layered_chart, "ChartPainter.milestonePaint");
+  var linePaint = dart.privateName(layered_chart, "ChartPainter.linePaint");
+  var fillPaint = dart.privateName(layered_chart, "ChartPainter.fillPaint");
+  var drawCache$ = dart.privateName(layered_chart, "ChartPainter.drawCache");
+  layered_chart.ChartPainter = class ChartPainter extends custom_paint.CustomPainter {
+    get dataToPlot() {
+      return this[dataToPlot$0];
+    }
+    set dataToPlot(value) {
+      this[dataToPlot$0] = value;
+    }
+    get milestones() {
+      return this[milestones$0];
+    }
+    set milestones(value) {
+      this[milestones$0] = value;
+    }
+    get margin() {
+      return this[margin$];
+    }
+    set margin(value) {
+      this[margin$] = value;
+    }
+    get graphGap() {
+      return this[graphGap$];
+    }
+    set graphGap(value) {
+      this[graphGap$] = value;
+    }
+    get capTheta() {
+      return this[capTheta];
+    }
+    set capTheta(value) {
+      this[capTheta] = value;
+    }
+    get capSize() {
+      return this[capSize$];
+    }
+    set capSize(value) {
+      this[capSize$] = value;
+    }
+    get numPoints() {
+      return this[numPoints$];
+    }
+    set numPoints(value) {
+      this[numPoints$] = value;
+    }
+    get animationValue() {
+      return this[animationValue$0];
+    }
+    set animationValue(value) {
+      this[animationValue$0] = value;
+    }
+    get pathPaint() {
+      return this[pathPaint];
+    }
+    set pathPaint(value) {
+      this[pathPaint] = value;
+    }
+    get capPaint() {
+      return this[capPaint];
+    }
+    set capPaint(value) {
+      this[capPaint] = value;
+    }
+    get textPaint() {
+      return this[textPaint];
+    }
+    set textPaint(value) {
+      this[textPaint] = value;
+    }
+    get milestonePaint() {
+      return this[milestonePaint];
+    }
+    set milestonePaint(value) {
+      this[milestonePaint] = value;
+    }
+    get linePaint() {
+      return this[linePaint];
+    }
+    set linePaint(value) {
+      this[linePaint] = value;
+    }
+    get fillPaint() {
+      return this[fillPaint];
+    }
+    set fillPaint(value) {
+      this[fillPaint] = value;
+    }
+    get drawCache() {
+      return this[drawCache$];
+    }
+    set drawCache(value) {
+      this[drawCache$] = value;
+    }
+    paint(canvas, size) {
+      if (this.dataToPlot[$length] === 0) {
+        return;
+      }
+      if (this.drawCache.lastSize == null || size.width != this.drawCache.lastSize.width || size.height != this.drawCache.lastSize.height) {
+        core.print("Building paths, lastsize = " + dart.str(this.drawCache.lastSize));
+        this.drawCache.buildCache(size, this.dataToPlot, this.milestones, this.numPoints, this.graphGap, this.margin, this.capTheta, this.capSize);
+      }
+      let m = this.dataToPlot[$length];
+      let numWeeks = this.dataToPlot[$_get](0).series[$length];
+      let totalGap = dart.notNull(m) * dart.notNull(this.graphGap);
+      let xIndent = totalGap / math.tan(this.capTheta);
+      let dx = xIndent / (dart.notNull(m) - 1);
+      let startX = dart.notNull(this.margin) + xIndent;
+      let endX = dart.notNull(size.width) - dart.notNull(this.margin);
+      let startY = size.height;
+      let endY = dart.notNull(startY) - (endX - startX) * math.tan(this.drawCache.theta);
+      {
+        for (let i = 0; i < dart.notNull(this.milestones[$length]); i = i + 1) {
+          let milestone = this.milestones[$_get](i);
+          let p = milestone.weekNum[$toDouble]() / dart.notNull(numWeeks) + (1 - dart.notNull(this.animationValue));
+          if (p < 1) {
+            let x1 = mathutils.MathUtils.map(p, 0.0, 1.0, startX, endX);
+            let y1 = mathutils.MathUtils.map(p, 0.0, 1.0, startY, endY);
+            let x2 = dart.notNull(x1) - xIndent;
+            let y2 = dart.notNull(y1) - dart.notNull(this.graphGap) * (dart.notNull(m) - 1);
+            x1 = dart.notNull(x1) + dx * 0.5;
+            y1 = dart.notNull(y1) + dart.notNull(this.graphGap) * 0.5;
+            let textY = dart.notNull(y1) + 5;
+            let textX = dart.notNull(x1) + 5 * math.tan(this.capTheta);
+            canvas.drawLine(new ui.Offset.new(x1, y1), new ui.Offset.new(x2, y2), this.milestonePaint);
+            canvas.save();
+            let tp = this.drawCache.milestonePainter[$_get](i);
+            canvas.translate(textX, textY);
+            canvas.skew(math.tan(dart.notNull(this.capTheta) * 1.0), -math.tan(this.drawCache.theta));
+            canvas.translate(-dart.notNull(tp.width) / 2, 0.0);
+            tp.paint(canvas, new ui.Offset.new(0.0, 0.0));
+            canvas.restore();
+          }
+        }
+      }
+      for (let i = dart.notNull(m) - 1; i >= 0; i = i - 1) {
+        canvas.save();
+        canvas.translate(-dx * i, -dart.notNull(this.graphGap) * i);
+        {
+          canvas.save();
+          let textPosition = 0.2;
+          let textX = mathutils.MathUtils.map(textPosition, 0.0, 1.0, startX, endX);
+          let textY = dart.notNull(mathutils.MathUtils.map(textPosition, 0.0, 1.0, startY, endY)) + 5;
+          canvas.translate(textX, textY);
+          let tp = this.drawCache.labelPainter[$_get](i);
+          canvas.skew(0.0, -math.tan(this.drawCache.theta));
+          canvas.drawRect(new ui.Rect.fromLTWH(-1.0, -1.0, dart.notNull(tp.width) + 2, dart.notNull(tp.height) + 2), this.fillPaint);
+          tp.paint(canvas, new ui.Offset.new(0.0, 0.0));
+          canvas.restore();
+        }
+        this.linePaint.color = layered_chart.ChartPainter.capColors[$_get](i);
+        canvas.drawLine(new ui.Offset.new(startX, startY), new ui.Offset.new(endX, endY), this.linePaint);
+        let clipPath = ui.Path.new();
+        clipPath.moveTo(startX - dart.notNull(this.capSize), dart.notNull(startY) + 11);
+        clipPath.lineTo(endX, endY + 1);
+        clipPath.lineTo(endX, endY - dart.notNull(this.drawCache.graphHeight) - dart.notNull(this.capSize));
+        clipPath.lineTo(startX - dart.notNull(this.capSize), dart.notNull(startY) - dart.notNull(this.drawCache.graphHeight) - dart.notNull(this.capSize));
+        clipPath.close();
+        canvas.clipPath(clipPath);
+        this.pathPaint.color = layered_chart.ChartPainter.colors[$_get](i);
+        this.capPaint.color = layered_chart.ChartPainter.capColors[$_get](i);
+        let offsetX = mathutils.MathUtils.map(1 - dart.notNull(this.animationValue), 0.0, 1.0, startX, endX);
+        let offsetY = mathutils.MathUtils.map(1 - dart.notNull(this.animationValue), 0.0, 1.0, startY, endY);
+        canvas.translate(dart.notNull(offsetX) - startX, dart.notNull(offsetY) - dart.notNull(startY));
+        canvas.drawPath(this.drawCache.capPaths[$_get](i), this.capPaint);
+        canvas.drawPath(this.drawCache.paths[$_get](i), this.pathPaint);
+        canvas.restore();
+      }
+    }
+    shouldRepaint(oldDelegate) {
+      T.CustomPainterL().as(oldDelegate);
+      return true;
+    }
+  };
+  (layered_chart.ChartPainter.new = function(opts) {
+    let drawCache = opts && 'drawCache' in opts ? opts.drawCache : null;
+    let dataToPlot = opts && 'dataToPlot' in opts ? opts.dataToPlot : null;
+    let milestones = opts && 'milestones' in opts ? opts.milestones : null;
+    let margin = opts && 'margin' in opts ? opts.margin : 80;
+    let graphGap = opts && 'graphGap' in opts ? opts.graphGap : 50;
+    let capDegrees = opts && 'capDegrees' in opts ? opts.capDegrees : 50;
+    let capSize = opts && 'capSize' in opts ? opts.capSize : 12;
+    let numPoints = opts && 'numPoints' in opts ? opts.numPoints : 500;
+    let animationValue = opts && 'animationValue' in opts ? opts.animationValue : null;
+    this[capTheta] = null;
+    this[animationValue$0] = 1.0;
+    this[pathPaint] = null;
+    this[capPaint] = null;
+    this[textPaint] = null;
+    this[milestonePaint] = null;
+    this[linePaint] = null;
+    this[fillPaint] = null;
+    this[drawCache$] = drawCache;
+    this[dataToPlot$0] = dataToPlot;
+    this[milestones$0] = milestones;
+    this[margin$] = margin;
+    this[graphGap$] = graphGap;
+    this[capSize$] = capSize;
+    this[numPoints$] = numPoints;
+    this[animationValue$0] = animationValue;
+    layered_chart.ChartPainter.__proto__.new.call(this);
+    this.capTheta = 3.141592653589793 * dart.notNull(capDegrees) / 180;
+    this.pathPaint = ui.Paint.new();
+    this.pathPaint.style = ui.PaintingStyle.fill;
+    this.capPaint = ui.Paint.new();
+    this.capPaint.style = ui.PaintingStyle.fill;
+    this.textPaint = ui.Paint.new();
+    this.textPaint.color = new ui.Color.new(4294967295);
+    this.milestonePaint = ui.Paint.new();
+    this.milestonePaint.color = constants.Constants.milestoneColor;
+    this.milestonePaint.style = ui.PaintingStyle.stroke;
+    this.milestonePaint.strokeWidth = 2.0;
+    this.linePaint = ui.Paint.new();
+    this.linePaint.style = ui.PaintingStyle.stroke;
+    this.linePaint.strokeWidth = 0.5;
+    this.fillPaint = ui.Paint.new();
+    this.fillPaint.style = ui.PaintingStyle.fill;
+    this.fillPaint.color = new ui.Color.new(4278190080);
+  }).prototype = layered_chart.ChartPainter.prototype;
+  dart.addTypeTests(layered_chart.ChartPainter);
+  dart.addTypeCaches(layered_chart.ChartPainter);
+  dart.setMethodSignature(layered_chart.ChartPainter, () => ({
+    __proto__: dart.getMethods(layered_chart.ChartPainter.__proto__),
+    paint: dart.fnType(dart.void, [dart.legacy(ui.Canvas), dart.legacy(ui.Size)]),
+    shouldRepaint: dart.fnType(dart.legacy(core.bool), [dart.legacy(core.Object)])
+  }));
+  dart.setLibraryUri(layered_chart.ChartPainter, I[0]);
+  dart.setFieldSignature(layered_chart.ChartPainter, () => ({
+    __proto__: dart.getFields(layered_chart.ChartPainter.__proto__),
+    dataToPlot: dart.fieldType(dart.legacy(core.List$(dart.legacy(data_series.DataSeries)))),
+    milestones: dart.fieldType(dart.legacy(core.List$(dart.legacy(week_label.WeekLabel)))),
+    margin: dart.fieldType(dart.legacy(core.double)),
+    graphGap: dart.fieldType(dart.legacy(core.double)),
+    capTheta: dart.fieldType(dart.legacy(core.double)),
+    capSize: dart.fieldType(dart.legacy(core.double)),
+    numPoints: dart.fieldType(dart.legacy(core.int)),
+    animationValue: dart.fieldType(dart.legacy(core.double)),
+    pathPaint: dart.fieldType(dart.legacy(ui.Paint)),
+    capPaint: dart.fieldType(dart.legacy(ui.Paint)),
+    textPaint: dart.fieldType(dart.legacy(ui.Paint)),
+    milestonePaint: dart.fieldType(dart.legacy(ui.Paint)),
+    linePaint: dart.fieldType(dart.legacy(ui.Paint)),
+    fillPaint: dart.fieldType(dart.legacy(ui.Paint)),
+    drawCache: dart.fieldType(dart.legacy(layered_chart.DrawCache))
+  }));
+  dart.defineLazy(layered_chart.ChartPainter, {
+    /*layered_chart.ChartPainter.colors*/get colors() {
+      return T.JSArrayOfColorL().of([colors.Colors.red._get(900), new ui.Color.new(4291064346), colors.Colors.lime._get(900), colors.Colors.green._get(900), colors.Colors.blue._get(900), colors.Colors.purple._get(900)]);
+    },
+    set colors(_) {},
+    /*layered_chart.ChartPainter.capColors*/get capColors() {
+      return T.JSArrayOfColorL().of([colors.Colors.red._get(500), colors.Colors.amber._get(500), colors.Colors.lime._get(500), colors.Colors.green._get(500), colors.Colors.blue._get(500), colors.Colors.purple._get(500)]);
+    },
+    set capColors(_) {}
+  }, true);
+  dart.trackLibraries("packages/flutter_web.examples.github_dataviz/layered_chart.dart", {
+    "package:flutter_web.examples.github_dataviz/layered_chart.dart": layered_chart
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["layered_chart.dart"],"names":[],"mappings":"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","file":"../../../packages/flutter_web.examples.github_dataviz/layered_chart.dart.lib.js"}');
+  // Exports:
+  return {
+    layered_chart: layered_chart
+  };
+}));
+
+//# sourceMappingURL=layered_chart.dart.lib.js.map

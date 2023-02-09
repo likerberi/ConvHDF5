@@ -1,0 +1,453 @@
+define(['dart_sdk', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/widgets/drag_target.dart'], (function load__packages__flutter_web_examples_github_dataviz__PositionedDraggableIcon_dart(dart_sdk, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__widgets__drag_target$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const binding = packages__flutter__src__widgets__widget_span$46dart.src__widgets__binding;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const drag_target = packages__flutter__src__widgets__drag_target$46dart.src__widgets__drag_target;
+  var PositionedDraggableIcon = Object.create(dart.library);
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    StatefulWidgetL: () => (T.StatefulWidgetL = dart.constFn(dart.legacy(framework.StatefulWidget)))(),
+    StateOfStatefulWidgetL: () => (T.StateOfStatefulWidgetL = dart.constFn(framework.State$(T.StatefulWidgetL())))(),
+    StateLOfStatefulWidgetL: () => (T.StateLOfStatefulWidgetL = dart.constFn(dart.legacy(T.StateOfStatefulWidgetL())))(),
+    GlobalKeyOfStateLOfStatefulWidgetL: () => (T.GlobalKeyOfStateLOfStatefulWidgetL = dart.constFn(framework.GlobalKey$(T.StateLOfStatefulWidgetL())))(),
+    RenderBoxL: () => (T.RenderBoxL = dart.constFn(dart.legacy(box.RenderBox)))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    DraggableOfObjectL: () => (T.DraggableOfObjectL = dart.constFn(drag_target.Draggable$(T.ObjectL())))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    DraggableDetailsL: () => (T.DraggableDetailsL = dart.constFn(dart.legacy(drag_target.DraggableDetails)))(),
+    DraggableDetailsLToNull: () => (T.DraggableDetailsLToNull = dart.constFn(dart.fnType(core.Null, [T.DraggableDetailsL()])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.vertical",
+        index: 1
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 11,
+        [_Location_line]: 72,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 11,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 78,
+        [_Location_file]: null
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T._LocationL());
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 71,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/PositionedDraggableIcon.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 11,
+        [_Location_line]: 81,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 11,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 87,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10], T._LocationL());
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[7] || CT.C7,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 80,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/PositionedDraggableIcon.dart"
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 89,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/PositionedDraggableIcon.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "axis",
+        [_Location_column]: 9,
+        [_Location_line]: 70,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 71,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "feedback",
+        [_Location_column]: 9,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childWhenDragging",
+        [_Location_column]: 9,
+        [_Location_line]: 89,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onDragEnd",
+        [_Location_column]: 9,
+        [_Location_line]: 90,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18, C[19] || CT.C19], T._LocationL());
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[14] || CT.C14,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 69,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/PositionedDraggableIcon.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "key",
+        [_Location_column]: 7,
+        [_Location_line]: 66,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 7,
+        [_Location_line]: 67,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 7,
+        [_Location_line]: 68,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 69,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24, C[25] || CT.C25], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 65,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/PositionedDraggableIcon.dart"
+      });
+    }
+  }, false);
+  var C = Array(26).fill(void 0);
+  var I = ["package:flutter_web.examples.github_dataviz/PositionedDraggableIcon.dart"];
+  var top$ = dart.privateName(PositionedDraggableIcon, "PositionedDraggableIcon.top");
+  var left$ = dart.privateName(PositionedDraggableIcon, "PositionedDraggableIcon.left");
+  var onChangePosition$ = dart.privateName(PositionedDraggableIcon, "PositionedDraggableIcon.onChangePosition");
+  var axis$ = dart.privateName(PositionedDraggableIcon, "PositionedDraggableIcon.axis");
+  var childDraggable$ = dart.privateName(PositionedDraggableIcon, "PositionedDraggableIcon.childDraggable");
+  var childFeedback$ = dart.privateName(PositionedDraggableIcon, "PositionedDraggableIcon.childFeedback");
+  var _name = dart.privateName(basic_types, "_name");
+  PositionedDraggableIcon.PositionedDraggableIcon = class PositionedDraggableIcon$ extends framework.StatefulWidget {
+    get top() {
+      return this[top$];
+    }
+    set top(value) {
+      super.top = value;
+    }
+    get left() {
+      return this[left$];
+    }
+    set left(value) {
+      super.left = value;
+    }
+    get onChangePosition() {
+      return this[onChangePosition$];
+    }
+    set onChangePosition(value) {
+      super.onChangePosition = value;
+    }
+    get axis() {
+      return this[axis$];
+    }
+    set axis(value) {
+      super.axis = value;
+    }
+    get childDraggable() {
+      return this[childDraggable$];
+    }
+    set childDraggable(value) {
+      super.childDraggable = value;
+    }
+    get childFeedback() {
+      return this[childFeedback$];
+    }
+    set childFeedback(value) {
+      super.childFeedback = value;
+    }
+    createState() {
+      return new PositionedDraggableIcon._PositionedDraggableIconState.new();
+    }
+  };
+  (PositionedDraggableIcon.PositionedDraggableIcon.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let axis = opts && 'axis' in opts ? opts.axis : C[0] || CT.C0;
+    let childDraggable = opts && 'childDraggable' in opts ? opts.childDraggable : null;
+    let childFeedback = opts && 'childFeedback' in opts ? opts.childFeedback : null;
+    let top = opts && 'top' in opts ? opts.top : null;
+    let left = opts && 'left' in opts ? opts.left : null;
+    let onChangePosition = opts && 'onChangePosition' in opts ? opts.onChangePosition : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[axis$] = axis;
+    this[childDraggable$] = childDraggable;
+    this[childFeedback$] = childFeedback;
+    this[top$] = top;
+    this[left$] = left;
+    this[onChangePosition$] = onChangePosition;
+    PositionedDraggableIcon.PositionedDraggableIcon.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = PositionedDraggableIcon.PositionedDraggableIcon.prototype;
+  dart.addTypeTests(PositionedDraggableIcon.PositionedDraggableIcon);
+  dart.addTypeCaches(PositionedDraggableIcon.PositionedDraggableIcon);
+  dart.setMethodSignature(PositionedDraggableIcon.PositionedDraggableIcon, () => ({
+    __proto__: dart.getMethods(PositionedDraggableIcon.PositionedDraggableIcon.__proto__),
+    createState: dart.fnType(dart.legacy(PositionedDraggableIcon._PositionedDraggableIconState), [])
+  }));
+  dart.setLibraryUri(PositionedDraggableIcon.PositionedDraggableIcon, I[0]);
+  dart.setFieldSignature(PositionedDraggableIcon.PositionedDraggableIcon, () => ({
+    __proto__: dart.getFields(PositionedDraggableIcon.PositionedDraggableIcon.__proto__),
+    top: dart.finalFieldType(dart.legacy(core.double)),
+    left: dart.finalFieldType(dart.legacy(core.double)),
+    onChangePosition: dart.finalFieldType(dart.legacy(core.Function)),
+    axis: dart.finalFieldType(dart.legacy(basic_types.Axis)),
+    childDraggable: dart.finalFieldType(dart.legacy(framework.Widget)),
+    childFeedback: dart.finalFieldType(dart.legacy(framework.Widget))
+  }));
+  dart.defineLazy(PositionedDraggableIcon.PositionedDraggableIcon, {
+    /*PositionedDraggableIcon.PositionedDraggableIcon.kTapSize*/get kTapSize() {
+      return 20.0;
+    }
+  }, true);
+  var _key = dart.privateName(PositionedDraggableIcon, "_key");
+  var _afterLayout = dart.privateName(PositionedDraggableIcon, "_afterLayout");
+  var _getRenderOffsets = dart.privateName(PositionedDraggableIcon, "_getRenderOffsets");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  PositionedDraggableIcon._PositionedDraggableIconState = class _PositionedDraggableIconState extends framework.State$(dart.legacy(PositionedDraggableIcon.PositionedDraggableIcon)) {
+    initState() {
+      binding.WidgetsBinding.instance.addPostFrameCallback(dart.bind(this, _afterLayout));
+      this.top = this.widget.top;
+      this.left = this.widget.left;
+      super.initState();
+    }
+    [_getRenderOffsets]() {
+      let renderBoxWidget = T.RenderBoxL().as(this[_key].currentContext.findRenderObject());
+      let offset = renderBoxWidget.localToGlobal(ui.Offset.zero);
+      this.yOff = dart.notNull(offset.dy) - dart.notNull(this.top);
+      this.xOff = dart.notNull(offset.dx) - dart.notNull(this.left);
+    }
+    [_afterLayout](_) {
+      this[_getRenderOffsets]();
+    }
+    build(context) {
+      let widthScreen = media_query.MediaQuery.of(context).size.width;
+      let heightScreen = media_query.MediaQuery.of(context).size.height;
+      let padding = media_query.MediaQuery.of(context).padding;
+      let heightWithoutStatusToolbar = dart.notNull(heightScreen) - dart.notNull(padding.top) - 56;
+      return new basic.Positioned.new({key: this[_key], top: this.top, left: this.left, child: new (T.DraggableOfObjectL()).new({axis: this.widget.axis, child: new container.Container.new({width: this.widget.axis == basic_types.Axis.vertical ? widthScreen : PositionedDraggableIcon.PositionedDraggableIcon.kTapSize, height: this.widget.axis == basic_types.Axis.vertical ? PositionedDraggableIcon.PositionedDraggableIcon.kTapSize : heightWithoutStatusToolbar, child: this.widget.childDraggable, $creationLocationd_0dea112b090073317d4: C[1] || CT.C1}), feedback: new container.Container.new({width: this.widget.axis == basic_types.Axis.vertical ? widthScreen : PositionedDraggableIcon.PositionedDraggableIcon.kTapSize, height: this.widget.axis == basic_types.Axis.vertical ? PositionedDraggableIcon.PositionedDraggableIcon.kTapSize : heightWithoutStatusToolbar, child: this.widget.childFeedback, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}), childWhenDragging: new container.Container.new({$creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), onDragEnd: dart.fn(drag => {
+            this.setState(dart.fn(() => {
+              let t2, t1, t0;
+              let _top = dart.notNull(drag.offset.dy) - dart.notNull(this.yOff);
+              let _left = dart.notNull(drag.offset.dx) - dart.notNull(this.xOff);
+              if (this.widget.axis == basic_types.Axis.vertical) {
+                if (_top < dart.notNull(PositionedDraggableIcon._PositionedDraggableIconState._kMinTop)) {
+                  this.top = PositionedDraggableIcon._PositionedDraggableIconState._kMinTop;
+                } else if (_top > heightWithoutStatusToolbar - dart.notNull(PositionedDraggableIcon._PositionedDraggableIconState._kMinTop)) {
+                  this.top = heightWithoutStatusToolbar - dart.notNull(PositionedDraggableIcon._PositionedDraggableIconState._kMinTop);
+                } else {
+                  this.top = _top;
+                }
+              } else {
+                this.top = _top;
+                if (_left < dart.notNull(PositionedDraggableIcon._PositionedDraggableIconState._kMinLeft)) {
+                  this.left = PositionedDraggableIcon._PositionedDraggableIconState._kMinLeft;
+                } else if (_left > dart.notNull(widthScreen) - dart.notNull(PositionedDraggableIcon._PositionedDraggableIconState._kMinLeft)) {
+                  this.left = dart.notNull(widthScreen) - dart.notNull(PositionedDraggableIcon._PositionedDraggableIconState._kMinLeft);
+                } else {
+                  this.left = _left;
+                }
+              }
+              if (this.widget.onChangePosition != null) {
+                t0 = this.widget;
+                t1 = this.top;
+                t2 = this.left;
+                dart.dsend(t0, 'onChangePosition', [t1, t2]);
+              }
+            }, T.VoidToNull()));
+          }, T.DraggableDetailsLToNull()), $creationLocationd_0dea112b090073317d4: C[13] || CT.C13}), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20});
+    }
+  };
+  (PositionedDraggableIcon._PositionedDraggableIconState.new = function() {
+    this[_key] = T.GlobalKeyOfStateLOfStatefulWidgetL().new();
+    this.top = null;
+    this.left = null;
+    this.xOff = null;
+    this.yOff = null;
+    PositionedDraggableIcon._PositionedDraggableIconState.__proto__.new.call(this);
+    ;
+  }).prototype = PositionedDraggableIcon._PositionedDraggableIconState.prototype;
+  dart.addTypeTests(PositionedDraggableIcon._PositionedDraggableIconState);
+  dart.addTypeCaches(PositionedDraggableIcon._PositionedDraggableIconState);
+  dart.setMethodSignature(PositionedDraggableIcon._PositionedDraggableIconState, () => ({
+    __proto__: dart.getMethods(PositionedDraggableIcon._PositionedDraggableIconState.__proto__),
+    [_getRenderOffsets]: dart.fnType(dart.void, []),
+    [_afterLayout]: dart.fnType(dart.void, [dart.dynamic]),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(PositionedDraggableIcon._PositionedDraggableIconState, I[0]);
+  dart.setFieldSignature(PositionedDraggableIcon._PositionedDraggableIconState, () => ({
+    __proto__: dart.getFields(PositionedDraggableIcon._PositionedDraggableIconState.__proto__),
+    [_key]: dart.finalFieldType(dart.legacy(framework.GlobalKey$(dart.legacy(framework.State$(dart.legacy(framework.StatefulWidget)))))),
+    top: dart.fieldType(dart.legacy(core.double)),
+    left: dart.fieldType(dart.legacy(core.double)),
+    xOff: dart.fieldType(dart.legacy(core.double)),
+    yOff: dart.fieldType(dart.legacy(core.double))
+  }));
+  dart.defineLazy(PositionedDraggableIcon._PositionedDraggableIconState, {
+    /*PositionedDraggableIcon._PositionedDraggableIconState._kMinTop*/get _kMinTop() {
+      return 56.0;
+    },
+    /*PositionedDraggableIcon._PositionedDraggableIconState._kMinLeft*/get _kMinLeft() {
+      return 56.0;
+    }
+  }, true);
+  dart.trackLibraries("packages/flutter_web.examples.github_dataviz/PositionedDraggableIcon.dart", {
+    "package:flutter_web.examples.github_dataviz/PositionedDraggableIcon.dart": PositionedDraggableIcon
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["PositionedDraggableIcon.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAGe;;;;;;IACA;;;;;;IACE;;;;;;IACJ;;;;;;IACE;;;;;;IACA;;;;;;;AAcT;IAA+B;;;QAX1B;QACA;QACA;QACA;QACA;QACA;QACA;;IALA;IACA;IACA;IACA;IACA;IACA;AACH,mFAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;MAMD,wDAAQ;YAAG;;;;;;;;;;;;;AAa6B,MAA3C,AAAS,+DAAqB;AAC7B,MAAhB,WAAM,AAAO;AACK,MAAlB,YAAO,AAAO;AACG,MAAX;IACR;;AAGkB,8CAAkB,AAAK,AAAe;AAChD,mBAAS,AAAgB,eAAD,eAAsB;AAEzB,MAA3B,YAAiB,aAAV,AAAO,MAAD,oBAAW;AACI,MAA5B,YAAiB,aAAV,AAAO,MAAD,oBAAW;IAC1B;mBAEkB;AACG,MAAnB;IACF;UAG0B;AACX,wBAAyB,AAAY,AAAK,0BAAd,OAAO;AACnC,yBAA0B,AAAY,AAAK,0BAAd,OAAO;AAC3C,oBAAqB,AAAY,0BAAT,OAAO;AAGxB,uCACI,AAAc,aAA3B,YAAY,iBAAG,AAAQ,OAAD;AAC1B,YAAO,gCACA,iBACA,gBACC,kBACC,wCACC,AAAO,yBACN,oCACE,AAAO,AAAK,oBAAQ,4BACrB,WAAW,GACa,kEACtB,AAAO,AAAK,oBAAQ,4BACE,2DACxB,0BAA0B,SACzB,AAAO,+FAEN,oCACD,AAAO,AAAK,oBAAQ,4BACrB,WAAW,GACa,kEACtB,AAAO,AAAK,oBAAQ,4BACE,2DACxB,0BAA0B,SACzB,AAAO,uGAEG,mGACR,QAAC;AAyBR,YAxBF,cAAS;;AACH,yBAAsB,aAAf,AAAK,AAAO,IAAR,2BAAa;AACxB,0BAAuB,aAAf,AAAK,AAAO,IAAR,2BAAa;AAC7B,kBAAI,AAAO,AAAK,oBAAQ;AACtB,oBAAI,AAAK,IAAD,gBAAG;AACK,kBAAd,WAAM;sBACD,KAAI,AAAK,IAAD,GAAI,AAA2B,0BAAD,gBAAG;AACH,kBAA3C,WAAM,AAA2B,0BAAD,gBAAG;;AAEzB,kBAAV,WAAM,IAAI;;;AAGF,gBAAV,WAAM,IAAI;AACV,oBAAI,AAAM,KAAD,gBAAG;AACM,kBAAhB,YAAO;sBACF,KAAI,AAAM,KAAD,GAAgB,aAAZ,WAAW,iBAAG;AACF,kBAA9B,YAAmB,aAAZ,WAAW,iBAAG;;AAET,kBAAZ,YAAO,KAAK;;;AAGhB,kBAAI,AAAO;AACyB,qBAAlC;qBAAwB;qBAAK;gBAAN;;;;IAMnC;;;IAvFgB,aAAO;IAChB;IAAK;IACL;IAAM;;;EAsFf;;;;;;;;;;;;;;;;;;;MA3FsB,8DAAQ;YAAG;;MACX,+DAAS;YAAG","file":"../../../packages/flutter_web.examples.github_dataviz/PositionedDraggableIcon.dart.lib.js"}');
+  // Exports:
+  return {
+    PositionedDraggableIcon: PositionedDraggableIcon
+  };
+}));
+
+//# sourceMappingURL=PositionedDraggableIcon.dart.lib.js.map

@@ -1,0 +1,1014 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter_web.examples.github_dataviz/data/week_label.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter_web.examples.github_dataviz/data/data_series.dart', 'packages/flutter_web.examples.github_dataviz/data/stat_for_week.dart', 'packages/flutter_web.examples.github_dataviz/layered_chart.dart', 'packages/flutter_web.examples.github_dataviz/timeline.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/material/app.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter_web.examples.github_dataviz/SplitWidget.dart', 'packages/flutter_web.examples.github_dataviz/constants.dart', 'packages/flutter/src/painting/box_fit.dart', 'packages/flutter/src/widgets/bottom_navigation_bar_item.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/url_launcher/url_launcher.dart', 'packages/flutter_web.examples.github_dataviz/data/user_contribution.dart', 'packages/flutter_web.examples.github_dataviz/mathutils.dart'], (function load__packages__flutter_web_examples_github_dataviz__main_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter_web$46examples$46github_dataviz__data__week_label$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter_web$46examples$46github_dataviz__data__data_series$46dart, packages__flutter_web$46examples$46github_dataviz__data__stat_for_week$46dart, packages__flutter_web$46examples$46github_dataviz__layered_chart$46dart, packages__flutter_web$46examples$46github_dataviz__timeline$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__material__app$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter_web$46examples$46github_dataviz__SplitWidget$46dart, packages__flutter_web$46examples$46github_dataviz__constants$46dart, packages__flutter__src__painting__box_fit$46dart, packages__flutter__src__widgets__bottom_navigation_bar_item$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__url_launcher__url_launcher$46dart, packages__flutter_web$46examples$46github_dataviz__data__user_contribution$46dart, packages__flutter_web$46examples$46github_dataviz__mathutils$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const ui = dart_sdk.ui;
+  const async = dart_sdk.async;
+  const html = dart_sdk.html;
+  const convert = dart_sdk.convert;
+  const _js_helper = dart_sdk._js_helper;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const image = packages__flutter__src__widgets__widget_span$46dart.src__widgets__image;
+  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
+  const binding = packages__flutter__src__widgets__widget_span$46dart.src__widgets__binding;
+  const week_label = packages__flutter_web$46examples$46github_dataviz__data__week_label$46dart.data__week_label;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const data_series = packages__flutter_web$46examples$46github_dataviz__data__data_series$46dart.data__data_series;
+  const stat_for_week = packages__flutter_web$46examples$46github_dataviz__data__stat_for_week$46dart.data__stat_for_week;
+  const layered_chart = packages__flutter_web$46examples$46github_dataviz__layered_chart$46dart.layered_chart;
+  const timeline$ = packages__flutter_web$46examples$46github_dataviz__timeline$46dart.timeline;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const app = packages__flutter__src__material__app$46dart.src__material__app;
+  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
+  const ink_well = packages__flutter__src__material__icon_button$46dart.src__material__ink_well;
+  const bottom_navigation_bar = packages__flutter__src__material__icon_button$46dart.src__material__bottom_navigation_bar;
+  const SplitWidget = packages__flutter_web$46examples$46github_dataviz__SplitWidget$46dart.SplitWidget;
+  const constants = packages__flutter_web$46examples$46github_dataviz__constants$46dart.constants;
+  const box_fit = packages__flutter__src__painting__box_fit$46dart.src__painting__box_fit;
+  const bottom_navigation_bar_item = packages__flutter__src__widgets__bottom_navigation_bar_item$46dart.src__widgets__bottom_navigation_bar_item;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const url_launcher = packages__url_launcher__url_launcher$46dart.url_launcher;
+  const user_contribution = packages__flutter_web$46examples$46github_dataviz__data__user_contribution$46dart.data__user_contribution;
+  const mathutils = packages__flutter_web$46examples$46github_dataviz__mathutils$46dart.mathutils;
+  var main = Object.create(dart.library);
+  var $add = dartx.add;
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $_set = dartx._set;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $last = dartx.last;
+  var $split = dartx.split;
+  var $forEach = dartx.forEach;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    WeekLabelL: () => (T.WeekLabelL = dart.constFn(dart.legacy(week_label.WeekLabel)))(),
+    JSArrayOfWeekLabelL: () => (T.JSArrayOfWeekLabelL = dart.constFn(_interceptors.JSArray$(T.WeekLabelL())))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    DataSeriesL: () => (T.DataSeriesL = dart.constFn(dart.legacy(data_series.DataSeries)))(),
+    JSArrayOfDataSeriesL: () => (T.JSArrayOfDataSeriesL = dart.constFn(_interceptors.JSArray$(T.DataSeriesL())))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    JSArrayOfintL: () => (T.JSArrayOfintL = dart.constFn(_interceptors.JSArray$(T.intL())))(),
+    StatForWeekL: () => (T.StatForWeekL = dart.constFn(dart.legacy(stat_for_week.StatForWeek)))(),
+    StatForWeekLTointL: () => (T.StatForWeekLTointL = dart.constFn(dart.fnType(T.intL(), [T.StatForWeekL()])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    doubleL: () => (T.doubleL = dart.constFn(dart.legacy(core.double)))(),
+    doubleLToNull: () => (T.doubleLToNull = dart.constFn(dart.fnType(core.Null, [T.doubleL()])))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    intLToNull: () => (T.intLToNull = dart.constFn(dart.fnType(core.Null, [T.intL()])))(),
+    BottomNavigationBarItemL: () => (T.BottomNavigationBarItemL = dart.constFn(dart.legacy(bottom_navigation_bar_item.BottomNavigationBarItem)))(),
+    JSArrayOfBottomNavigationBarItemL: () => (T.JSArrayOfBottomNavigationBarItemL = dart.constFn(_interceptors.JSArray$(T.BottomNavigationBarItemL())))(),
+    ListL: () => (T.ListL = dart.constFn(dart.legacy(core.List)))(),
+    UserContributionL: () => (T.UserContributionL = dart.constFn(dart.legacy(user_contribution.UserContribution)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    MapOfStringL$dynamic: () => (T.MapOfStringL$dynamic = dart.constFn(core.Map$(T.StringL(), dart.dynamic)))(),
+    MapLOfStringL$dynamic: () => (T.MapLOfStringL$dynamic = dart.constFn(dart.legacy(T.MapOfStringL$dynamic())))(),
+    dynamicToUserContributionL: () => (T.dynamicToUserContributionL = dart.constFn(dart.fnType(T.UserContributionL(), [dart.dynamic])))(),
+    JSArrayOfStatForWeekL: () => (T.JSArrayOfStatForWeekL = dart.constFn(_interceptors.JSArray$(T.StatForWeekL())))(),
+    IdentityMapOfintL$StatForWeekL: () => (T.IdentityMapOfintL$StatForWeekL = dart.constFn(_js_helper.IdentityMap$(T.intL(), T.StatForWeekL())))(),
+    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 14400000
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dataToPlot",
+        [_Location_column]: 26,
+        [_Location_line]: 128,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "milestones",
+        [_Location_column]: 38,
+        [_Location_line]: 128,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animationValue",
+        [_Location_column]: 50,
+        [_Location_line]: 128,
+        [_Location_file]: null
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T._LocationL());
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 128,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "numWeeks",
+        [_Location_column]: 7,
+        [_Location_line]: 133,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animationValue",
+        [_Location_column]: 7,
+        [_Location_line]: 136,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "weekLabels",
+        [_Location_column]: 7,
+        [_Location_line]: 137,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mouseDownCallback",
+        [_Location_column]: 7,
+        [_Location_line]: 138,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mouseMoveCallback",
+        [_Location_column]: 7,
+        [_Location_line]: 145,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mouseUpCallback",
+        [_Location_column]: 7,
+        [_Location_line]: 150,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13], T._LocationL());
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[7] || CT.C7,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 132,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 22,
+        [_Location_line]: 163,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.constList([C[16] || CT.C16], T._LocationL());
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 163,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 7,
+        [_Location_line]: 160,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 7,
+        [_Location_line]: 161,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 7,
+        [_Location_line]: 162,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.constList([C[19] || CT.C19, C[20] || CT.C20, C[21] || CT.C21], T._LocationL());
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[18] || CT.C18,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 159,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textDirection",
+        [_Location_column]: 25,
+        [_Location_line]: 183,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 59,
+        [_Location_line]: 183,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([C[24] || CT.C24, C[25] || CT.C25], T._LocationL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 182,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 21,
+        [_Location_line]: 181,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 182,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29], T._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 180,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "name",
+        [_Location_column]: 42,
+        [_Location_line]: 187,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 59,
+        [_Location_line]: 187,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.constList([C[32] || CT.C32, C[33] || CT.C33], T._LocationL());
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[31] || CT.C31,
+        [_Location_name]: null,
+        [_Location_column]: 36,
+        [_Location_line]: 187,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 23,
+        [_Location_line]: 187,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 23,
+        [_Location_line]: 188,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.constList([C[36] || CT.C36, C[37] || CT.C37], T._LocationL());
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[35] || CT.C35,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 186,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "name",
+        [_Location_column]: 42,
+        [_Location_line]: 193,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 59,
+        [_Location_line]: 193,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41], T._LocationL());
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[39] || CT.C39,
+        [_Location_name]: null,
+        [_Location_column]: 36,
+        [_Location_line]: 193,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 23,
+        [_Location_line]: 193,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 23,
+        [_Location_line]: 194,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45], T._LocationL());
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 192,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childTop",
+        [_Location_column]: 21,
+        [_Location_line]: 186,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childBottom",
+        [_Location_column]: 21,
+        [_Location_line]: 192,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.constList([C[48] || CT.C48, C[49] || CT.C49], T._LocationL());
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[47] || CT.C47,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 185,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childFirst",
+        [_Location_column]: 19,
+        [_Location_line]: 180,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "childSecond",
+        [_Location_column]: 19,
+        [_Location_line]: 185,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.constList([C[52] || CT.C52, C[53] || CT.C53], T._LocationL());
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[51] || CT.C51,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 179,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 179,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.constList([C[56] || CT.C56], T._LocationL());
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[55] || CT.C55,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 178,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 36,
+        [_Location_line]: 204,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.constList([C[59] || CT.C59], T._LocationL());
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[58] || CT.C58,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 204,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 36,
+        [_Location_line]: 207,
+        [_Location_file]: null
+      });
+    },
+    get C61() {
+      return C[61] = dart.constList([C[62] || CT.C62], T._LocationL());
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[61] || CT.C61,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 207,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 13,
+        [_Location_line]: 200,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "items",
+        [_Location_column]: 13,
+        [_Location_line]: 201,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.constList([C[65] || CT.C65, C[66] || CT.C66], T._LocationL());
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[64] || CT.C64,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 199,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 11,
+        [_Location_line]: 178,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "bottomNavigationBar",
+        [_Location_column]: 11,
+        [_Location_line]: 199,
+        [_Location_file]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.constList([C[69] || CT.C69, C[70] || CT.C70], T._LocationL());
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[68] || CT.C68,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 177,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "debugShowCheckedModeBanner",
+        [_Location_column]: 9,
+        [_Location_line]: 175,
+        [_Location_file]: null
+      });
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "title",
+        [_Location_column]: 9,
+        [_Location_line]: 176,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "home",
+        [_Location_column]: 9,
+        [_Location_line]: 177,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.constList([C[73] || CT.C73, C[74] || CT.C74, C[75] || CT.C75], T._LocationL());
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[72] || CT.C72,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 174,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C77() {
+      return C[77] = dart.constList([], T._LocationL());
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[77] || CT.C77,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 297,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    },
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 5,
+        [_Location_line]: 297,
+        [_Location_file]: null
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 5,
+        [_Location_line]: 298,
+        [_Location_file]: null
+      });
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 5,
+        [_Location_line]: 299,
+        [_Location_file]: null
+      });
+    },
+    get C79() {
+      return C[79] = dart.constList([C[80] || CT.C80, C[81] || CT.C81, C[82] || CT.C82], T._LocationL());
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[79] || CT.C79,
+        [_Location_name]: null,
+        [_Location_column]: 10,
+        [_Location_line]: 296,
+        [_Location_file]: "file:///D:/SideProject/ConvHDF5/lib/main.dart"
+      });
+    }
+  }, false);
+  var C = Array(83).fill(void 0);
+  var I = ["package:flutter_web.examples.github_dataviz/main.dart"];
+  main.MainLayout = class MainLayout extends framework.StatefulWidget {
+    createState() {
+      return new main._MainLayoutState.new();
+    }
+  };
+  (main.MainLayout.new = function(opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    main.MainLayout.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = main.MainLayout.prototype;
+  dart.addTypeTests(main.MainLayout);
+  dart.addTypeCaches(main.MainLayout);
+  dart.setMethodSignature(main.MainLayout, () => ({
+    __proto__: dart.getMethods(main.MainLayout.__proto__),
+    createState: dart.fnType(dart.legacy(main._MainLayoutState), [])
+  }));
+  dart.setLibraryUri(main.MainLayout, I[0]);
+  var _animation = dart.privateName(main, "_animation");
+  var _blogUrl = dart.privateName(main, "_blogUrl");
+  var _strUrl = dart.privateName(main, "_strUrl");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var _goBlog = dart.privateName(main, "_goBlog");
+  var _goStrikingly = dart.privateName(main, "_goStrikingly");
+  const State_TickerProviderStateMixin$36 = class State_TickerProviderStateMixin extends framework.State$(dart.legacy(main.MainLayout)) {};
+  (State_TickerProviderStateMixin$36.new = function() {
+    ticker_provider.TickerProviderStateMixin$(dart.legacy(main.MainLayout))[dart.mixinNew].call(this);
+    State_TickerProviderStateMixin$36.__proto__.new.call(this);
+  }).prototype = State_TickerProviderStateMixin$36.prototype;
+  dart.applyMixin(State_TickerProviderStateMixin$36, ticker_provider.TickerProviderStateMixin$(dart.legacy(main.MainLayout)));
+  main._MainLayoutState = class _MainLayoutState extends State_TickerProviderStateMixin$36 {
+    initState() {
+      super.initState();
+      this.createAnimation(0.0);
+      this.weekLabels = T.JSArrayOfWeekLabelL().of([]);
+      this.weekLabels[$add](new week_label.WeekLabel.forDate(new core.DateTime.new(2021, 4, 1), "2.0"));
+      this.weekLabels[$add](new week_label.WeekLabel.forDate(new core.DateTime.new(2020, 6, 1), "Fit 4 Start"));
+      this.weekLabels[$add](new week_label.WeekLabel.forDate(new core.DateTime.new(2019, 8, 1), "1.0"));
+      this.weekLabels[$add](new week_label.WeekLabel.forDate(new core.DateTime.new(2018, 10, 1), "MassChallenge"));
+      this.loadGitHubData();
+    }
+    createAnimation(startValue) {
+      let t0, t0$;
+      t0 = this[_animation];
+      t0 == null ? null : t0.dispose();
+      this[_animation] = (t0$ = new animation_controller.AnimationController.new({value: startValue, duration: C[0] || CT.C0, vsync: this}), (() => {
+        t0$.repeat();
+        return t0$;
+      })());
+      this[_animation].addListener(dart.fn(() => {
+        this.setState(dart.fn(() => {
+          if (!dart.test(this.timelineOverride)) {
+            this.animationValue = this[_animation].value;
+            this.interpolatedAnimationValue = main._MainLayoutState.interpolator.get(this.animationValue);
+          }
+        }, T.VoidToNull()));
+      }, T.VoidToNull()));
+    }
+    build(context) {
+      let dataToPlot = T.JSArrayOfDataSeriesL().of([]);
+      if (this.contributions != null) {
+        let series = T.JSArrayOfintL().of([]);
+        for (let userContrib of this.contributions) {
+          for (let i = 0; i < dart.notNull(userContrib.contributions[$length]); i = i + 1) {
+            let data = userContrib.contributions[$_get](i);
+            if (dart.notNull(series[$length]) > i) {
+              series[$_set](i, dart.notNull(series[$_get](i)) + dart.notNull(data.add));
+            } else {
+              series[$add](data.add);
+            }
+          }
+        }
+        dataToPlot[$add](new data_series.DataSeries.new("E.U.", series));
+      }
+      if (this.starsByWeek != null) {
+        dataToPlot[$add](new data_series.DataSeries.new("KOSPI", this.starsByWeek[$map](T.intL(), dart.fn(e => e.stat, T.StatForWeekLTointL()))[$toList]()));
+      }
+      if (this.forksByWeek != null) {
+        dataToPlot[$add](new data_series.DataSeries.new("Emerging-Asia", this.forksByWeek[$map](T.intL(), dart.fn(e => e.stat, T.StatForWeekLTointL()))[$toList]()));
+      }
+      if (this.pushesByWeek != null) {
+        dataToPlot[$add](new data_series.DataSeries.new("Emerging-America", this.pushesByWeek[$map](T.intL(), dart.fn(e => e.stat, T.StatForWeekLTointL()))[$toList]()));
+      }
+      if (this.issueCommentsByWeek != null) {
+        dataToPlot[$add](new data_series.DataSeries.new("ASIA TOP 50", this.issueCommentsByWeek[$map](T.intL(), dart.fn(e => e.stat, T.StatForWeekLTointL()))[$toList]()));
+      }
+      if (this.pullRequestActivityByWeek != null) {
+        dataToPlot[$add](new data_series.DataSeries.new("U.S.", this.pullRequestActivityByWeek[$map](T.intL(), dart.fn(e => e.stat, T.StatForWeekLTointL()))[$toList]()));
+      }
+      let layeredChart = new layered_chart.LayeredChart.new(dataToPlot, this.weekLabels, this.interpolatedAnimationValue, {$creationLocationd_0dea112b090073317d4: C[1] || CT.C1});
+      let timeline = new timeline$.Timeline.new({numWeeks: dataToPlot !== null && dart.notNull(dataToPlot[$length]) > 0 ? dataToPlot[$last].series[$length] : 0, animationValue: this.interpolatedAnimationValue, weekLabels: this.weekLabels, mouseDownCallback: dart.fn(xFraction => {
+          this.setState(dart.fn(() => {
+            this.timelineOverride = true;
+            this[_animation].stop();
+            this.interpolatedAnimationValue = xFraction;
+          }, T.VoidToNull()));
+        }, T.doubleLToNull()), mouseMoveCallback: dart.fn(xFraction => {
+          this.setState(dart.fn(() => {
+            this.interpolatedAnimationValue = xFraction;
+          }, T.VoidToNull()));
+        }, T.doubleLToNull()), mouseUpCallback: dart.fn(() => {
+          this.setState(dart.fn(() => {
+            this.timelineOverride = false;
+            this.createAnimation(dart.notNull(this.interpolatedAnimationValue) * dart.notNull(main._MainLayoutState.earlyInterpolatorFraction));
+          }, T.VoidToNull()));
+        }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[6] || CT.C6});
+      let mainColumn = new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.center, mainAxisSize: flex.MainAxisSize.min, children: T.JSArrayOfWidgetL().of([new basic.Expanded.new({child: layeredChart, $creationLocationd_0dea112b090073317d4: C[14] || CT.C14})]), $creationLocationd_0dea112b090073317d4: C[17] || CT.C17});
+      return new app.MaterialApp.new({debugShowCheckedModeBanner: false, title: "Welcome to Para'llel Memory", home: new scaffold.Scaffold.new({body: new container.Container.new({child: new SplitWidget.SplitWidget.new({childFirst: new container.Container.new({color: constants.Constants.backgroundColor, child: new basic.Directionality.new({textDirection: ui.TextDirection.ltr, child: mainColumn, $creationLocationd_0dea112b090073317d4: C[22] || CT.C22}), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}), childSecond: new SplitWidget.SplitVerticalWidget.new({childTop: new ink_well.InkWell.new({child: new image.Image.asset("images/s1.png", {fit: box_fit.BoxFit.fill, $creationLocationd_0dea112b090073317d4: C[30] || CT.C30}), onTap: dart.bind(this, _goBlog), $creationLocationd_0dea112b090073317d4: C[34] || CT.C34}), childBottom: new ink_well.InkWell.new({child: new image.Image.asset("images/s2.png", {fit: box_fit.BoxFit.fill, $creationLocationd_0dea112b090073317d4: C[38] || CT.C38}), onTap: dart.bind(this, _goStrikingly), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42}), $creationLocationd_0dea112b090073317d4: C[46] || CT.C46}), $creationLocationd_0dea112b090073317d4: C[50] || CT.C50}), $creationLocationd_0dea112b090073317d4: C[54] || CT.C54}), bottomNavigationBar: new bottom_navigation_bar.BottomNavigationBar.new({onTap: dart.fn(idx => {
+            }, T.intLToNull()), items: T.JSArrayOfBottomNavigationBarItemL().of([new bottom_navigation_bar_item.BottomNavigationBarItem.new({label: "This webpage could not support mobile now.", icon: new icon.Icon.new(icons.Icons.chat_bubble, {$creationLocationd_0dea112b090073317d4: C[57] || CT.C57})}), new bottom_navigation_bar_item.BottomNavigationBarItem.new({label: "Copyright © ParallelMemory Inc. All rights reserved.", icon: new icon.Icon.new(icons.Icons.emoji_events, {$creationLocationd_0dea112b090073317d4: C[60] || CT.C60})})]), $creationLocationd_0dea112b090073317d4: C[63] || CT.C63}), $creationLocationd_0dea112b090073317d4: C[67] || CT.C67}), $creationLocationd_0dea112b090073317d4: C[71] || CT.C71});
+    }
+    [_goBlog]() {
+      return async.async(dart.dynamic, (function* _goBlog() {
+        return dart.test(yield url_launcher.canLaunch(this[_blogUrl])) ? (yield url_launcher.launch(this[_blogUrl])) : dart.throw("err");
+      }).bind(this));
+    }
+    [_goStrikingly]() {
+      return async.async(dart.dynamic, (function* _goStrikingly() {
+        return dart.test(yield url_launcher.canLaunch(this[_strUrl])) ? (yield url_launcher.launch(this[_strUrl])) : dart.throw("err");
+      }).bind(this));
+    }
+    dispose() {
+      this[_animation].dispose();
+      super.dispose();
+    }
+    loadGitHubData() {
+      return async.async(dart.dynamic, (function* loadGitHubData() {
+        let contributorsJsonStr = (yield html.HttpRequest.getString("/github_data/contributors.json"));
+        let jsonObjs = T.ListL().as(convert.jsonDecode(contributorsJsonStr));
+        let contributionList = jsonObjs[$map](T.UserContributionL(), dart.fn(e => user_contribution.UserContribution.fromJson(T.MapLOfStringL$dynamic().as(e)), T.dynamicToUserContributionL()))[$toList]();
+        core.print("Loaded " + dart.str(contributionList[$length]) + " code contributions to /flutter/flutter repo.");
+        let numWeeksTotal = contributionList[$_get](0).contributions[$length];
+        let starsByWeekStr = (yield html.HttpRequest.getString("/github_data/stars.tsv"));
+        let starsByWeekLoaded = this.summarizeWeeksFromTSV(starsByWeekStr, numWeeksTotal);
+        let forksByWeekStr = (yield html.HttpRequest.getString("/github_data/forks.tsv"));
+        let forksByWeekLoaded = this.summarizeWeeksFromTSV(forksByWeekStr, numWeeksTotal);
+        let commitsByWeekStr = (yield html.HttpRequest.getString("/github_data/commits.tsv"));
+        let commitsByWeekLoaded = this.summarizeWeeksFromTSV(commitsByWeekStr, numWeeksTotal);
+        let commentsByWeekStr = (yield html.HttpRequest.getString("/github_data/comments.tsv"));
+        let commentsByWeekLoaded = this.summarizeWeeksFromTSV(commentsByWeekStr, numWeeksTotal);
+        let pullRequestActivityByWeekStr = (yield html.HttpRequest.getString("/github_data/pull_requests.tsv"));
+        let pullRequestActivityByWeekLoaded = this.summarizeWeeksFromTSV(pullRequestActivityByWeekStr, numWeeksTotal);
+        this.setState(dart.fn(() => {
+          this.contributions = contributionList;
+          this.starsByWeek = starsByWeekLoaded;
+          this.forksByWeek = forksByWeekLoaded;
+          this.pushesByWeek = commitsByWeekLoaded;
+          this.issueCommentsByWeek = commentsByWeekLoaded;
+          this.pullRequestActivityByWeek = pullRequestActivityByWeekLoaded;
+        }, T.VoidToNull()));
+      }).bind(this));
+    }
+    summarizeWeeksFromTSV(statByWeekStr, numWeeksTotal) {
+      let loadedStats = T.JSArrayOfStatForWeekL().of([]);
+      let statMap = new (T.IdentityMapOfintL$StatForWeekL()).new();
+      statByWeekStr[$split]("\n")[$forEach](dart.fn(s => {
+        let split = s[$split]("\t");
+        if (split[$length] === 2) {
+          let weekNum = core.int.parse(split[$_get](0));
+          statMap[$_set](weekNum, new stat_for_week.StatForWeek.new(weekNum, core.int.parse(split[$_get](1))));
+        }
+      }, T.StringLToNull()));
+      core.print("Loaded " + dart.str(statMap[$length]) + " weeks.");
+      for (let i = 0; i < dart.notNull(numWeeksTotal); i = i + 1) {
+        let starsForWeek = statMap[$_get](i);
+        if (starsForWeek == null) {
+          loadedStats[$add](new stat_for_week.StatForWeek.new(i, 0));
+        } else {
+          loadedStats[$add](starsForWeek);
+        }
+      }
+      return loadedStats;
+    }
+  };
+  (main._MainLayoutState.new = function() {
+    this[_animation] = null;
+    this.contributions = null;
+    this.starsByWeek = null;
+    this.forksByWeek = null;
+    this.pushesByWeek = null;
+    this.issueCommentsByWeek = null;
+    this.pullRequestActivityByWeek = null;
+    this.weekLabels = null;
+    this.animationValue = 1.0;
+    this.interpolatedAnimationValue = 1.0;
+    this.timelineOverride = false;
+    this[_blogUrl] = "https://parellelmemory.blogspot.com/";
+    this[_strUrl] = "https://parallelmemory.mystrikingly.com/";
+    main._MainLayoutState.__proto__.new.call(this);
+    ;
+  }).prototype = main._MainLayoutState.prototype;
+  dart.addTypeTests(main._MainLayoutState);
+  dart.addTypeCaches(main._MainLayoutState);
+  dart.setMethodSignature(main._MainLayoutState, () => ({
+    __proto__: dart.getMethods(main._MainLayoutState.__proto__),
+    createAnimation: dart.fnType(dart.void, [dart.legacy(core.double)]),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    [_goBlog]: dart.fnType(dart.dynamic, []),
+    [_goStrikingly]: dart.fnType(dart.dynamic, []),
+    loadGitHubData: dart.fnType(dart.legacy(async.Future), []),
+    summarizeWeeksFromTSV: dart.fnType(dart.legacy(core.List$(dart.legacy(stat_for_week.StatForWeek))), [dart.legacy(core.String), dart.legacy(core.int)])
+  }));
+  dart.setLibraryUri(main._MainLayoutState, I[0]);
+  dart.setFieldSignature(main._MainLayoutState, () => ({
+    __proto__: dart.getFields(main._MainLayoutState.__proto__),
+    [_animation]: dart.fieldType(dart.legacy(animation_controller.AnimationController)),
+    contributions: dart.fieldType(dart.legacy(core.List$(dart.legacy(user_contribution.UserContribution)))),
+    starsByWeek: dart.fieldType(dart.legacy(core.List$(dart.legacy(stat_for_week.StatForWeek)))),
+    forksByWeek: dart.fieldType(dart.legacy(core.List$(dart.legacy(stat_for_week.StatForWeek)))),
+    pushesByWeek: dart.fieldType(dart.legacy(core.List$(dart.legacy(stat_for_week.StatForWeek)))),
+    issueCommentsByWeek: dart.fieldType(dart.legacy(core.List$(dart.legacy(stat_for_week.StatForWeek)))),
+    pullRequestActivityByWeek: dart.fieldType(dart.legacy(core.List$(dart.legacy(stat_for_week.StatForWeek)))),
+    weekLabels: dart.fieldType(dart.legacy(core.List$(dart.legacy(week_label.WeekLabel)))),
+    animationValue: dart.fieldType(dart.legacy(core.double)),
+    interpolatedAnimationValue: dart.fieldType(dart.legacy(core.double)),
+    timelineOverride: dart.fieldType(dart.legacy(core.bool)),
+    [_blogUrl]: dart.fieldType(dart.legacy(core.String)),
+    [_strUrl]: dart.fieldType(dart.legacy(core.String))
+  }));
+  dart.defineLazy(main._MainLayoutState, {
+    /*main._MainLayoutState.earlyInterpolatorFraction*/get earlyInterpolatorFraction() {
+      return 0.8;
+    },
+    /*main._MainLayoutState.interpolator*/get interpolator() {
+      return new mathutils.EarlyInterpolator.new(main._MainLayoutState.earlyInterpolatorFraction);
+    }
+  }, true);
+  main.main = function main$() {
+    binding.runApp(new basic.SizedBox.new({child: new main.MainLayout.new({$creationLocationd_0dea112b090073317d4: C[76] || CT.C76}), height: 1200.0, width: 960.0, $creationLocationd_0dea112b090073317d4: C[78] || CT.C78}));
+  };
+  dart.trackLibraries("packages/flutter_web.examples.github_dataviz/main.dart", {
+    "package:flutter_web.examples.github_dataviz/main.dart": main
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["main.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAuBoC,YAAI;IAAkB;;;;;;EAC1D;;;;;;;;;;;;;;;;;;;;;;;;;;;AAuBqB,MAAX;AAEY,MAAlB,qBAAgB;AAED,MAAf,kBAAa;AAGqD,MAAlE,AAAW,sBAAc,iCAAY,sBAAS,MAAM,GAAG,IAAI;AACe,MAA1E,AAAW,sBAAc,iCAAY,sBAAS,MAAM,GAAG,IAAI;AACO,MAAlE,AAAW,sBAAc,iCAAY,sBAAS,MAAM,GAAG,IAAI;AAEY,MADvE,AACK,sBAAc,iCAAY,sBAAS,MAAM,IAAI,IAAI;AAItC,MAAhB;IACF;oBAE4B;;AACL,WAArB;0BAAY;AAKD,MAJX,0BAAiB,yDACR,UAAU,kCAEV,QAHQ;AAId;;;AAQD,MAPF,AAAW,6BAAY;AAMnB,QALF,cAAS;AACP,yBAAK;AAC8B,YAAjC,sBAAiB,AAAW;AACiC,YAA7D,kCAA6B,AAAa,uCAAI;;;;IAItD;UAG0B;AAEP,uBAAa;AAC9B,UAAI;AACQ,qBAAS;AACnB,iBAAsB,cAAe;AACnC,mBAAS,IAAI,GAAG,AAAE,CAAD,gBAAG,AAAY,AAAc,WAAf,0BAAuB,IAAA,AAAC,CAAA;AACpC,uBAAO,AAAY,AAAa,WAAd,sBAAe,CAAC;AACnD,gBAAkB,aAAd,AAAO,MAAD,aAAU,CAAC;AACa,cAAhC,AAAM,MAAA,QAAC,CAAC,EAAc,aAAV,AAAM,MAAA,QAAC,CAAC,kBAAI,AAAK,IAAD;;AAER,cAApB,AAAO,MAAD,OAAK,AAAK,IAAD;;;;AAIyB,QAA9C,AAAW,UAAD,OAAS,+BAAW,QAAQ,MAAM;;AAG9C,UAAI;AAEmE,QADrE,AAAW,UAAD,OACF,+BAAW,SAAS,AAAY,AAAmB,iCAAf,QAAC,KAAM,AAAE,CAAD;;AAGtD,UAAI;AAE4D,QAD9D,AAAW,UAAD,OAAS,+BACf,iBAAiB,AAAY,AAAmB,iCAAf,QAAC,KAAM,AAAE,CAAD;;AAG/C,UAAI;AAEgE,QADlE,AAAW,UAAD,OAAS,+BACf,oBAAoB,AAAa,AAAmB,kCAAf,QAAC,KAAM,AAAE,CAAD;;AAGnD,UAAI;AAEkE,QADpE,AAAW,UAAD,OAAS,+BACf,eAAe,AAAoB,AAAmB,yCAAf,QAAC,KAAM,AAAE,CAAD;;AAGrD,UAAI;AAEiE,QADnE,AAAW,UAAD,OAAS,+BACf,QAAQ,AAA0B,AAAmB,+CAAf,QAAC,KAAM,AAAE,CAAD;;AAGvC,yBACL,mCAAa,UAAU,EAAE,iBAAY;AAIzC,qBAAe,sCACP,AAAmB,UAAT,aAA8B,aAAlB,AAAW,UAAD,aAAU,IAC9C,AAAW,AAAK,AAAO,UAAb,0BACV,mBACU,6CACJ,oCACO,QAAQ;AAKvB,UAJF,cAAS;AACgB,YAAvB,wBAAmB;AACF,YAAjB,AAAW;AAC2B,YAAtC,kCAA6B,SAAS;;kDAGvB,QAAQ;AAGvB,UAFF,cAAS;AAC+B,YAAtC,kCAA6B,SAAS;;gDAGzB;AAKb,UAJF,cAAS;AACiB,YAAxB,wBAAmB;AAEwC,YAD3D,qBAC+B,aAA3B,gDAA6B;;;AAKhC,uBAAiB,yCACe,6CACV,iCACT,yBACZ,+BAAgB,YAAY;AAWpC,YAAO,sDACyB,cACrB,qCACD,iCACE,oCACK,6CACa,oCACG,4CACN,6CACsB,6BAAY,UAAU,qIAE5C,mDACD,iCACK,sBAAM,uBAA6B,iGACzC,wFAII,iCACE,sBAAM,uBAA6B,iGACzC,uRAKE,0DACZ,QAAK;uCACL,0CACL,mEACW,oDACD,kBAAW,uFACrB,mEACW,8DACD,kBAAW;IAIjC;;AAEO;AACH,+BAAM,uBAAU,oBAAY,MAAM,oBAAO,mBAAY,WAAM;MAAK;;;AACvD;AACT,+BAAM,uBAAU,mBAAW,MAAM,oBAAO,kBAAW,WAAM;MAAK;;;AAI5C,MAApB,AAAW;AACI,MAAT;IACR;;AAEqB;AACZ,mCACH,MAAkB,2BAAU;AAC3B,uBAA2C,aAAhC,mBAAW,mBAAmB;AACvB,+BACnB,AAAS,AAAyC,QAA1C,8BAAK,QAAC,KAAuB,yEAAS,CAAC;AAEkC,QADrF,WACI,AAAgF,qBAAtE,AAAiB,gBAAD,aAAQ;AAElC,4BAAgB,AAAgB,AAAI,AAAc,gBAAlB,QAAC;AAE9B,8BACH,MAAkB,2BAAU;AACd,gCACd,2BAAsB,cAAc,EAAE,aAAa;AAEhD,8BACH,MAAkB,2BAAU;AACd,gCACd,2BAAsB,cAAc,EAAE,aAAa;AAEhD,gCACH,MAAkB,2BAAU;AACd,kCACd,2BAAsB,gBAAgB,EAAE,aAAa;AAElD,iCACH,MAAkB,2BAAU;AACd,mCACd,2BAAsB,iBAAiB,EAAE,aAAa;AAEnD,4CACH,MAAkB,2BAAU;AACd,8CACd,2BAAsB,4BAA4B,EAAE,aAAa;AASnE,QAPF,cAAS;AAC8B,UAAhC,qBAAgB,gBAAgB;AACD,UAA/B,mBAAc,iBAAiB;AACA,UAA/B,mBAAc,iBAAiB;AACG,UAAlC,oBAAe,mBAAmB;AACQ,UAA1C,2BAAsB,oBAAoB;AACiB,UAA3D,iCAA4B,+BAA+B;;MAEpE;;0BAGW,eAAmB;AACV,wBAAkB;AACV,oBAAc;AAOtC,MANF,AAAc,AAAY,aAAb,SAAO,gBAAc,QAAC;AACpB,oBAAQ,AAAE,CAAD,SAAO;AAC7B,YAAI,AAAM,AAAO,KAAR,cAAW;AACd,wBAAc,eAAM,AAAK,KAAA,QAAC;AACkC,UAAhE,AAAO,OAAA,QAAC,OAAO,EAAQ,kCAAY,OAAO,EAAM,eAAM,AAAK,KAAA,QAAC;;;AAGxB,MAAxC,WAAM,AAAiC,qBAAvB,AAAQ,OAAD,aAAQ;AAE/B,eAAS,IAAI,GAAG,AAAE,CAAD,gBAAG,aAAa,GAAE,IAAA,AAAC,CAAA;AACtB,2BAAe,AAAO,OAAA,QAAC,CAAC;AACpC,YAAI,AAAa,YAAD;AACwB,UAAtC,AAAY,WAAD,OAAS,kCAAY,CAAC,EAAE;;AAEN,UAA7B,AAAY,WAAD,OAAK,YAAY;;;AAGhC,YAAO,YAAW;IACpB;;;IAxQoB;IACG;IACL;IACA;IACA;IACA;IACA;IACF;IAKT,sBAAiB;IACjB,kCAA6B;IAC/B,wBAAmB;IACjB,iBAAW;IACX,gBAAU;;;EAyPnB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAhQsB,+CAAyB;YAAG;;MACjB,kCAAY;YACnC,qCAAkB;;;;AAqQxB,IAJF,eAAO,+BACE,4FACC,eACD;EAEX","file":"../../../packages/flutter_web.examples.github_dataviz/main.dart.lib.js"}');
+  // Exports:
+  return {
+    main: main
+  };
+}));
+
+//# sourceMappingURL=main.dart.lib.js.map

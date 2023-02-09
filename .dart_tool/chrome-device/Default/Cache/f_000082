@@ -1,0 +1,603 @@
+define(['dart_sdk', 'packages/flutter/src/gestures/velocity_tracker.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/gestures/arena.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/gestures/drag.dart', 'packages/flutter/src/gestures/binding.dart', 'packages/flutter/src/gestures/recognizer.dart'], (function load__packages__flutter__src__gestures__multidrag_dart(dart_sdk, packages__flutter__src__gestures__velocity_tracker$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__gestures__arena$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__gestures__drag$46dart, packages__flutter__src__gestures__binding$46dart, packages__flutter__src__gestures__recognizer$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _js_helper = dart_sdk._js_helper;
+  const async = dart_sdk.async;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const velocity_tracker = packages__flutter__src__gestures__velocity_tracker$46dart.src__gestures__velocity_tracker;
+  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
+  const arena = packages__flutter__src__gestures__arena$46dart.src__gestures__arena;
+  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
+  const drag = packages__flutter__src__gestures__drag$46dart.src__gestures__drag;
+  const binding = packages__flutter__src__gestures__binding$46dart.src__gestures__binding;
+  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
+  var multidrag = Object.create(dart.library);
+  var $containsKey = dartx.containsKey;
+  var $_set = dartx._set;
+  var $_get = dartx._get;
+  var $remove = dartx.remove;
+  var $keys = dartx.keys;
+  var $toList = dartx.toList;
+  var $forEach = dartx.forEach;
+  var $isEmpty = dartx.isEmpty;
+  var $abs = dartx.abs;
+  dart._checkModuleNullSafetyMode(false);
+  var T$ = {
+    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    DragN: () => (T$.DragN = dart.constFn(dart.nullable(drag.Drag)))(),
+    OffsetToDragN: () => (T$.OffsetToDragN = dart.constFn(dart.fnType(T$.DragN(), [ui.Offset])))(),
+    VoidToDragN: () => (T$.VoidToDragN = dart.constFn(dart.fnType(T$.DragN(), [])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 500000
+      });
+    }
+  }, false);
+  var C = [void 0];
+  var I = [
+    "file:///D:/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/flutter/packages/flutter/lib/src/gestures/multidrag.dart",
+    "package:flutter/src/gestures/multidrag.dart"
+  ];
+  var initialPosition$ = dart.privateName(multidrag, "MultiDragPointerState.initialPosition");
+  var kind$ = dart.privateName(multidrag, "MultiDragPointerState.kind");
+  var _client = dart.privateName(multidrag, "_client");
+  var _pendingDelta = dart.privateName(multidrag, "_pendingDelta");
+  var _lastPendingEventTimestamp = dart.privateName(multidrag, "_lastPendingEventTimestamp");
+  var _arenaEntry = dart.privateName(multidrag, "_arenaEntry");
+  var _velocityTracker = dart.privateName(multidrag, "_velocityTracker");
+  var _setArenaEntry = dart.privateName(multidrag, "_setArenaEntry");
+  var _move = dart.privateName(multidrag, "_move");
+  var _startDrag = dart.privateName(multidrag, "_startDrag");
+  var _up = dart.privateName(multidrag, "_up");
+  var _cancel = dart.privateName(multidrag, "_cancel");
+  multidrag.MultiDragPointerState = class MultiDragPointerState extends core.Object {
+    get initialPosition() {
+      return this[initialPosition$];
+    }
+    set initialPosition(value) {
+      super.initialPosition = value;
+    }
+    get kind() {
+      return this[kind$];
+    }
+    set kind(value) {
+      super.kind = value;
+    }
+    get pendingDelta() {
+      return this[_pendingDelta];
+    }
+    [_setArenaEntry](entry) {
+      if (entry == null) dart.nullFailed(I[0], 58, 41, "entry");
+      if (!(this[_arenaEntry] == null)) dart.assertFailed(null, I[0], 59, 12, "_arenaEntry == null");
+      if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 60, 12, "pendingDelta != null");
+      if (!(this[_client] == null)) dart.assertFailed(null, I[0], 61, 12, "_client == null");
+      this[_arenaEntry] = entry;
+    }
+    resolve(disposition) {
+      if (disposition == null) dart.nullFailed(I[0], 68, 35, "disposition");
+      dart.nullCheck(this[_arenaEntry]).resolve(disposition);
+    }
+    [_move](event) {
+      if (event == null) dart.nullFailed(I[0], 72, 31, "event");
+      if (!(this[_arenaEntry] != null)) dart.assertFailed(null, I[0], 73, 12, "_arenaEntry != null");
+      if (!dart.test(event.synthesized)) this[_velocityTracker].addPosition(event.timeStamp, event.position);
+      if (this[_client] != null) {
+        if (!(this.pendingDelta == null)) dart.assertFailed(null, I[0], 77, 14, "pendingDelta == null");
+        dart.nullCheck(this[_client]).update(new drag_details.DragUpdateDetails.new({sourceTimeStamp: event.timeStamp, delta: event.delta, globalPosition: event.position}));
+      } else {
+        if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 85, 14, "pendingDelta != null");
+        this[_pendingDelta] = dart.nullCheck(this[_pendingDelta])['+'](event.delta);
+        this[_lastPendingEventTimestamp] = event.timeStamp;
+        this.checkForResolutionAfterMove();
+      }
+    }
+    checkForResolutionAfterMove() {
+    }
+    rejected() {
+      if (!(this[_arenaEntry] != null)) dart.assertFailed(null, I[0], 111, 12, "_arenaEntry != null");
+      if (!(this[_client] == null)) dart.assertFailed(null, I[0], 112, 12, "_client == null");
+      if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 113, 12, "pendingDelta != null");
+      this[_pendingDelta] = null;
+      this[_lastPendingEventTimestamp] = null;
+      this[_arenaEntry] = null;
+    }
+    [_startDrag](client) {
+      if (client == null) dart.nullFailed(I[0], 119, 24, "client");
+      if (!(this[_arenaEntry] != null)) dart.assertFailed(null, I[0], 120, 12, "_arenaEntry != null");
+      if (!(this[_client] == null)) dart.assertFailed(null, I[0], 121, 12, "_client == null");
+      if (!(client != null)) dart.assertFailed(null, I[0], 122, 12, "client != null");
+      if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 123, 12, "pendingDelta != null");
+      this[_client] = client;
+      let details = new drag_details.DragUpdateDetails.new({sourceTimeStamp: this[_lastPendingEventTimestamp], delta: dart.nullCheck(this.pendingDelta), globalPosition: this.initialPosition});
+      this[_pendingDelta] = null;
+      this[_lastPendingEventTimestamp] = null;
+      dart.nullCheck(this[_client]).update(details);
+    }
+    [_up]() {
+      if (!(this[_arenaEntry] != null)) dart.assertFailed(null, I[0], 137, 12, "_arenaEntry != null");
+      if (this[_client] != null) {
+        if (!(this.pendingDelta == null)) dart.assertFailed(null, I[0], 139, 14, "pendingDelta == null");
+        let details = new drag_details.DragEndDetails.new({velocity: this[_velocityTracker].getVelocity()});
+        let client = dart.nullCheck(this[_client]);
+        this[_client] = null;
+        client.end(details);
+      } else {
+        if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 146, 14, "pendingDelta != null");
+        this[_pendingDelta] = null;
+        this[_lastPendingEventTimestamp] = null;
+      }
+    }
+    [_cancel]() {
+      if (!(this[_arenaEntry] != null)) dart.assertFailed(null, I[0], 153, 12, "_arenaEntry != null");
+      if (this[_client] != null) {
+        if (!(this.pendingDelta == null)) dart.assertFailed(null, I[0], 155, 14, "pendingDelta == null");
+        let client = dart.nullCheck(this[_client]);
+        this[_client] = null;
+        client.cancel();
+      } else {
+        if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 161, 14, "pendingDelta != null");
+        this[_pendingDelta] = null;
+        this[_lastPendingEventTimestamp] = null;
+      }
+    }
+    dispose() {
+      let t0;
+      t0 = this[_arenaEntry];
+      t0 == null ? null : t0.resolve(arena.GestureDisposition.rejected);
+      this[_arenaEntry] = null;
+      if (!dart.test(dart.fn(() => {
+        this[_pendingDelta] = null;
+        return true;
+      }, T$.VoidTobool())())) dart.assertFailed(null, I[0], 173, 12, "() {\r\n      _pendingDelta = null;\r\n      return true;\r\n    }()");
+    }
+  };
+  (multidrag.MultiDragPointerState.new = function(initialPosition, kind) {
+    if (initialPosition == null) dart.nullFailed(I[0], 30, 30, "initialPosition");
+    if (kind == null) dart.nullFailed(I[0], 30, 52, "kind");
+    this[_client] = null;
+    this[_pendingDelta] = ui.Offset.zero;
+    this[_lastPendingEventTimestamp] = null;
+    this[_arenaEntry] = null;
+    this[initialPosition$] = initialPosition;
+    this[kind$] = kind;
+    if (!(initialPosition != null)) dart.assertFailed(null, I[0], 31, 14, "initialPosition != null");
+    this[_velocityTracker] = new velocity_tracker.VelocityTracker.withKind(kind);
+    ;
+  }).prototype = multidrag.MultiDragPointerState.prototype;
+  dart.addTypeTests(multidrag.MultiDragPointerState);
+  dart.addTypeCaches(multidrag.MultiDragPointerState);
+  dart.setMethodSignature(multidrag.MultiDragPointerState, () => ({
+    __proto__: dart.getMethods(multidrag.MultiDragPointerState.__proto__),
+    [_setArenaEntry]: dart.fnType(dart.void, [arena.GestureArenaEntry]),
+    resolve: dart.fnType(dart.void, [arena.GestureDisposition]),
+    [_move]: dart.fnType(dart.void, [events.PointerMoveEvent]),
+    checkForResolutionAfterMove: dart.fnType(dart.void, []),
+    rejected: dart.fnType(dart.void, []),
+    [_startDrag]: dart.fnType(dart.void, [drag.Drag]),
+    [_up]: dart.fnType(dart.void, []),
+    [_cancel]: dart.fnType(dart.void, []),
+    dispose: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(multidrag.MultiDragPointerState, () => ({
+    __proto__: dart.getGetters(multidrag.MultiDragPointerState.__proto__),
+    pendingDelta: dart.nullable(ui.Offset)
+  }));
+  dart.setLibraryUri(multidrag.MultiDragPointerState, I[1]);
+  dart.setFieldSignature(multidrag.MultiDragPointerState, () => ({
+    __proto__: dart.getFields(multidrag.MultiDragPointerState.__proto__),
+    initialPosition: dart.finalFieldType(ui.Offset),
+    [_velocityTracker]: dart.finalFieldType(velocity_tracker.VelocityTracker),
+    kind: dart.finalFieldType(ui.PointerDeviceKind),
+    [_client]: dart.fieldType(dart.nullable(drag.Drag)),
+    [_pendingDelta]: dart.fieldType(dart.nullable(ui.Offset)),
+    [_lastPendingEventTimestamp]: dart.fieldType(dart.nullable(core.Duration)),
+    [_arenaEntry]: dart.fieldType(dart.nullable(arena.GestureArenaEntry))
+  }));
+  var onStart = dart.privateName(multidrag, "MultiDragGestureRecognizer.onStart");
+  var _pointers = dart.privateName(multidrag, "_pointers");
+  var _handleEvent = dart.privateName(multidrag, "_handleEvent");
+  var _removeState = dart.privateName(multidrag, "_removeState");
+  const _is_MultiDragGestureRecognizer_default = Symbol('_is_MultiDragGestureRecognizer_default');
+  multidrag.MultiDragGestureRecognizer$ = dart.generic(T => {
+    var IdentityMapOfint$T = () => (IdentityMapOfint$T = dart.constFn(_js_helper.IdentityMap$(core.int, T)))();
+    class MultiDragGestureRecognizer extends recognizer.GestureRecognizer {
+      get onStart() {
+        return this[onStart];
+      }
+      set onStart(value) {
+        this[onStart] = value;
+      }
+      addAllowedPointer(event) {
+        if (event == null) dart.nullFailed(I[0], 216, 43, "event");
+        if (!(this[_pointers] != null)) dart.assertFailed(null, I[0], 217, 12, "_pointers != null");
+        if (!(event.pointer != null)) dart.assertFailed(null, I[0], 218, 12, "event.pointer != null");
+        if (!(event.position != null)) dart.assertFailed(null, I[0], 219, 12, "event.position != null");
+        if (!!dart.test(dart.nullCheck(this[_pointers])[$containsKey](event.pointer))) dart.assertFailed(null, I[0], 220, 12, "!_pointers!.containsKey(event.pointer)");
+        let state = this.createNewPointerState(event);
+        dart.nullCheck(this[_pointers])[$_set](event.pointer, state);
+        dart.nullCheck(binding.GestureBinding.instance).pointerRouter.addRoute(event.pointer, dart.bind(this, _handleEvent));
+        state[_setArenaEntry](dart.nullCheck(binding.GestureBinding.instance).gestureArena.add(event.pointer, this));
+      }
+      [_handleEvent](event) {
+        if (event == null) dart.nullFailed(I[0], 233, 34, "event");
+        if (!(this[_pointers] != null)) dart.assertFailed(null, I[0], 234, 12, "_pointers != null");
+        if (!(event.pointer != null)) dart.assertFailed(null, I[0], 235, 12, "event.pointer != null");
+        if (!(event.timeStamp != null)) dart.assertFailed(null, I[0], 236, 12, "event.timeStamp != null");
+        if (!(event.position != null)) dart.assertFailed(null, I[0], 237, 12, "event.position != null");
+        if (!dart.test(dart.nullCheck(this[_pointers])[$containsKey](event.pointer))) dart.assertFailed(null, I[0], 238, 12, "_pointers!.containsKey(event.pointer)");
+        let state = dart.nullCheck(dart.nullCheck(this[_pointers])[$_get](event.pointer));
+        if (events.PointerMoveEvent.is(event)) {
+          state[_move](event);
+        } else if (events.PointerUpEvent.is(event)) {
+          if (!dart.equals(event.delta, ui.Offset.zero)) dart.assertFailed(null, I[0], 244, 14, "event.delta == Offset.zero");
+          state[_up]();
+          this[_removeState](event.pointer);
+        } else if (events.PointerCancelEvent.is(event)) {
+          if (!dart.equals(event.delta, ui.Offset.zero)) dart.assertFailed(null, I[0], 249, 14, "event.delta == Offset.zero");
+          state[_cancel]();
+          this[_removeState](event.pointer);
+        } else if (!events.PointerDownEvent.is(event)) {
+          if (!false) dart.assertFailed(null, I[0], 257, 14, "false");
+        }
+      }
+      acceptGesture(pointer) {
+        if (pointer == null) dart.nullFailed(I[0], 262, 26, "pointer");
+        if (!(this[_pointers] != null)) dart.assertFailed(null, I[0], 263, 12, "_pointers != null");
+        let state = dart.nullCheck(this[_pointers])[$_get](pointer);
+        if (state == null) return;
+        state.accepted(dart.fn(initialPosition => {
+          if (initialPosition == null) dart.nullFailed(I[0], 267, 28, "initialPosition");
+          return this[_startDrag](initialPosition, pointer);
+        }, T$.OffsetToDragN()));
+      }
+      [_startDrag](initialPosition, pointer) {
+        if (initialPosition == null) dart.nullFailed(I[0], 270, 27, "initialPosition");
+        if (pointer == null) dart.nullFailed(I[0], 270, 48, "pointer");
+        if (!(this[_pointers] != null)) dart.assertFailed(null, I[0], 271, 12, "_pointers != null");
+        let state = dart.nullCheck(dart.nullCheck(this[_pointers])[$_get](pointer));
+        if (!(state !== null)) dart.assertFailed(null, I[0], 273, 12, "state != null");
+        if (!(state[_pendingDelta] != null)) dart.assertFailed(null, I[0], 274, 12, "state._pendingDelta != null");
+        let drag = null;
+        if (this.onStart != null) drag = this.invokeCallback(T$.DragN(), "onStart", dart.fn(() => dart.nullCheck(this.onStart)(initialPosition), T$.VoidToDragN()));
+        if (drag != null) {
+          state[_startDrag](drag);
+        } else {
+          this[_removeState](pointer);
+        }
+        return drag;
+      }
+      rejectGesture(pointer) {
+        if (pointer == null) dart.nullFailed(I[0], 287, 26, "pointer");
+        if (!(this[_pointers] != null)) dart.assertFailed(null, I[0], 288, 12, "_pointers != null");
+        if (dart.test(dart.nullCheck(this[_pointers])[$containsKey](pointer))) {
+          let state = dart.nullCheck(dart.nullCheck(this[_pointers])[$_get](pointer));
+          if (!(state !== null)) dart.assertFailed(null, I[0], 291, 14, "state != null");
+          state.rejected();
+          this[_removeState](pointer);
+        }
+      }
+      [_removeState](pointer) {
+        if (pointer == null) dart.nullFailed(I[0], 297, 25, "pointer");
+        if (this[_pointers] == null) {
+          return;
+        }
+        if (!dart.test(dart.nullCheck(this[_pointers])[$containsKey](pointer))) dart.assertFailed(null, I[0], 303, 12, "_pointers!.containsKey(pointer)");
+        dart.nullCheck(binding.GestureBinding.instance).pointerRouter.removeRoute(pointer, dart.bind(this, _handleEvent));
+        dart.nullCheck(dart.nullCheck(this[_pointers])[$remove](pointer)).dispose();
+      }
+      dispose() {
+        dart.nullCheck(this[_pointers])[$keys][$toList]()[$forEach](dart.bind(this, _removeState));
+        if (!dart.test(dart.nullCheck(this[_pointers])[$isEmpty])) dart.assertFailed(null, I[0], 311, 12, "_pointers!.isEmpty");
+        this[_pointers] = null;
+        super.dispose();
+      }
+    }
+    (MultiDragGestureRecognizer.new = function(opts) {
+      let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+      let kind = opts && 'kind' in opts ? opts.kind : null;
+      this[onStart] = null;
+      this[_pointers] = new (IdentityMapOfint$T()).new();
+      MultiDragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
+      ;
+    }).prototype = MultiDragGestureRecognizer.prototype;
+    dart.addTypeTests(MultiDragGestureRecognizer);
+    MultiDragGestureRecognizer.prototype[_is_MultiDragGestureRecognizer_default] = true;
+    dart.addTypeCaches(MultiDragGestureRecognizer);
+    dart.setMethodSignature(MultiDragGestureRecognizer, () => ({
+      __proto__: dart.getMethods(MultiDragGestureRecognizer.__proto__),
+      [_handleEvent]: dart.fnType(dart.void, [events.PointerEvent]),
+      acceptGesture: dart.fnType(dart.void, [core.int]),
+      [_startDrag]: dart.fnType(dart.nullable(drag.Drag), [ui.Offset, core.int]),
+      rejectGesture: dart.fnType(dart.void, [core.int]),
+      [_removeState]: dart.fnType(dart.void, [core.int])
+    }));
+    dart.setLibraryUri(MultiDragGestureRecognizer, I[1]);
+    dart.setFieldSignature(MultiDragGestureRecognizer, () => ({
+      __proto__: dart.getFields(MultiDragGestureRecognizer.__proto__),
+      onStart: dart.fieldType(dart.nullable(dart.fnType(dart.nullable(drag.Drag), [ui.Offset]))),
+      [_pointers]: dart.fieldType(dart.nullable(core.Map$(core.int, T)))
+    }));
+    return MultiDragGestureRecognizer;
+  });
+  multidrag.MultiDragGestureRecognizer = multidrag.MultiDragGestureRecognizer$();
+  dart.addTypeTests(multidrag.MultiDragGestureRecognizer, _is_MultiDragGestureRecognizer_default);
+  multidrag._ImmediatePointerState = class _ImmediatePointerState extends multidrag.MultiDragPointerState {
+    checkForResolutionAfterMove() {
+      if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 322, 12, "pendingDelta != null");
+      if (dart.notNull(dart.nullCheck(this.pendingDelta).distance) > dart.notNull(events.computeHitSlop(this.kind))) this.resolve(arena.GestureDisposition.accepted);
+    }
+    accepted(starter) {
+      if (starter == null) dart.nullFailed(I[0], 328, 47, "starter");
+      starter(this.initialPosition);
+    }
+  };
+  (multidrag._ImmediatePointerState.new = function(initialPosition, kind) {
+    if (initialPosition == null) dart.nullFailed(I[0], 318, 33, "initialPosition");
+    if (kind == null) dart.nullFailed(I[0], 318, 68, "kind");
+    multidrag._ImmediatePointerState.__proto__.new.call(this, initialPosition, kind);
+    ;
+  }).prototype = multidrag._ImmediatePointerState.prototype;
+  dart.addTypeTests(multidrag._ImmediatePointerState);
+  dart.addTypeCaches(multidrag._ImmediatePointerState);
+  dart.setMethodSignature(multidrag._ImmediatePointerState, () => ({
+    __proto__: dart.getMethods(multidrag._ImmediatePointerState.__proto__),
+    accepted: dart.fnType(dart.void, [dart.fnType(dart.nullable(drag.Drag), [ui.Offset])])
+  }));
+  dart.setLibraryUri(multidrag._ImmediatePointerState, I[1]);
+  multidrag.ImmediateMultiDragGestureRecognizer = class ImmediateMultiDragGestureRecognizer extends multidrag.MultiDragGestureRecognizer$(multidrag._ImmediatePointerState) {
+    createNewPointerState(event) {
+      if (event == null) dart.nullFailed(I[0], 357, 65, "event");
+      return new multidrag._ImmediatePointerState.new(event.position, event.kind);
+    }
+    get debugDescription() {
+      return "multidrag";
+    }
+  };
+  (multidrag.ImmediateMultiDragGestureRecognizer.new = function(opts) {
+    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    multidrag.ImmediateMultiDragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
+    ;
+  }).prototype = multidrag.ImmediateMultiDragGestureRecognizer.prototype;
+  dart.addTypeTests(multidrag.ImmediateMultiDragGestureRecognizer);
+  dart.addTypeCaches(multidrag.ImmediateMultiDragGestureRecognizer);
+  dart.setMethodSignature(multidrag.ImmediateMultiDragGestureRecognizer, () => ({
+    __proto__: dart.getMethods(multidrag.ImmediateMultiDragGestureRecognizer.__proto__),
+    createNewPointerState: dart.fnType(multidrag._ImmediatePointerState, [events.PointerDownEvent])
+  }));
+  dart.setGetterSignature(multidrag.ImmediateMultiDragGestureRecognizer, () => ({
+    __proto__: dart.getGetters(multidrag.ImmediateMultiDragGestureRecognizer.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(multidrag.ImmediateMultiDragGestureRecognizer, I[1]);
+  multidrag._HorizontalPointerState = class _HorizontalPointerState extends multidrag.MultiDragPointerState {
+    checkForResolutionAfterMove() {
+      if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 371, 12, "pendingDelta != null");
+      if (dart.nullCheck(this.pendingDelta).dx[$abs]() > dart.notNull(events.computeHitSlop(this.kind))) this.resolve(arena.GestureDisposition.accepted);
+    }
+    accepted(starter) {
+      if (starter == null) dart.nullFailed(I[0], 377, 47, "starter");
+      starter(this.initialPosition);
+    }
+  };
+  (multidrag._HorizontalPointerState.new = function(initialPosition, kind) {
+    if (initialPosition == null) dart.nullFailed(I[0], 367, 34, "initialPosition");
+    if (kind == null) dart.nullFailed(I[0], 367, 69, "kind");
+    multidrag._HorizontalPointerState.__proto__.new.call(this, initialPosition, kind);
+    ;
+  }).prototype = multidrag._HorizontalPointerState.prototype;
+  dart.addTypeTests(multidrag._HorizontalPointerState);
+  dart.addTypeCaches(multidrag._HorizontalPointerState);
+  dart.setMethodSignature(multidrag._HorizontalPointerState, () => ({
+    __proto__: dart.getMethods(multidrag._HorizontalPointerState.__proto__),
+    accepted: dart.fnType(dart.void, [dart.fnType(dart.nullable(drag.Drag), [ui.Offset])])
+  }));
+  dart.setLibraryUri(multidrag._HorizontalPointerState, I[1]);
+  multidrag.HorizontalMultiDragGestureRecognizer = class HorizontalMultiDragGestureRecognizer extends multidrag.MultiDragGestureRecognizer$(multidrag._HorizontalPointerState) {
+    createNewPointerState(event) {
+      if (event == null) dart.nullFailed(I[0], 406, 66, "event");
+      return new multidrag._HorizontalPointerState.new(event.position, event.kind);
+    }
+    get debugDescription() {
+      return "horizontal multidrag";
+    }
+  };
+  (multidrag.HorizontalMultiDragGestureRecognizer.new = function(opts) {
+    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    multidrag.HorizontalMultiDragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
+    ;
+  }).prototype = multidrag.HorizontalMultiDragGestureRecognizer.prototype;
+  dart.addTypeTests(multidrag.HorizontalMultiDragGestureRecognizer);
+  dart.addTypeCaches(multidrag.HorizontalMultiDragGestureRecognizer);
+  dart.setMethodSignature(multidrag.HorizontalMultiDragGestureRecognizer, () => ({
+    __proto__: dart.getMethods(multidrag.HorizontalMultiDragGestureRecognizer.__proto__),
+    createNewPointerState: dart.fnType(multidrag._HorizontalPointerState, [events.PointerDownEvent])
+  }));
+  dart.setGetterSignature(multidrag.HorizontalMultiDragGestureRecognizer, () => ({
+    __proto__: dart.getGetters(multidrag.HorizontalMultiDragGestureRecognizer.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(multidrag.HorizontalMultiDragGestureRecognizer, I[1]);
+  multidrag._VerticalPointerState = class _VerticalPointerState extends multidrag.MultiDragPointerState {
+    checkForResolutionAfterMove() {
+      if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 420, 12, "pendingDelta != null");
+      if (dart.nullCheck(this.pendingDelta).dy[$abs]() > dart.notNull(events.computeHitSlop(this.kind))) this.resolve(arena.GestureDisposition.accepted);
+    }
+    accepted(starter) {
+      if (starter == null) dart.nullFailed(I[0], 426, 47, "starter");
+      starter(this.initialPosition);
+    }
+  };
+  (multidrag._VerticalPointerState.new = function(initialPosition, kind) {
+    if (initialPosition == null) dart.nullFailed(I[0], 416, 32, "initialPosition");
+    if (kind == null) dart.nullFailed(I[0], 416, 67, "kind");
+    multidrag._VerticalPointerState.__proto__.new.call(this, initialPosition, kind);
+    ;
+  }).prototype = multidrag._VerticalPointerState.prototype;
+  dart.addTypeTests(multidrag._VerticalPointerState);
+  dart.addTypeCaches(multidrag._VerticalPointerState);
+  dart.setMethodSignature(multidrag._VerticalPointerState, () => ({
+    __proto__: dart.getMethods(multidrag._VerticalPointerState.__proto__),
+    accepted: dart.fnType(dart.void, [dart.fnType(dart.nullable(drag.Drag), [ui.Offset])])
+  }));
+  dart.setLibraryUri(multidrag._VerticalPointerState, I[1]);
+  multidrag.VerticalMultiDragGestureRecognizer = class VerticalMultiDragGestureRecognizer extends multidrag.MultiDragGestureRecognizer$(multidrag._VerticalPointerState) {
+    createNewPointerState(event) {
+      if (event == null) dart.nullFailed(I[0], 455, 64, "event");
+      return new multidrag._VerticalPointerState.new(event.position, event.kind);
+    }
+    get debugDescription() {
+      return "vertical multidrag";
+    }
+  };
+  (multidrag.VerticalMultiDragGestureRecognizer.new = function(opts) {
+    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    multidrag.VerticalMultiDragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
+    ;
+  }).prototype = multidrag.VerticalMultiDragGestureRecognizer.prototype;
+  dart.addTypeTests(multidrag.VerticalMultiDragGestureRecognizer);
+  dart.addTypeCaches(multidrag.VerticalMultiDragGestureRecognizer);
+  dart.setMethodSignature(multidrag.VerticalMultiDragGestureRecognizer, () => ({
+    __proto__: dart.getMethods(multidrag.VerticalMultiDragGestureRecognizer.__proto__),
+    createNewPointerState: dart.fnType(multidrag._VerticalPointerState, [events.PointerDownEvent])
+  }));
+  dart.setGetterSignature(multidrag.VerticalMultiDragGestureRecognizer, () => ({
+    __proto__: dart.getGetters(multidrag.VerticalMultiDragGestureRecognizer.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(multidrag.VerticalMultiDragGestureRecognizer, I[1]);
+  var _timer = dart.privateName(multidrag, "_timer");
+  var _starter = dart.privateName(multidrag, "_starter");
+  var _delayPassed = dart.privateName(multidrag, "_delayPassed");
+  var _ensureTimerStopped = dart.privateName(multidrag, "_ensureTimerStopped");
+  multidrag._DelayedPointerState = class _DelayedPointerState extends multidrag.MultiDragPointerState {
+    [_delayPassed]() {
+      if (!(this[_timer] != null)) dart.assertFailed(null, I[0], 474, 12, "_timer != null");
+      if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 475, 12, "pendingDelta != null");
+      if (!(dart.notNull(dart.nullCheck(this.pendingDelta).distance) <= dart.notNull(events.computeHitSlop(this.kind)))) dart.assertFailed(null, I[0], 476, 12, "pendingDelta!.distance <= computeHitSlop(kind)");
+      this[_timer] = null;
+      if (this[_starter] != null) {
+        dart.nullCheck(this[_starter])(this.initialPosition);
+        this[_starter] = null;
+      } else {
+        this.resolve(arena.GestureDisposition.accepted);
+      }
+      if (!(this[_starter] == null)) dart.assertFailed(null, I[0], 484, 12, "_starter == null");
+    }
+    [_ensureTimerStopped]() {
+      let t0;
+      t0 = this[_timer];
+      t0 == null ? null : t0.cancel();
+      this[_timer] = null;
+    }
+    accepted(starter) {
+      if (starter == null) dart.nullFailed(I[0], 493, 47, "starter");
+      if (!(this[_starter] == null)) dart.assertFailed(null, I[0], 494, 12, "_starter == null");
+      if (this[_timer] == null)
+        starter(this.initialPosition);
+      else
+        this[_starter] = starter;
+    }
+    checkForResolutionAfterMove() {
+      if (this[_timer] == null) {
+        if (!(this[_starter] != null)) dart.assertFailed(null, I[0], 509, 14, "_starter != null");
+        return;
+      }
+      if (!(this.pendingDelta != null)) dart.assertFailed(null, I[0], 512, 12, "pendingDelta != null");
+      if (dart.notNull(dart.nullCheck(this.pendingDelta).distance) > dart.notNull(events.computeHitSlop(this.kind))) {
+        this.resolve(arena.GestureDisposition.rejected);
+        this[_ensureTimerStopped]();
+      }
+    }
+    dispose() {
+      this[_ensureTimerStopped]();
+      super.dispose();
+    }
+  };
+  (multidrag._DelayedPointerState.new = function(initialPosition, delay, kind) {
+    if (initialPosition == null) dart.nullFailed(I[0], 464, 31, "initialPosition");
+    if (delay == null) dart.nullFailed(I[0], 464, 57, "delay");
+    if (kind == null) dart.nullFailed(I[0], 464, 82, "kind");
+    this[_timer] = null;
+    this[_starter] = null;
+    if (!(delay != null)) dart.assertFailed(null, I[0], 465, 16, "delay != null");
+    multidrag._DelayedPointerState.__proto__.new.call(this, initialPosition, kind);
+    this[_timer] = async.Timer.new(delay, dart.bind(this, _delayPassed));
+  }).prototype = multidrag._DelayedPointerState.prototype;
+  dart.addTypeTests(multidrag._DelayedPointerState);
+  dart.addTypeCaches(multidrag._DelayedPointerState);
+  dart.setMethodSignature(multidrag._DelayedPointerState, () => ({
+    __proto__: dart.getMethods(multidrag._DelayedPointerState.__proto__),
+    [_delayPassed]: dart.fnType(dart.void, []),
+    [_ensureTimerStopped]: dart.fnType(dart.void, []),
+    accepted: dart.fnType(dart.void, [dart.fnType(dart.nullable(drag.Drag), [ui.Offset])])
+  }));
+  dart.setLibraryUri(multidrag._DelayedPointerState, I[1]);
+  dart.setFieldSignature(multidrag._DelayedPointerState, () => ({
+    __proto__: dart.getFields(multidrag._DelayedPointerState.__proto__),
+    [_timer]: dart.fieldType(dart.nullable(async.Timer)),
+    [_starter]: dart.fieldType(dart.nullable(dart.fnType(dart.nullable(drag.Drag), [ui.Offset])))
+  }));
+  var delay$ = dart.privateName(multidrag, "DelayedMultiDragGestureRecognizer.delay");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  multidrag.DelayedMultiDragGestureRecognizer = class DelayedMultiDragGestureRecognizer extends multidrag.MultiDragGestureRecognizer$(multidrag._DelayedPointerState) {
+    get delay() {
+      return this[delay$];
+    }
+    set delay(value) {
+      super.delay = value;
+    }
+    createNewPointerState(event) {
+      if (event == null) dart.nullFailed(I[0], 563, 63, "event");
+      return new multidrag._DelayedPointerState.new(event.position, this.delay, event.kind);
+    }
+    get debugDescription() {
+      return "long multidrag";
+    }
+  };
+  (multidrag.DelayedMultiDragGestureRecognizer.new = function(opts) {
+    let delay = opts && 'delay' in opts ? opts.delay : C[0] || CT.C0;
+    if (delay == null) dart.nullFailed(I[0], 552, 10, "delay");
+    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    this[delay$] = delay;
+    if (!(delay != null)) dart.assertFailed(null, I[0], 555, 15, "delay != null");
+    multidrag.DelayedMultiDragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
+    ;
+  }).prototype = multidrag.DelayedMultiDragGestureRecognizer.prototype;
+  dart.addTypeTests(multidrag.DelayedMultiDragGestureRecognizer);
+  dart.addTypeCaches(multidrag.DelayedMultiDragGestureRecognizer);
+  dart.setMethodSignature(multidrag.DelayedMultiDragGestureRecognizer, () => ({
+    __proto__: dart.getMethods(multidrag.DelayedMultiDragGestureRecognizer.__proto__),
+    createNewPointerState: dart.fnType(multidrag._DelayedPointerState, [events.PointerDownEvent])
+  }));
+  dart.setGetterSignature(multidrag.DelayedMultiDragGestureRecognizer, () => ({
+    __proto__: dart.getGetters(multidrag.DelayedMultiDragGestureRecognizer.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(multidrag.DelayedMultiDragGestureRecognizer, I[1]);
+  dart.setFieldSignature(multidrag.DelayedMultiDragGestureRecognizer, () => ({
+    __proto__: dart.getFields(multidrag.DelayedMultiDragGestureRecognizer.__proto__),
+    delay: dart.finalFieldType(core.Duration)
+  }));
+  dart.trackLibraries("packages/flutter/src/gestures/multidrag.dart", {
+    "package:flutter/src/gestures/multidrag.dart": multidrag
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["multidrag.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/gestures/multidrag.dart.lib.js"}');
+  // Exports:
+  return {
+    src__gestures__multidrag: multidrag
+  };
+}));
+
+//# sourceMappingURL=multidrag.dart.lib.js.map
